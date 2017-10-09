@@ -20,8 +20,8 @@ A lot of the notes here come from his videos
 
 # Terminology
 
-* ISPF - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface
-* TSO - Time Sharing Option - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
+* **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
+* **TSO** - Time Sharing Option - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
  * Text editor
  * Batch job support and notifications.  Line interaction mode commands can also be processed by JCL instead
  * Debuggers
