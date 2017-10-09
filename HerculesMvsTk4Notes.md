@@ -76,3 +76,42 @@ From the main menu select **3. IM** and enter
 This contains several system monitors, to include just a few:
 
 * **Graphic System Monitor** (type "g" return) displays a list of processes and device activity that is dynamically updated.  It shows the user process /(HERC01 in this case \), the **\*master\*** process which is the MVS kernel, **JES2** which is the schedular and spooling system
+
+# RFE productivity tool
+
+From the main menu type **1 enter**.
+
+Provides an editor and productity tools
+
+## Utilities
+
+From RFE menu type **3 enter**
+
+### DSLIST (Data Set List)
+
+From the Utilities type **4 enter**
+
+**Example "SYS2.JCLLIB":**
+
+For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL library data set that contain a number of example JCL jobs you can run. Type  **"e" enter** at the beginning of the line for this data set to see the list of JCL jobs available.
+
+
+# JCL Jobs
+
+From the main menu select **1 RFE/3 Utilities/4 DSLIST** and enter **SYS2.JCLLIB** for the "Data set prefix".  Type **"e" enter** next to the data set name and then **"e" enter** again next to the JCL job you want to edit/run.
+
+**Example: PRIMASM**
+
+An assembly language program for generating prime numbers.
+
+* Edit the PRIMASM JCL job.  Enter the username with a tag at the top to make it easy to find the job results in the printer output
+
+* If desired change the PARAM.GO parameter value to set the range of prime numbers to generate
+
+* Type **SAVE** at the command prompt to save the changes
+
+* Type **SUBMIT** to submit the JCL job
+
+* Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
+
+
