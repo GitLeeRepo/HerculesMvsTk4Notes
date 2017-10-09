@@ -12,9 +12,20 @@ I come at this from the perspective of having extremely limited mainframe experi
 
 ## Excellent series of YouTube videos by [moshix](https://www.youtube.com/channel/UCR1ajTWGiUtiAv8X-hpBY7w)
 
+A lot of the notes here come from his videos
+
 * [How to Install and Operate the MVS turnkey TK4 system](https://www.youtube.com/watch)
 * [Editing and Executing a COBOL program](https://www.youtube.com/watch?v=YA3FQOzr0ag)
 * [Using the Hercules mainframe console](https://www.youtube.com/watch)
+
+# Terminology
+
+* ISPF - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface
+* TSO - Time Sharing Option - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
+ * Text editor
+ * Batch job support and notifications.  Line interaction mode commands can also be processed by JCL instead
+ * Debuggers
+ * Support for applications
 
 # Installation on Ubuntu (should be similar for windows)
 
@@ -29,7 +40,23 @@ I come at this from the perspective of having extremely limited mainframe experi
   * **HERC03** - a regular user with the password is **PASS4U**
   * **HERC04** - a regular user with the password **PASS4U**
  * After logging in with HERC01 and pressing return a couple of times a menu of available options is presented, which will be examined in more detail in the rest of these notes.
- 
+
+# Keys and Navigation
+
+Note for several of these commands (particular the ones you type in that require a return (not F3, F7, F8, etc)) make sure you are in the input area, otherwise you will replace whatever text is displayed on the screen
+
+* **F3** - move back up a level in the menu
+* **arrow keys** - move up and down lines, left and right a character
+* **+ enter**, **F8**, **DOWN** - page down
+* **- enter**, **F7**, **UP** - page up
+* **TOP** - Move to the first line of a record (top page)
+* **BOTTOM**, **BOT** - Move to the last line of a record (last page)
+* **END** - end a command
+* **CANCEL**, **CAN** - same as end but user profile changes not saved
+* **EXIT**, **END**, **=x** - terminate the whole review session
+* **RECALL**, **RETRIEVE** - recall the prior command
+* **e** - edit/display an entry (make sure you are on the front of the line for that entry)
+
 # Directory Structure (the unzip location)
 
 * **conf** - the Hercules configuration files
@@ -41,3 +68,11 @@ I come at this from the perspective of having extremely limited mainframe experi
 * **prt** - print directory for printer output
 * **rdr** - card images to submit to the reader in MVS
 * **unattended** - contains the **set_console_mode** script to enable console mode in which you start the system with the `./mvs` script rather than having it run as a daemon.
+
+# IMON/370 System monitor
+
+From the main menu select **3. IM** and enter
+
+This contains several system monitors, to include just a few:
+
+* **Graphic System Monitor** (type "g" return) displays a list of processes and device activity that is dynamically updated.  It shows the user process /(HERC01 in this case \), the **\*master\*** process which is the MVS kernel, **JES2** which is the schedular and spooling system
