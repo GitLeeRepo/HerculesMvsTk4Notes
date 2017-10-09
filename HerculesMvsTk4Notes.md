@@ -79,9 +79,9 @@ This contains several system monitors, to include just a few:
 
 # RFE productivity tool
 
-From the main menu type **1 enter**.
-
 Provides an editor and productity tools
+
+From the main menu type **1 enter**.
 
 ## Utilities
 
