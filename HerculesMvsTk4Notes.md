@@ -224,7 +224,7 @@ An assembly language program for generating prime numbers.
 
 * Type **SUBMIT** to submit the JCL job
 
-* Make note of the Job number which is displayed after SUBMIT.  If you tell JES2 in the JCL that **MSGCLASS=H** it will hold the job output in the queue.  In the case when I ran this example I had **MSGCLASS=A** which told it to send it to the printer (the **prt** folder in Hercules case).  If the job is held, go to the **3 Utilities** menu then **8 OUTLIST**
+* Make note of the Job number which is displayed after SUBMIT.  If you tell JES2 in the JCL that **MSGCLASS=H** it will hold the job output in the queue.  In the case when I ran this example I had **MSGCLASS=A** which told it to send it to the printer (the **prt** folder in Hercules case).  If the job is held, refer to the [OUTLIST](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/HerculesMvsTk4Notes.md#outlist) section for information on viewing, purging, or releasing the job to the printer.
 
 * Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
 
