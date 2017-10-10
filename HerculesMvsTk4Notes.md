@@ -225,6 +225,8 @@ From within **RFE** go to **3 UTILITIES** **2 DATASET**
   * NUMBER OF DIRECTORY BLOCKS
   * OPTIONAL: VOLUME AND UNIT - DEFAULTS WILL BE PROVIDED
   
+  **Important:** In order to create a **PDS** (Partitioned Data Set) you need to specify a non-zero number for the **NUMBER OF DIRECTORY BLOCKS**.  On the other hand, if you want to create a **sequential** data set then be sure to set it to zero.
+  
 * Press enter when complete to generate the data set
 
   
