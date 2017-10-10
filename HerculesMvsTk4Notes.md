@@ -306,3 +306,16 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 3. Type **shutdown** enter
 4. Enter **logoff** enter
 5. The shutdown process will proceed, with the automated shutdown it will automatically exit Hercules when completed
+
+# Entering MVS Console commands from Herucules prompt
+
+* **/** - place a slash at the beginning of MVS commands to run them from the Hercules command prompt
+* **/D A,L** - list active jobs and users
+* **/C jobname** - terminates the job/process
+* **/C mf1** - cancels the job that provides stats, but is not needed
+* **/C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
+* **D U,DASD,ONLINE** - display the online DASD devices
+
+## Non-MVS Hercules commands (no slash as a prefix)
+
+* **devlist** - display a list of devices that you can page up and down
