@@ -22,15 +22,26 @@ A lot of the notes here come from his videos
 
 * [Hecules System 370/ES 390 Emulator](http://www.hercules-390.org/)
 
+# Concepts
+
+* MVS has a record oriented/block oriented file system, not by oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the number of extensions that can be added (it won't grow beyond this).  You often have to factor in individual disk geometries.
 
 # Terminology
 
+* **ALLOCATE** . TSO command to make a connection between a file's logical name (the ddname) and the file's physical name (the data set
+name).
+* **DATASET** - similar to a file in Linux/Windows, although you can have a **PDS** (Partition Data Set) in MVS
+* **LIBRARY** - smiliar to a directory in Linux/Windows
+* **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
+* **MEMBER** -  A file in a **PDS** (Partitioned Data Set).  Most editing of source files takes place in **MEMBERS**
+* **PDS** - Partitioned Data Set - It is a file that can contain other files call **MEMBERS**.  Identifed by **PO** under the ORG heading when listing datasets and in JCL commands
 * **TSO** - Time Sharing Option - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
  * Text editor
  * Batch job support and notifications.  Line interaction mode commands can also be processed by JCL instead
  * Debuggers
  * Support for applications
+* **VOLUME* - **DASD** disks
 
 # Installation on Ubuntu (should be similar for windows)
 
@@ -100,7 +111,22 @@ From the Utilities type **4 enter**
 
 For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL library data set that contain a number of example JCL jobs you can run. Type  **"e" enter** at the beginning of the line for this data set to see the list of JCL jobs available.
 
+# Data Sets
 
+** DSLIST (data set list) command (1 RFE/3 UTIL/4 DSLIST)
+
+The listing specifieds:
+  * **Volume** - the volume it is on
+  * **ORG** - the dataset organization, whether it is a **PO** partitioned dataset
+  * **FMT** - Dataset format: **FB** fixed block"; **VB** variable block; **U** "?"
+  * **LRCL** - Logical Record Length
+  * **BLKSZ** - Block size - by default files are read one block at a time, not one record at a time
+  
+** Example data sets
+
+* SYS1.* - the system library datasets.  Do not change these unless you know what you are doing, you can prevent the system from booting if you make a mistake
+  
+  
 # JCL Jobs
 
 From the main menu select **1 RFE/3 Utilities/4 DSLIST** and enter **SYS2.JCLLIB** for the "Data set prefix".  Type **"e" enter** next to the data set name and then **"e" enter** again next to the JCL job you want to edit/run.
