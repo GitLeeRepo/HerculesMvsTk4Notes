@@ -137,16 +137,32 @@ From the Utilities type **4 enter**
 
 ### OUTLIST
 
-To view and modify the output print queue
+To view and modify the output job queue, typically print jobs with the output results (good or bad) on the execution of the job.  Usually a combination of execution information and program output if it was successful.
 
 * Go to the Utilities menu then **8 OUTLIST**
   if the job is not displayed, type **ST** to display all jobs
-* Type "S" enter next to the job to select it (open the job)
+* Type **"S"** enter next to the job to select it (open the job)
 
   Other commands for an individual job
-  * Type "P" next to a held print job to purge it (delete it)
-  * Type "O" next to a held print job to release it to the printer
-  * Type "C" next to a non-help print job (one waiting to execute) to cancel it.  It can not be canceled if it has started
+  * Type **"P"** next to a held job to purge it (delete it)
+  * Type **"O"** next to a held print job to release it to the printer
+  * Type **"C"** next to a non-held job (one waiting to execute) to cancel it.  It can not be canceled if it has started
+  
+* Small portion of JES2 Job Log output for a held job
+
+```
+J E S 2   J O B   L O G
+
+
+08.33.36 JOB    4  $HASP373 PRIMCOB1 STARTED - INIT  1 - CLASS A - SYS TK4-
+08.33.36 JOB    4  IEF403I PRIMCOB1 - STARTED - TIME=08.33.36
+08.33.36 JOB    4  IEFACTRT - Stepname  Procstep  Program   Retcode
+08.33.36 JOB    4  PRIMCOB1   PRIMES    COB       IKFCBL00  RC= 0000
+08.33.36 JOB    4  PRIMCOB1   PRIMES    GO        LOADER    RC= 0000
+08.33.36 JOB    4  IEF404I PRIMCOB1 - ENDED - TIME=08.33.36
+08.33.36 JOB    4  $HASP395 PRIMCOB1 ENDED
+```
+One of the most import things to note here is the return codes, both are **Rc= 0000** which indicates **job success**.
 
 **Example "SYS2.JCLLIB":**
 
@@ -183,6 +199,8 @@ The top section of the JCL file is called the **Job Card**.  It contains informa
 //				MSGLEVEL=(1,1)
 ```
 Note the CLASS is used to tell JES2 what to do.  The CLASS=A in this case tells JES2 to run it immediately.  The MSGCLASS tells JES2 what to do with the output, here **MSGCLASS=A** indicates a particular printer (on Hercules one that writes the output to the prt folder).  To have the system hold the output before printing so it can be reviewed specify **MSGCLASS=H**
+
+Also note that the identifier on the first line before the **JOB**, in this case **PRIMCOB1** (the name of the program) can be changed to whatever you want.  This is helpful in that this identifier can be used to search for the output in Ubuntu's **prt** directory.  Some programmer use their username plus a unique letter for each run to help find the output.
 
 ## Execution Card
 
