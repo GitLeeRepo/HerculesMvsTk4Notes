@@ -28,20 +28,48 @@ A lot of the notes here come from his videos
 
 # Terminology
 
+Note: several of the definitions come from [IBM knowledge base](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zglossary.doc/zglossary.pdf)
+
 * **ALLOCATE** . TSO command to make a connection between a file's logical name (the ddname) and the file's physical name (the data set
 name).
+* **BLOCK** - a set of consecutive pages on a disk
+* **BLOCK SIZE** - the size of a block specified in different units, i.e. the number of records (most common), words, characters, etc.
+* **BSAM** - Basic Sequential Access Method
+* **CATALOG** - A directory of files and libraries, with reference to their locations
+* **CATALOGED DATASET** - An indexed dataset associated with a **Catalog**
+* **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
+* **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units
 * **DATASET** - similar to a file in Linux/Windows, although you can have a **PDS** (Partition Data Set) in MVS
 * **LIBRARY** - smiliar to a directory in Linux/Windows
+* **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
+* **JCL** - Job Control Language
+* **JES** - Job Entry System - responsible for spooling, job queuing, and I/O for jobs
+* **JOB** - a unit of work for the operating system defined in JCL
+* **JOB CLASS** - a category of job used to distinguish its characterist (for example I/O intensive vs processor intensive)
+* **LP** - logical partition
+* **LRECL** - logical record length
+* **LU** - logical unit
 * **MEMBER** -  A file in a **PDS** (Partitioned Data Set).  Most editing of source files takes place in **MEMBERS**
-* **PDS** - Partitioned Data Set - It is a file that can contain other files call **MEMBERS**.  Identifed by **PO** under the ORG heading when listing datasets and in JCL commands
-* **TSO** - Time Sharing Option - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
+* **MVS** - Multiple Virtual Storage
+* **MVS/ESA** - Multiple Virtual Storage/Enterprise System Architecture
+* **PDS** - Partitioned Data Set - It is a data set that can contain partitions called **MEMBERS**, which are programs, parts of programs, and data.  members, each of which can contain a program, part of a program, or
+data. Synonymous with program library. Contrast with sequential data set. Identifed by **PO** under the ORG heading when listing datasets and in JCL commands
+* **PE** - Program Error
+* **PU** - Physical Unit**
+* **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
+* **RECORD SET** - Data sets with a record-oriented structure that are accessed record by record. This is the most typical data set structure on MVS
+* **RJE** - Remoote Job Entry
+* **SNA** - Systems Network Architecture
+* **SPOOLING** - Reading and writing of input and output streams on auxiliary storage devices, concurrently with job execution,
+* **TSO** - Time Sharing Option -  allows users to interactively share computer time and resources - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
  * Text editor
  * Batch job support and notifications.  Line interaction mode commands can also be processed by JCL instead
  * Debuggers
  * Support for applications
-* **VOLUME* - **DASD** disks
+* **VOLUME* - **DASD** disks, along with tapes and optical units.  Indentified by a volumen label.
+* **VSAM** - Virtual Storage Access Method
 
 # Installation on Ubuntu (should be similar for windows)
 
