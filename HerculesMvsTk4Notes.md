@@ -157,6 +157,43 @@ The listing specifieds:
   
 # JCL Jobs
 
+## Job Card
+
+The top section of the JCL file is called the **Job Card**.  It contains information to tell **JES2** how to run the job.  An Example Job Card section for submitting a COBOL program looks like this:
+
+```
+//PRIMCOB1 JOB (COBOL),
+//    'Eratosthenes Sieve',
+//				CLASS=A,
+//				MSGCLASS=A,
+//				REGION=8M,TIME=1440,
+//				MSGLEVEL=(1,1)
+```
+Note the CLASS is used to tell JES2 what to do.  The CLASS=A in this case tells JES2 to run it immediately.  The MSGCLASS tells JES2 what to do with the output, here **MSGCLASS=A** indicates a particular printer (on Hercules one that writes the output to the prt folder).  To have the system hold the output before printing so it can be reviewed specify **MSGCLASS=H**
+
+## Execution Card
+
+The **Execution Card** is that section of the JCL that telss JES2 what program to execute.  An example from the same COBOL program as above would be:
+
+```
+//PRIMES  EXEC COBUCG,
+//        PARAM.COB='FLAGW,LOAD,SUPMAP,SIZE=2048K,BUF=1024K'
+//COB.SYSPUNCH DD DUMMY
+//COB.SYSIN    DD *
+
+... the COBOL source code
+
+/*
+//COB.SYSLIB  DD DSNAME=SYS1.COBLIB.DISP=SHR
+//GO.SYSOUT   DD SYSOUT=*,DCB=(RECFM=FBA,LRECL=161,BLKSIZE=16100)
+//GO.SYSIN    DD *
+    2000
+/*
+```
+Note the COBUCG is the COBOL compiler and the **PARAM.COB=** line is the parameters for the compile.  The **COB.SYSIN   DD \*** line is followed by the actual source code to be processed by the compiler.  The COBOL program's input itself commes for a similar **SYSIN DD \*** at the end of the source code (2000 in this case).  It also includes output information on how to format the output
+
+## Example Jobs in the SYS2.JCLLIB Data Set
+
 From the main menu select **1 RFE/3 Utilities/4 DSLIST** and enter **SYS2.JCLLIB** for the "Data set prefix".  Type **"e" enter** next to the data set name and then **"e" enter** again next to the JCL job you want to edit/run.
 
 **Example: PRIMASM**
