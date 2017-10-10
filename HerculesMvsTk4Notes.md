@@ -182,7 +182,51 @@ The listing specifieds:
 ** Example data sets
 
 * SYS1.* - the system library datasets.  Do not change these unless you know what you are doing, you can prevent the system from booting if you make a mistake
+* SYS2.* - contains data sets provided by TK4-, including the **SYS2.JCLLIB** data set that can be used and modified
+
+## Creating a Data Set
+
+### Naming rules
+
+* The entire data set name cannot be more that 44 characters.
+* The segment portion between the periods cannot be more that 8 characters
+* Allowable characters - you can use several special characters, wuch as $,#,@,%, etc. as long as they are not the first character
+
+### Disk Geometry
+
+* 1 track = 56,664 bytes
+* 1 cylinder = 15 tracks = 849,960 bytes
+
+### Record Format Types
+
+* **U** - Undefined
+* **FB** - Fixed block - for example a block with a records size of 80, and a block size of 800, creates a block of 10 records
+* **VB** - Variable block - the record length is fixed, but the block length is variable
+* **F** - Fixed record length
+
+### Data Set Allocation
+
+* Specify the PRIMARY SPACE QUANTITY - size in tracks or cylinders - this is the required space to be created
+* Specify the SECONDARY SPACE QUANTITY - size in tracks or cylinders - these are the exents that allow the data set to be increased by that size.  You can have up to 16 extents per volume.  There is no guaratee you will get the extended space.
+
+### Data Set Creation Using the RFE Productivity Utilities
+
+From within **RFE** go to **3 UTILITIES** **2 DATASET**
+
+* Type **"A"** for Command (no enter) and enter the provide the **Data Set Name** then press enter
+
+* On the **ALLOCATE NEW DATA SET** screen specify:
+  * RECORD FORMAT (U, FB, VB, F)
+  * LOCGICAL RECORD LENGTH
+  * PHYSICAL BLOCK SIZE
+  * ALLOCATION UNIT (**T = TRACK; C = CYLINDER;** B = BLOCK; K = KILOBYTES; M = MEGABYTES; R = RECORDS)
+  * PRIMARY SPACE QUANTITY
+  * SECONDARY SPACE QUANTITY
+  * NUMBER OF DIRECTORY BLOCKS
+  * OPTIONAL: VOLUME AND UNIT - DEFAULTS WILL BE PROVIDED
   
+* Press enter when complete to generate the data set
+
   
 # JCL Jobs
 
