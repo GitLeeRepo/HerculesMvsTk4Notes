@@ -135,6 +135,22 @@ From RFE menu type **3 enter**
 
 From the Utilities type **4 enter**
 
+### OUTLIST (output print queue)
+
+* Go to the Utilities menu then **8 OUTLIST**
+  if the job is not displayed, type **ST** to display all jobs
+* Type "S" enter next to the job to select it (open the job)
+
+  Other commands for an individual job
+  * Type "P" next to a held print job to purge it (delete it)
+  * Type "O" next to a held print job to release it to the printer
+  * Type "C" next to a non-help print job (one waiting to execute) to cancel it.  It can not be canceled if it has started
+
+
+
+
+
+
 **Example "SYS2.JCLLIB":**
 
 For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL library data set that contain a number of example JCL jobs you can run. Type  **"e" enter** at the beginning of the line for this data set to see the list of JCL jobs available.
@@ -207,6 +223,8 @@ An assembly language program for generating prime numbers.
 * Type **SAVE** at the command prompt to save the changes
 
 * Type **SUBMIT** to submit the JCL job
+
+* Make note of the Job number which is displayed after SUBMIT.  If you tell JES2 in the JCL that **MSGCLASS=H** it will hold the job output in the queue.  In the case when I ran this example I had **MSGCLASS=A** which told it to send it to the printer (the **prt** folder in Hercules case).  If the job is held, go to the **3 Utilities** menu then **8 OUTLIST**
 
 * Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
 
