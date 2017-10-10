@@ -174,3 +174,19 @@ An assembly language program for generating prime numbers.
 * Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
 
 
+# Logging off and Shutdown the system
+
+## Logging off
+
+1. Exit any active application and press PF3 from  the TSO Applications menu to exit to the READY prompt
+2. Type **logoff** enter
+
+## Shutting down
+
+These steps assume auto start and shutdown are enabled (they are by default).  If you want to go through the manual process of bring the system up and take it down refer to the manual.
+
+1. Logon to TSO user HERC01 or HERC02. 
+2. Press PF3 from  the TSO Applications menu to exit to the READY prompt
+3. Type **shutdown** enter
+4. Enter **logoff** enter
+5. The shutdown process will proceed, with the automated shutdown it will automatically exit Hercules when completed
