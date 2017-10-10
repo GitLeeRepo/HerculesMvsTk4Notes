@@ -135,7 +135,9 @@ From RFE menu type **3 enter**
 
 From the Utilities type **4 enter**
 
-### OUTLIST (output print queue)
+### OUTLIST
+
+To view and modify the output print queue
 
 * Go to the Utilities menu then **8 OUTLIST**
   if the job is not displayed, type **ST** to display all jobs
@@ -145,11 +147,6 @@ From the Utilities type **4 enter**
   * Type "P" next to a held print job to purge it (delete it)
   * Type "O" next to a held print job to release it to the printer
   * Type "C" next to a non-help print job (one waiting to execute) to cancel it.  It can not be canceled if it has started
-
-
-
-
-
 
 **Example "SYS2.JCLLIB":**
 
