@@ -15,6 +15,7 @@ Notes on the Job Control Language (JCL)
 * The name identifier must begin in column 3
 * Their must be at least one space between name, operation, and operand
 * The operand may not extend beyone column 71, it must be continued on a new line seperated by commas
+* When a statement is extended to the next line, the coninuation should not start before column for, i.e. there should be at least one space between **//** and the continuation so that it is not confused with a name identifier.
 
 ### Types of Operand parameters
 
@@ -46,6 +47,17 @@ Notes on the Job Control Language (JCL)
 Note the CLASS is used to tell JES2 what to do and is defined by a particular computer center/installation.  In the case of TK4- the CLASS=A in this case tells JES2 to run it immediately.  The MSGCLASS tells JES2 what to do with the output, here **MSGCLASS=A** indicates a particular printer (on Hercules one that writes the output to the prt folder).  To have the system hold the output before printing so it can be reviewed specify **MSGCLASS=H**
 
 Also note that the **Job Name** identifier, in this case **PRIMCOB1** (the name of the program) can be changed to whatever you want.  This is helpful in that this identifier can be used to search for the output in Ubuntu's **prt** directory.  Some programmer use their username plus a unique letter for each run to help find the output.
+
+## The EXEC Statement
+
+* The Name identifier for the **EXEC** statement is referred to as the **Step Name**.  You can have multiple **EXEC** statements in a JCL job, each having a unique **Step Name**.
+* The **PGM Parameter** is actually a **Positional Parameter** even though it has the **=** associated with a **Keyword** parameter (the **PROC** parameter is the only other example of this exception).  It is positional in the sense that it must be the first parameter provided for the **EXEC** statement
+
+### EXEC Statement Example
+
+Note this example also includes the **DD** used by the **EXEC**.
+
+
 
 
 
