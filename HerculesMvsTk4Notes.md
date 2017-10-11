@@ -40,8 +40,9 @@ A lot of the notes here come from his videos
 
 # Terminology
 
-Note: several of the definitions come from [IBM knowledge base](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zglossary.doc/zglossary.pdf)
+Note: several of the definitions come from [IBM knowledge base](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zglossary.doc/zglossary.pdf) and Wikipedia articles that were primarily modified to make them more concise.
 
+* **3270 Terminal** - The **IBM 3270** family of terminals that were released in 1971.  They are block oriented devices, meaning that they sends entire blocks of text at a time, rather than character by character.  This block orientation, along with controllers that sit between the 3270s and the mainframe itself, minimize the interuptions to the mainframe CPU.  The 3270 is no longer manufactured today, but is widely used through terminal emulators.
 * **ALLOCATE** . TSO command to make a connection between a file's logical name (the ddname) and the file's physical name (the data set
 name).
 * **BLOCK** - a set of consecutive pages on a disk
@@ -51,8 +52,7 @@ name).
 * **CATALOGED DATASET** - An indexed dataset associated with a **Catalog**
 * **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
 * **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units
-* **DATASET** - similar to a file in Linux/Windows, although you can have a **PDS** (Partition Data Set) in MVS
-* **LIBRARY** - smiliar to a directory in Linux/Windows
+* **DATASET** - similar to a file in Linux/Windows, although you can have a **PDS** (Partition Data Set) in MVS 
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
@@ -60,6 +60,7 @@ name).
 * **JES** - Job Entry System - responsible for spooling, job queuing, and I/O for jobs
 * **JOB** - a unit of work for the operating system defined in JCL
 * **JOB CLASS** - a category of job used to distinguish its characterist (for example I/O intensive vs processor intensive)
+* **LIBRARY** - smiliar to a directory in Linux/Windows
 * **LP** - logical partition
 * **LRECL** - logical record length
 * **LU** - logical unit
@@ -73,7 +74,7 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
 * **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
 * **RECORD SET** - Data sets with a record-oriented structure that are accessed record by record. This is the most typical data set structure on MVS
 * **RJE** - Remoote Job Entry
-* **SNA** - Systems Network Architecture.  a complete protocol stack for interconnecting computers and their resources. SNA describes formats and protocols and is, in itself, not a piece of software. Refer to VTAM which is one of the key technologies using this specification.
+* **SNA** - Systems Network Architecture.  a complete protocol stack for interconnecting computers and their resources. SNA describes formats and protocols and is, in itself, not a piece of software. Refer to VTAM which is one of the key technologies using this specification.  SNA is a key architecture use in communication devices such as the 3270 terminal
 * **SPOOLING** - Reading and writing of input and output streams on auxiliary storage devices, concurrently with job execution,
 * **TSO** - Time Sharing Option -  allows users to interactively share computer time and resources - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
  * Text editor
