@@ -56,7 +56,11 @@ name).
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
-* **JCL** - Job Control Language
+* **ISPF LIBRARY** - The ISPF library has a three-level name consisting of a project, group, and type. An optional library member name can also be included. A member consists of programming code, data, or text.
+  * **Project** - The common identifier for all ISPF libraries belonging to the same programming project. This name must be your user ID unless you are using a specific project name that has been predefined in the MVS™ master catalog.
+  * **Group** - The identifier for a particular set of ISPF libraries.
+  * **Type** -The identifier for the type of information in the ISPF library, such as JCLLIB, PL/I, SCRIPT, or COBOL.
+* **JCL** - Job Control Language.  Refer to [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview) for more information.
 * **JES** - Job Entry System - responsible for spooling, job queuing, and I/O for jobs
 * **JOB** - a unit of work for the operating system defined in JCL
 * **JOB CLASS** - a category of job used to distinguish its characterist (for example I/O intensive vs processor intensive)
