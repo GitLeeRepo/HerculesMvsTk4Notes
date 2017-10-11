@@ -335,3 +335,13 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 ## Non-MVS Hercules commands (no slash as a prefix)
 
 * **devlist** - display a list of devices that you can page up and down
+
+# TSO Commands
+
+To run TSO commands, either **F3** out of the menus or go to the **1 RFE/6 COMMNAND** option.
+
+* To list the catalog files FOR the current  user:
+
+```
+LISTCAT
+```
