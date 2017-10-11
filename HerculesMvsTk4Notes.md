@@ -22,6 +22,10 @@ A lot of the notes here come from his videos
 
 * [Hecules System 370/ES 390 Emulator](http://www.hercules-390.org/)
 
+## Additional Notes References
+
+* [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview)
+
 # Concepts
 
 * MVS has a record oriented/block oriented file system, not by oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the number of extensions that can be added (it won't grow beyond this).  You often have to factor in individual disk geometries.
