@@ -134,5 +134,43 @@ WRITE (6,1000)
 ```
 Will result in a **ddname** of **FT06F001**, requiring this **DD** statement
 ```
-//FT06F001  DD
+//FT06F001 DD
 ```
+
+# Additional Statements
+
+## Delimiter (/\*) Statement
+
+Placing **/\*** in columns 1 and 2 marks the end of an **input stream**
+
+## NUL (//) Statement
+
+Used to mark the end of the entire **Job**.  While not required, it is considered good programming practice to end your jobs with **//**.
+
+# JCL Job Output
+
+The JCL output depends on the **MSGLEVEL** parameter of the **JOB** statement, which is of the format **MSGLEVEL=(statements, messages)**
+
+For **statements** part of the **MSGLEVEL** the meaning is:
+0 Print only the JOB statement
+1 Print all the input JCL, ad the JCL from cataloged procedures
+2 Print only the input JCL
+
+For the **messages** part of the **MSGLEVEL** the meaning is:
+0 Don't print allocation messages unless the job abnormally terminates
+1 Print all allocation messagees
+
+**Allocation** messages show the physical device that was allocated for the data sets used
+
+## The Output
+
+The output will depend on the **MSGLEVEL** settings.  If the **statement** part of the **MSGLEVEL**  is set to 1 it will print two copies of the input data, the first of which is mostly unmodified, while the second will indicate where any errors that occurred.  If **MSGLEVEL** is 2 then only the fist is displayed, and with 0 (zero) neither is displayed since only the **JOB** statement is displayed
+
+The **allocation** page which contains the information on what physical devices were allocated for the data.  If this information is not relevant or important for a particular job then it can be suppressed by setting the **messages** part of the **MGLEVEL** parameter to zero, otherwise set it to 1.
+
+The **allocation** page does include one particularly import piece of information, the return code (may show as "CONDIION CODE" or "RC" with zero indicate no issues.  For the standard utilities "4' incdicates minor errors, while "8" and "12" indicate progressively more serious errors.  Custom programs may follow this sandard or may choose another.
+
+The remaining pages of will contain the output of the program
+
+
+
