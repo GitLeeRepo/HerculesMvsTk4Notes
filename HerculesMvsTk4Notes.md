@@ -84,7 +84,6 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
 * **VSAM** - Virtual Storage Access Method
 * **VTAM** - Virtual Telecommunications Access Method subsystem that implements Systems Network Architecture (SNA) for mainframe environments.  It provides an API for communication applications, and it controls communication equipment such as adapters and controllers. 
 
-* **VTAM** -
 # Installation on Ubuntu (should be similar for windows)
 
 * Download the "Current TK4- System" zip file from [here](http://wotho.ethz.ch/tk4-/)
