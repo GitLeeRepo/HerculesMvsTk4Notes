@@ -73,7 +73,7 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
 * **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
 * **RECORD SET** - Data sets with a record-oriented structure that are accessed record by record. This is the most typical data set structure on MVS
 * **RJE** - Remoote Job Entry
-* **SNA** - Systems Network Architecture
+* **SNA** - Systems Network Architecture.  a complete protocol stack for interconnecting computers and their resources. SNA describes formats and protocols and is, in itself, not a piece of software. Refer to VTAM which is one of the key technologies using this specification.
 * **SPOOLING** - Reading and writing of input and output streams on auxiliary storage devices, concurrently with job execution,
 * **TSO** - Time Sharing Option -  allows users to interactively share computer time and resources - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
  * Text editor
@@ -82,7 +82,9 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
  * Support for applications
 * **VOLUME* - **DASD** disks, along with tapes and optical units.  Indentified by a volumen label.
 * **VSAM** - Virtual Storage Access Method
+* **VTAM** - Virtual Telecommunications Access Method subsystem that implements Systems Network Architecture (SNA) for mainframe environments.  It provides an API for communication applications, and it controls communication equipment such as adapters and controllers. 
 
+* **VTAM** -
 # Installation on Ubuntu (should be similar for windows)
 
 * Download the "Current TK4- System" zip file from [here](http://wotho.ethz.ch/tk4-/)
