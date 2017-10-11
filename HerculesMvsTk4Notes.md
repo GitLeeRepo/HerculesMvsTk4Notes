@@ -34,6 +34,10 @@ A lot of the notes here come from his videos
 
 * [Data Set Wikipedia](https://en.wikipedia.org/wiki/Data_set_(IBM_mainframe))
 
+## Grab notes from
+
+[DD Statement](https://www.tutorialspoint.com/jcl/jcl_dd_statement.htm)
+
 # Concepts
 
 * MVS has a record oriented/block oriented file system, not by oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the number of extensions that can be added (it won't grow beyond this).  You often have to factor in individual disk geometries.
