@@ -236,9 +236,11 @@ From within **RFE** go to **3 UTILITIES** **2 DATASET**
   
 # JCL Jobs
 
-## Job Card
+Refer to [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview) for more details on JCL
 
-The top section of the JCL file is called the **Job Card**.  It contains information to tell **JES2** how to run the job.  An Example Job Card section for submitting a COBOL program looks like this:
+## Job Statement
+
+Contains information to tell **JES2** how to run the job.  An Example Job Statement section for submitting a COBOL program looks like this:
 
 ```
 //PRIMCOB1 JOB (COBOL),
@@ -248,7 +250,7 @@ The top section of the JCL file is called the **Job Card**.  It contains informa
 //				REGION=8M,TIME=1440,
 //				MSGLEVEL=(1,1)
 ```
-Note the CLASS is used to tell JES2 what to do.  The CLASS=A in this case tells JES2 to run it immediately.  The MSGCLASS tells JES2 what to do with the output, here **MSGCLASS=A** indicates a particular printer (on Hercules one that writes the output to the prt folder).  To have the system hold the output before printing so it can be reviewed specify **MSGCLASS=H**
+Note the CLASS is used to tell JES2 what to do and is defined by a particular computer center/installation.  In the case of TK4- the CLASS=A in this case tells JES2 to run it immediately.  The MSGCLASS tells JES2 what to do with the output, here **MSGCLASS=A** indicates a particular printer (on Hercules one that writes the output to the prt folder).  To have the system hold the output before printing so it can be reviewed specify **MSGCLASS=H**
 
 Also note that the identifier on the first line before the **JOB**, in this case **PRIMCOB1** (the name of the program) can be changed to whatever you want.  This is helpful in that this identifier can be used to search for the output in Ubuntu's **prt** directory.  Some programmer use their username plus a unique letter for each run to help find the output.
 
