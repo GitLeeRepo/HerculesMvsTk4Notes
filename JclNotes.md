@@ -37,11 +37,11 @@ Notes on the Job Control Language (JCL)
 
 ```
 //PRIMCOB1 JOB (COBOL),
-//    'Eratosthenes Sieve',
-//				CLASS=A,
-//				MSGCLASS=A,
-//				REGION=8M,TIME=1440,
-//				MSGLEVEL=(1,1)
+//  'Eratosthenes Sieve',
+//  CLASS=A,
+//		MSGCLASS=A,
+//		REGION=8M,TIME=1440,
+//		MSGLEVEL=(1,1)
 ```
 Note the CLASS is used to tell JES2 what to do and is defined by a particular computer center/installation.  In the case of TK4- the CLASS=A in this case tells JES2 to run it immediately.  The MSGCLASS tells JES2 what to do with the output, here **MSGCLASS=A** indicates a particular printer (on Hercules one that writes the output to the prt folder).  To have the system hold the output before printing so it can be reviewed specify **MSGCLASS=H**
 
