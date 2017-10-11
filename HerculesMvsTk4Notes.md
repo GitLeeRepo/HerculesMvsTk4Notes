@@ -254,9 +254,9 @@ Note the CLASS is used to tell JES2 what to do and is defined by a particular co
 
 Also note that the identifier on the first line before the **JOB**, in this case **PRIMCOB1** (the name of the program) can be changed to whatever you want.  This is helpful in that this identifier can be used to search for the output in Ubuntu's **prt** directory.  Some programmer use their username plus a unique letter for each run to help find the output.
 
-## Execution Card
+## Execution Statement and DD Statement
 
-The **Execution Card** is that section of the JCL that telss JES2 what program to execute.  An example from the same COBOL program as above would be:
+The **Execution Statement** is that section of the JCL that telss JES2 what program to execute.  It is followed by a series of **DD Statements** which define the data (both input and output) for the particular **EXECUTION**. An example from the same COBOL program as above would be:
 
 ```
 //PRIMES  EXEC COBUCG,
