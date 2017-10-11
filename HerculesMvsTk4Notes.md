@@ -10,6 +10,10 @@ I come at this from the perspective of having extremely limited mainframe experi
 * [Main site](http://wotho.ethz.ch/tk4-/)
 * [User Manual](http://wotho.ethz.ch/tk4-/MVS_TK4-_v1.00_Users_Manual.pdf)
 
+## TK3 and TK4 References
+
+* [MVS Tur(n)key Cookbook](http://www.bsp-gmbh.com/turnkey/cookbook/) - good info, but only covers TK3
+
 ## Excellent series of YouTube videos by [moshix](https://www.youtube.com/channel/UCR1ajTWGiUtiAv8X-hpBY7w)
 
 A lot of the notes here come from his videos
