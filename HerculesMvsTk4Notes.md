@@ -351,5 +351,6 @@ To run TSO commands, either **F3** out of the menus, or type **TSO <the command>
  
 Note that when entering TSO commands that include data sets the primary index (the first part of the DSN before the period) will be the UserID and appended on the front of the DSN you entered.  To indicate a non-user dataset place a fully qualified data set names in single quotes.  For example if you are user HERC02 and enter **SYS2.JCLLIB** it will try to access **HERC02.SYS2.JCLLIB**, so to get the right reference enter **'SYS2.JCLLIB'** in single quotes.
 
-* **DSN** - Without parameters it will list data set names in use by the current users.  Specify **DSN <the data set name>** to get the users or jobs that are currently using that data set
-* **LISTCAT** To list the catalog files FOR the current  user:
+* **DSN** - Without parameters it will list data set names in use by the current users.  Specify **DSN** <the data set name> to get the users or jobs that are currently using that data set
+* **LISTCAT** - To list the catalog files FOR the current user
+* **LISTSPC** - list space (size) related statistics for a data set of or data sets.  Without any parameters it will prompt for the data ets, otherwise specify them as a parameter.
