@@ -34,7 +34,11 @@ A lot of the notes here come from his videos
 
 * [Data Set Wikipedia](https://en.wikipedia.org/wiki/Data_set_(IBM_mainframe))
 
-## Grab notes from
+## c3270 Emulator References
+
+* [Key mappings](http://x3270.bgp.nu/Unix/c3270-man.html#Keymaps)
+
+## TODO Grab notes from
 
 [DD Statement](https://www.tutorialspoint.com/jcl/jcl_dd_statement.htm)
 
@@ -125,8 +129,9 @@ Note for several of these commands (particular the ones you type in that require
 * **EXIT**, **END**, **=x** - terminate the whole review session
 * **RECALL**, **RETRIEVE** - recall the prior command
 * **e** - edit/display an entry (make sure you are on the front of the line for that entry)
-* **PA** - Program attention key which allows you to break out of a running program.  Not sure what it is bound to on the keyboard yet, but it is avaiable in the keyboard overly menu in the c3270 emulator
+* **PA** - Program attention key which allows you to break out of a running program.  Mapped to **CTRL-A** and then **1** (rease control before entering 1).  It is also avaiable in the keyboard overly menu in the c3270 emulator
 * **RESET** - If the keyboard becomes unresponsive while in ISPF like tools this will reset it so you can use it again.  Availble on the c3270 keyboard overlay menu, not sure the key binding (Esc?)
+* **CLEAR** - Clear the display screen.  Mapped to **Ctrl-C** and available on the c3270 emulator key map menu.
 
 # Directory Structure (the unzip location)
 
