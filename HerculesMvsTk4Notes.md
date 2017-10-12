@@ -73,13 +73,13 @@ name).
 * **BLOCK** - for non-VSAM data sets the storage unit that holds the **RECORDS** and is itself stored in **TRACKS**.  When a record is request, the entire block that it is in is read into memory.  This is done for efficiency because it is assumed you will be requesting other records in that block.
 * **BLOCK SIZE** - the size of a block specified in different units, i.e. the number of records (most common), words, characters, etc.
 * **BSAM** - Basic Sequential Access Method
-* **CATALOG** - A directory of files and libraries, with reference to their locations
+* **CATALOG** - A directory of files and libraries, with reference to their locations, including what volume it is on.  This volume could be tape or disk.  If it is a tape it has the information to request the tape be mounted by its volume name. If it is on disk it has the information on what disk volume it is on, in which the **VTOC** will have the information on where it is physically located. 
 * **CATALOGED DATASET** - An indexed dataset associated with a **Catalog**
 * **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
 * **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units
 * **CICS** - application servers that provide online transaction management and connectivity for applications on IBM Mainframe systems. CICS is middleware designed to support rapid, high-volume online transaction processing. This processing is usually interactive (screen-oriented), but background transactions are possible.  Recent CICS Transaction Server enhancements include support for Web services and Java, Event processing, Atom feeds, and RESTful interfaces.
 * **DATASET** - the **sequential PS** data sets are similar to a file in Linux/Windows, although they are composed of a series of records as opposed to a stream of bytes.  There is also the **PDS** (Partition Data Set) in MVS, which is a data set that contains **Members** that contain the set of records (in the way the entire PS data set does)
-* **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**.  There are two types of extents in which you specify how many tracks/cylinders you want for each type:
+* **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**. The space on disk is contiguous, which means it may be hard to find enough contiguous space on disk for a large extent if the disk is highly fragmented. There are two types of extents in which you specify how many tracks/cylinders you want for each type:
   * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
   * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.  The number of secondary extents you can receive for a non-VSAM data set is limited, on z/OS it is 250, so it may be less on the earlier versions.
 * **IDCAMS** - used to define, copy, delete, and rename VSAM Data Sets.
@@ -120,6 +120,7 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
 * **VOLUME* - **DASD** disks, along with tapes and optical units.  Indentified by a volumen label.
 * **VSAM** - Virtual Storage Access Method - a **VSAM** data set uses a virtual dataset name called a **CLUSTER NAME**, with the cluster name being associated with one or more physical data set names.  With a **KSDS CLUSTER** you have a physical data set **DATA** component and a physical data set **INDEX** component, the **ESDS CLUSTER** has just the physical **DATA** component.  With the exception of **LDS (Linear Data Sets) **VSAM** data sets are collections of records grouped into **Control Intervals (CI)**, which are in turn grouped into a continuous storage are called a **CONTROL AREA (CA)**.  **Linear Data Sets** don't have any META data in them.  A special system utility called **IDCAMS** is used to define, copy, delete, and rename VSAM Data Sets.
 * **VTAM** - Virtual Telecommunications Access Method subsystem that implements Systems Network Architecture (SNA) for mainframe environments.  It provides an API for communication applications, and it controls communication equipment such as adapters and controllers. 
+* **VTOC*** - Volume Table of Contents. It includes a list of data sets on the volume, and the amount of free space.
 
 # Installation on Ubuntu (should be similar for windows)
 
