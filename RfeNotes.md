@@ -9,7 +9,7 @@ Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS e
 
 # Panels
 
-The individual screens in **RFE** are refer to as **Panels**.  You can navigate to a panel by traversing the menu tree.  You can also more directly access particular panels using the panel numbers, separating each nested panel by a period.  For example to start a new Review Session in the **DSLIST** panel you would type **START 3.4** because to get to it you navigate first to **3 Utiities** and second to **4. DSList**
+The individual screens in **RFE** are refer to as **Panels**.  You can navigate to a panel by traversing the menu tree.  You can also more directly access particular panels using the panel numbers, separating each nested panel by a period.  For example, type **=3.4** in any other panels command prompt will take you to the **DSLIST** panel, because to get to it you navigate first to **3 Utiities** and second to **4. DSList**.  Other commands use this notation such as  **START 3.2**  will start a new Review Session on the **DATASET**
 
 # General Commands That Apply Most Areas
 
@@ -32,11 +32,7 @@ The individual screens in **RFE** are refer to as **Panels**.  You can navigate 
 
 ### Commands while viewing list of data set or members
 
-
-
-
-
-* **e** - edit/display an entry (make sure you are on the front of the line for that entry)
+TBD
 
 ### Basic Navigation and commands in text file
 
@@ -68,7 +64,8 @@ You make line editing commands by typing the command at the beginning of the lin
 
 ## Sequential (PS) Specific
 
+TBD
 
 ## PDS Specific
 
-
+TBD
