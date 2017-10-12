@@ -30,6 +30,8 @@ A lot of the notes here come from his videos
 ## Additional Notes References
 
 * [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview)
+* [RfeNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/RfeNotes.md#overview)
+* [c3270Notes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/c3270Notes.md#overview)
 
 ## Concept References
 
