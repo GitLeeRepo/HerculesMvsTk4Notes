@@ -41,9 +41,10 @@ A lot of the notes here come from his videos
 
 * [Key mappings](http://x3270.bgp.nu/Unix/c3270-man.html#Keymaps)
 
-## TODO Grab notes from
+## TODO Grab notes/code from these
 
-[DD Statement](https://www.tutorialspoint.com/jcl/jcl_dd_statement.htm)
+* [DD Statement](https://www.tutorialspoint.com/jcl/jcl_dd_statement.htm)
+* [Sample JCL & COBOL Code](http://www.simotime.com/utldat02.htm)
 
 # Concepts
 
