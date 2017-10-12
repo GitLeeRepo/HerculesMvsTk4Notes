@@ -57,6 +57,7 @@ name).
 * **CATALOGED DATASET** - An indexed dataset associated with a **Catalog**
 * **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
 * **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units
+* **CICS** - application servers that provide online transaction management and connectivity for applications on IBM Mainframe systems. CICS is middleware designed to support rapid, high-volume online transaction processing. This processing is usually interactive (screen-oriented), but background transactions are possible.  Recent CICS Transaction Server enhancements include support for Web services and Java, Event processing, Atom feeds, and RESTful interfaces.
 * **DATASET** - similar to a file in Linux/Windows, although you can have a **PDS** (Partition Data Set) in MVS 
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
