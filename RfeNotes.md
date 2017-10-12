@@ -30,11 +30,7 @@ The individual screens in **RFE** are refer to as **Panels**.  You can navigate 
 
 ## General
 
-### Commands while viewing list of data set or members
-
-TBD
-
-### Basic Navigation and commands in text file
+## Basic Navigation and commands in text file
 
 * **arrow keys** - move up and down lines, left and right a character
 * **\<F7\>** - Page down
@@ -46,7 +42,15 @@ TBD
 * **RESET** - reset the editor.  Useful if you have issues with your line commands an want to clear the commands from the left pane
 * **COPY** - Copy those lines marked with **C** to a specified data set.  If none is provided you will be prompted to enter a sequential data set name.
 
-**Line Editing Commands**
+
+## Primary Commands 
+
+Primary Commands are the commands entered on the Command line at the top of the screen while editing a Member or Sequential PS data set.
+
+* **PROFILE** - show your editor profile setting such as Cap State, Syntax Highlighting
+* **CHANGE** or **C** - Search and replace, for example **C THIS THAT ALL** will change all occurances of THIS to THAT
+
+## Line Editing Commands
 
 Applies to when editing a **sequential PS dataset** or the **member** of a **PDS**
 
