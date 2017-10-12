@@ -48,6 +48,8 @@ TBD
 
 **Line Editing Commands**
 
+Applies to when editing a **sequential PS dataset** or the **member** of a **PDS**
+
 You make line editing commands by typing the command at the beginning of the line (in the control area, not the text file area)
 
 * **C** - Mark line(s) to be copied, you can specify the number of lines to be copied with **C#** (# the number).  Do NOT press **enter** until you have also select the destination with either **A** (for after) or **B** (before) on the beginning of the target line.  Once both the copy and destination markers have been placed press **enter**.  To mark a group of lines to copy type **CC** on the fist line in the group and **CC** again for the last line in the group.
@@ -62,10 +64,18 @@ You make line editing commands by typing the command at the beginning of the lin
 * **UC** - Convert the entire line to uppercase.  As with other commands numeric qualifiers can be used for multiple commands.
 * **LC** - Convert the entire line to lowercase.  As with other commands numeric qualifiers can be used for multiple commands
 
-## Sequential (PS) Specific
+## DaSequential (PS) Specific
 
 TBD
 
 ## PDS Specific
 
-TBD
+### While in the PDS on the Command Prompt
+
+* **SELECT MemberName** or **S MemberName** - Will load the member in the editor if they exist and will  **create a New Member**  if they don't, typing **S /<The New Member Name\>** will create a New Member and place you in the editor.
+
+### While in the PDS Next to a Member on the List
+
+* **D** - Delete the selected member
+* **N** - Rename the selected member
+
