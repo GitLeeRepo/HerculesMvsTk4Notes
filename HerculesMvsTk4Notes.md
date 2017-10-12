@@ -66,7 +66,7 @@ Note: several of the definitions come from [IBM knowledge base](https://www.ibm.
 * **3270 Terminal** - The **IBM 3270** family of terminals that were released in 1971.  They are block oriented devices, meaning that they sends entire blocks of text at a time, rather than character by character.  This block orientation, along with controllers that sit between the 3270s and the mainframe itself, minimize the interuptions to the mainframe CPU.  The 3270 is no longer manufactured today, but is widely used through terminal emulators.
 * **ALLOCATE** . TSO command to make a connection between a file's logical name (the ddname) and the file's physical name (the data set
 name).
-* **BLOCK** - a set of consecutive pages on a disk
+* **BLOCK** - for non-VSAM data sets the storage unit that holds the **RECORDS** and is itself stored in **TRACKS**.  When a record is request, the entire block that it is in is read into memory.  This is done for efficiency because it is assumed you will be requesting other records in that block.
 * **BLOCK SIZE** - the size of a block specified in different units, i.e. the number of records (most common), words, characters, etc.
 * **BSAM** - Basic Sequential Access Method
 * **CATALOG** - A directory of files and libraries, with reference to their locations
@@ -74,7 +74,10 @@ name).
 * **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
 * **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units
 * **CICS** - application servers that provide online transaction management and connectivity for applications on IBM Mainframe systems. CICS is middleware designed to support rapid, high-volume online transaction processing. This processing is usually interactive (screen-oriented), but background transactions are possible.  Recent CICS Transaction Server enhancements include support for Web services and Java, Event processing, Atom feeds, and RESTful interfaces.
-* **DATASET** - similar to a file in Linux/Windows, although you can have a **PDS** (Partition Data Set) in MVS 
+* **DATASET** - the **sequential PS** data sets are similar to a file in Linux/Windows, although they are composed of a series of records as opposed to a stream of bytes.  There is also the **PDS** (Partition Data Set) in MVS, which is a data set that contains **Members** that contain the set of records (in the way the entire PS data set does)
+* **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**.  There are two types of extents in which you specify how many tracks/cylinders you want for each type:
+  * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
+  * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
