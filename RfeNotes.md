@@ -7,10 +7,14 @@ Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS e
 * [HerculesMvsTk4Notes](HerculesMvsTk4Notes)
 * [ISPF Editing Commands](https://www.youtube.com/watch?v=-FUNDgcDRWk) - YouTube video for the **ISPF** (IBM's ver) which is very similar to **RFE**
 
+# Panels
+
+The individual screens in **RFE** are refer to as **Panels**.  You can navigate to a panel by traversing the menu tree.  You can also more directly access particular panels using the panel numbers, separating each nested panel by a period.  For example to start a new Review Session in the **DSLIST** panel you would type **START 3.4** because to get to it you navigate first to **3 Utiities** and second to **4. DSList**
+
 # General Commands That Apply Most Areas
 
 * **<F3>** - move back up a level in the menu
-* **START** - starts a new Review Session that you can switch back and forth between using **SWAP** command.  If no parameter is supplied it will open the new session at the root of the RFE menus.  You can specify a specific RFE menu item as the starting point, for example **START 3** starts the new session in the utilities menu.
+* **START** - starts a new Review Session that you can switch back and forth between using **SWAP** command.  If no parameter is supplied it will open the new session at the root of the RFE menus.  You can specify a specific RFE menu item as the starting point, for example **START 3.4** starts the new session in the **DSLIST** panel.
 * **SWAP** - change to another Review Session that was created with **START**.  Parameters:
   * **LIST** - list the current Review sessions
   * **NEXT** - switch to the next Review session
