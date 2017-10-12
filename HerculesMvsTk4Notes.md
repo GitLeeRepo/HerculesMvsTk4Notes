@@ -40,7 +40,8 @@ A lot of the notes here come from his videos
 
 # Concepts
 
-* MVS has a record oriented/block oriented file system, not by oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the number of extensions that can be added (it won't grow beyond this).  You often have to factor in individual disk geometries.
+* **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** comamand **LISTCAT**.
+* **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a scondary size in the same units which will increase the size by that amount if needed, which will create addional **extents**.  If secondary size increases aren't specified it won't grow beyond the inial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
 
 # Terminology
 
