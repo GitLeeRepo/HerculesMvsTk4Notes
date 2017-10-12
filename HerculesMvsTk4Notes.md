@@ -27,6 +27,14 @@ A lot of the notes here come from his videos
 * [Hecules System 370/ES 390 Emulator](http://www.hercules-390.org/)
 * [Hercules on Wikipedia](https://en.wikipedia.org/wiki/Hercules_\(emulator\))
 
+## IBM Documents
+
+Most of these docs will be for Z/OS, but many things still apply for earlier OSes
+
+* [IBM Library Server](http://m.ibm.com/http/publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/library?wirelessshow=2)
+* [TSO Bookshelf](http://m.ibm.com/http/publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/SHELVES/ikj4bkc0?wirelessshow=1)
+* [ISPF Docs](https://www-01.ibm.com/software/awdtools/ispf/library/)
+
 ## Additional Notes References
 
 * [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview)
