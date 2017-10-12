@@ -86,7 +86,8 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
 * **RJE** - Remoote Job Entry
 * **SNA** - Systems Network Architecture.  a complete protocol stack for interconnecting computers and their resources. SNA describes formats and protocols and is, in itself, not a piece of software. Refer to VTAM which is one of the key technologies using this specification.  SNA is a key architecture use in communication devices such as the 3270 terminal
 * **SPOOLING** - Reading and writing of input and output streams on auxiliary storage devices, concurrently with job execution,
-* **TSO** - Time Sharing Option -  allows users to interactively share computer time and resources - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer is ISPF allows custom menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
+* **TSO** - Time Sharing Option -  allows users to interactively share computer time and resources - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer also to **ISPF** which is built on top of **TSO** allowing it to be controlled through menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
+ * Entering line commands.
  * Text editor
  * Batch job support and notifications.  Line interaction mode commands can also be processed by JCL instead
  * Debuggers
@@ -124,6 +125,8 @@ Note for several of these commands (particular the ones you type in that require
 * **EXIT**, **END**, **=x** - terminate the whole review session
 * **RECALL**, **RETRIEVE** - recall the prior command
 * **e** - edit/display an entry (make sure you are on the front of the line for that entry)
+* **PA** - Program attention key which allows you to break out of a running program.  Not sure what it is bound to on the keyboard yet, but it is avaiable in the keyboard overly menu in the c3270 emulator
+* **RESET** - If the keyboard becomes unresponsive while in ISPF like tools this will reset it so you can use it again.  Availble on the c3270 keyboard overlay menu, not sure the key binding (Esc?)
 
 # Directory Structure (the unzip location)
 
@@ -355,3 +358,5 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **DSN** - Without parameters it will list data set names in use by the current users.  Specify **DSN** <the data set name> to get the users or jobs that are currently using that data set
 * **LISTCAT** - To list the catalog files FOR the current user
 * **LISTSPC** - list space (size) related statistics for a data set of or data sets.  Without any parameters it will prompt for the data ets, otherwise specify them as a parameter.
+* **PROFILE msgid** - this will set the profile so that Msg IDs are displayed before the TSO message
+* **PROFILE nomsgid** - turns off the display of the Msg ID before the message 
