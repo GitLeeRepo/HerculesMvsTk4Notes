@@ -4,9 +4,11 @@ Notes on the c3270 emulator program
 
 # References
 
-* []()
+* [Key Mappings](http://x3270.bgp.nu/Unix/c3270-man.html#Keymaps)
 
 # Default Key mappings
+
+From the [Key Mappings](http://x3270.bgp.nu/Unix/c3270-man.html#Keymaps) above
 
 Key(s)            	  | Action
 ----------------------|----------------   
