@@ -82,6 +82,7 @@ name).
 * **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**.  There are two types of extents in which you specify how many tracks/cylinders you want for each type:
   * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
   * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.  The number of secondary extents you can receive for a non-VSAM data set is limited, on z/OS it is 250, so it may be less on the earlier versions.
+* **IDCAMS** - used to define, copy, delete, and rename VSAM Data Sets.
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
@@ -117,7 +118,7 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
  * Debuggers
  * Support for applications
 * **VOLUME* - **DASD** disks, along with tapes and optical units.  Indentified by a volumen label.
-* **VSAM** - Virtual Storage Access Method - a **VSAM** data set uses a virtual dataset name called a **CLUSTER NAME**, with the cluster name being associated with one or more physical data set names.  With a **KSDS CLUSTER** you have a physical data set **DATA** component and a physical data set **INDEX** component, the **ESDS CLUSTER** has just the physical **DATA** component
+* **VSAM** - Virtual Storage Access Method - a **VSAM** data set uses a virtual dataset name called a **CLUSTER NAME**, with the cluster name being associated with one or more physical data set names.  With a **KSDS CLUSTER** you have a physical data set **DATA** component and a physical data set **INDEX** component, the **ESDS CLUSTER** has just the physical **DATA** component.  With the exception of **LDS (Linear Data Sets) **VSAM** data sets are collections of records grouped into **Control Intervals (CI)**, which are in turn grouped into a continuous storage are called a **CONTROL AREA (CA)**.  **Linear Data Sets** don't have any META data in them.  A special system utility called **IDCAMS** is used to define, copy, delete, and rename VSAM Data Sets.
 * **VTAM** - Virtual Telecommunications Access Method subsystem that implements Systems Network Architecture (SNA) for mainframe environments.  It provides an API for communication applications, and it controls communication equipment such as adapters and controllers. 
 
 # Installation on Ubuntu (should be similar for windows)
