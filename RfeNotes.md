@@ -5,6 +5,7 @@ Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS e
 # References
 
 * [HerculesMvsTk4Notes](HerculesMvsTk4Notes)
+* [ISPF Editing Commands](https://www.youtube.com/watch?v=-FUNDgcDRWk) - YouTube video for the **ISPF** (IBM's ver) which is very similar to **RFE**
 
 # General Commands That Apply Most Areas
 
@@ -36,8 +37,8 @@ Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS e
 ### Basic Navigation and commands in text file
 
 * **arrow keys** - move up and down lines, left and right a character
-* **<F7>** - Page down
-* **<F8>** - Page up
+* **\<F7\>** - Page down
+* **\<F8\>** - Page up
 * **TOP** - Move to the first record (first page of file)
 * **BOTTOM**, **BOT** - Move to the last record (last page of file)
 * **END** - end a command
@@ -52,12 +53,11 @@ You make line editing commands by typing the command at the beginning of the lin
 * **C** - Mark lines to be copied, you can specify the number of lines to be copied with **C#** (# the number).  Do NOT press **enter** until you have also select the destination with either **A** (for after) or **B** (before) on the beginning of the target line.  Once both the copy and destination markers have been placed press **enter**
 * **A** - Mark the line to paste the contents of a **C** **after**.  You can specify the number of times to paste the copied buffer by providing the number on the end of the command **A4** for example.  Refer to **C** copy for the complete copy paste procedure
 * **B** - Mark the line to paste the contents of a **C** **before**.  You can specify the number of times to paste the copied buffer by providing the number on the end of the command **A4** for example.  Refer to **C** copy for the complete copy paste procedure
-* **D** - Delete the target line.  To delete multiple lines provide a number after the command **D4** for example
+* **D** - Delete the target line.  To delete multiple lines provide a number after the command **D4** for example.  To delete a group of lines mark the start of the group with **DD** and the end of the group with **DD** and press **enter**
 * **I** - Insert a line after the target line.  To insert multiple lines provide a number after the command **I4** for example
-* **R** - Repeat the current line on the next line.  To repeat the line multiple times provide a number after the command **R4** for example
-
-
-
+* **R** - Repeat the current line on the next line.  To repeat the line multiple times provide a number after the command **R4** for example.  To mark multiple lines to repeat (**Group Repeat**) type **RR** for the start and end lines and then **enter** to repeat the group starting at the next line.
+* **\<DEL\>** - Delete the character at the curs
+* **\<INS\>** - Toggle insert mode, which is off by default.  Note that within a text file insert mode will not allow you to push the characters beyond the current last character (regardless of not being at the end of the record).  The only way I have found to do this is to add extra spaced on the end of the line to provide enough of a buffer for the shifted line to move into.  The extra spaces are not retained.
 
 ## Sequential (PS) Specific
 
