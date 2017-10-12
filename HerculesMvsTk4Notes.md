@@ -25,6 +25,7 @@ A lot of the notes here come from his videos
 ## Hercules References
 
 * [Hecules System 370/ES 390 Emulator](http://www.hercules-390.org/)
+* [Hercules on Wikipedia](https://en.wikipedia.org/wiki/Hercules_\(emulator\))
 
 ## Additional Notes References
 
