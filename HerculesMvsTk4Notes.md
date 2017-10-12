@@ -35,6 +35,10 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 * [TSO Bookshelf](http://m.ibm.com/http/publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/SHELVES/ikj4bkc0?wirelessshow=1)
 * [ISPF Docs](https://www-01.ibm.com/software/awdtools/ispf/library/)
 
+## z/OS videos
+
+* [Data Sets in Depth](https://www.youtube.com/watch?v=NT_1AmdmlGg) - part of an excellent series of videos
+
 ## Additional Notes References
 
 * [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview)
@@ -77,7 +81,7 @@ name).
 * **DATASET** - the **sequential PS** data sets are similar to a file in Linux/Windows, although they are composed of a series of records as opposed to a stream of bytes.  There is also the **PDS** (Partition Data Set) in MVS, which is a data set that contains **Members** that contain the set of records (in the way the entire PS data set does)
 * **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**.  There are two types of extents in which you specify how many tracks/cylinders you want for each type:
   * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
-  * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.
+  * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.  The number of secondary extents you can receive for a non-VSAM data set is limited, on z/OS it is 250, so it may be less on the earlier versions.
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
@@ -98,6 +102,7 @@ name).
 * **MVS/ESA** - Multiple Virtual Storage/Enterprise System Architecture
 * **PDS** - Partitioned Data Set - It is a data set that can contain partitions called **MEMBERS**, which are programs, parts of programs, and data.  members, each of which can contain a program, part of a program, or
 data. Synonymous with program library. Contrast with sequential data set. Identifed by **PO** under the ORG heading when listing datasets and in JCL commands
+* **PDS/E** - just like PDS but more advanced in that unclaimed space is autmatically reclaimed and they are more efficient
 * **PE** - Program Error
 * **PU** - Physical Unit**
 * **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
@@ -112,7 +117,7 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
  * Debuggers
  * Support for applications
 * **VOLUME* - **DASD** disks, along with tapes and optical units.  Indentified by a volumen label.
-* **VSAM** - Virtual Storage Access Method
+* **VSAM** - Virtual Storage Access Method - a **VSAM** data set uses a virtual dataset name called a **CLUSTER NAME**, with the cluster name being associated with one or more physical data set names.  With a **KSDS CLUSTER** you have a physical data set **DATA** component and a physical data set **INDEX** component, the **ESDS CLUSTER** has just the physical **DATA** component
 * **VTAM** - Virtual Telecommunications Access Method subsystem that implements Systems Network Architecture (SNA) for mainframe environments.  It provides an API for communication applications, and it controls communication equipment such as adapters and controllers. 
 
 # Installation on Ubuntu (should be similar for windows)
@@ -222,7 +227,7 @@ For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL 
 The listing specifieds:
   * **Volume** - the volume it is on
   * **ORG** - the dataset organization, whether it is a **PO** partitioned dataset
-  * **FMT** - Dataset format: **FB** fixed block"; **VB** variable block; **U** "?"
+  * **FMT** - Dataset format: **FB** fixed block"; **VB** variable block; **U** undfined with no fixed structure (typical for compiled binary files)
   * **LRCL** - Logical Record Length
   * **BLKSZ** - Block size - by default files are read one block at a time, not one record at a time
   
