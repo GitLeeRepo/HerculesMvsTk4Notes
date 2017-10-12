@@ -228,7 +228,7 @@ For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL 
 The listing specifieds:
   * **Volume** - the volume it is on
   * **ORG** - the dataset organization, whether it is a **PO** partitioned dataset
-  * **FMT** - Dataset format: **FB** fixed block"; **VB** variable block; **U** undfined with no fixed structure (typical for compiled binary files)
+  * **FMT** - Dataset format: **F** fixed record length with only one record per block; **FB** fixed block (records are fixed lengths with the bock size being some multiple of the record size); **VB** variable block (records are variable in size with a byte on the front that has the record length); **U** undfined with no fixed structure (typical for compiled binary files)
   * **LRCL** - Logical Record Length
   * **BLKSZ** - Block size - by default files are read one block at a time, not one record at a time
   
