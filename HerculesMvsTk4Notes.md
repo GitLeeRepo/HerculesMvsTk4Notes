@@ -358,5 +358,9 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **DSN** - Without parameters it will list data set names in use by the current users.  Specify **DSN** <the data set name> to get the users or jobs that are currently using that data set
 * **LISTCAT** - To list the catalog files FOR the current user
 * **LISTSPC** - list space (size) related statistics for a data set of or data sets.  Without any parameters it will prompt for the data ets, otherwise specify them as a parameter.
-* **PROFILE msgid** - this will set the profile so that Msg IDs are displayed before the TSO message
-* **PROFILE nomsgid** - turns off the display of the Msg ID before the message 
+* **PROFILE** - shows the current profile settings, for example either **MSGID** or **NOMSGID**, **PREFIX(thePrefixName)** or **NOPREFIX** 
+* **PROFILE MSGID** - this will set the profile so that Msg IDs are displayed before the TSO message
+* **PROFILE NOMSGID** - turns off the display of the Msg ID before the message 
+* **PROFILE NOPREFIX** - turns off the default prefix for data sets (your username) so that if you were to type **LISTCAT** you will see all the systems catalogs, not just your own.  If you want to break out of the list select the **PA** key on the c3270 emulator.
+* **PROFILE PREFIX(thePrefixName)** - sets the prefix.  Now whenever you use **LISTCAT** it will show the data sets for that prefix.  Use this command to change it back to your username.  
+ 
