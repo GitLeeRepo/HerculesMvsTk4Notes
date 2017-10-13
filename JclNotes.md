@@ -127,6 +127,20 @@ The **DDNAME** labels in the **label** column of the **DD Statements** are refer
 * **DUMMY** - indicates that this particular data set (identified by the **ddname** should NOT be processed
 * **\*** - indicates that the input data immediately follows the **DD** statement, and is referred to a the **input stream data**
 
+### Data Set Allocation and References Specifics
+
+* **DISP** - the data set disposition, which ndicates whether it is new **NEW** or alread exists **OLD** when processing starts, and what to do with it when processing completes **KEEP** or **DELETE**.  You can also specify what to do if the job abnormally ends.
+
+The various **Dispotions** (sets for the start, end, and abnormal endings of the job):
+
+At Start | On Completion | Abnormal End
+NEW | DELETE | DELETE
+OLD | KEEP | KEEP
+SHR | PASS | PASS
+MOD | CATLG | CATLG
+ | UNCATLG | UNCATLG
+ 
+
 ### Referencing DD Names in Your Programs
 
 The way the **ddname** is referenced from within a program depends on the language itself. 
