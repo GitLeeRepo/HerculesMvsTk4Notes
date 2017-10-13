@@ -9,6 +9,7 @@ Notes on the Job Control Language (JCL)
 * [JCL Reference zos](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
 * [JCL User Guide MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA5B506/CCONTENTS?)
 * [JCL Language Reference MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA1B640/CCONTENTS?)
+* [The Utilities](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/toc.htm)
 
 ## YouTube
 
