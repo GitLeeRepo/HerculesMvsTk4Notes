@@ -298,6 +298,10 @@ A few of the possible possible parameters, refer to the IBM docs [IBM IEUPDTE Fu
 * The sequence numbers must be in the same relative position in the data statement as in the existing logical records 
 * The sequence numbers are assumed to be in columns 73 though 80 until otherwise specified in a SEQFLD parameter 
 
+### Label Statement
+
+The **SYSIN**data begins with **./** indicating that the Data Statements are to be treated as User Labels
+
 ### Alias statement 
 
 * The ALIAS statement is used to create or to retain existing alias in an output data set directory 
