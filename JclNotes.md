@@ -190,16 +190,18 @@ The IEBUPDTE utility creates multiple members in a partitioned data set, or upda
 * [IBM IEBUPDTE Examples](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1437.htm)
 * [IBM IEUPDTE Function Statement](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1432.htm)
 
-### SYSIN Control Statements
+### SYSIN Data Statement / Control Statements
 
-* The **SYSIN** Control Statement begins with **./** (note: other utilities use the standard **//** for their control statements)
+**Data Statements** are used used with **Function Statements**, or with **Function Statemens and Detail Statements**
+
+* The **SYSIN**data begins with **./** indicating that the Data Statements are to be treated as User Labels
 * The control statement must contain one of the following **Control Functions**:
   * **ADD** - If the target is a **new data set** it is added.  For an **existing data set** , it specifies that a member or a data set is added if it doesn't exist. If a member already exists processing is ended, unless **PARM=NEW** is specified on the EXEC statement, the member is replaced. For a sequential output data set, PARM=NEW must always be specified on the EXEC statement.
   * **REPL** - the entire dataset or member should be replaced.  It must already exist or else it is an error
   * **CHANGE** - used to specify specific changes to a data set or member.  It must exist or else it is an error.  It uses **NUMBER** and/or **DELETE** to specify changes.
   * **REPRO** - specifies that a data set or member is copied in its entirety to a **new data set**
 
-### Control Statement Parameters
+### Function Statement Parameters
 
 A few of the possible possible parameters, refer to the IBM docs [IBM IEUPDTE Function Statement](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1432.htm)
  for the full list
