@@ -134,11 +134,12 @@ The **DDNAME** labels in the **label** column of the **DD Statements** are refer
 The various **Dispotions** (sets for the start, end, and abnormal endings of the job):
 
 At Start | On Completion | Abnormal End
+---------  --------------  -------------
 NEW | DELETE | DELETE
 OLD | KEEP | KEEP
 SHR | PASS | PASS
 MOD | CATLG | CATLG
-x | UNCATLG | UNCATLG
+ | UNCATLG | UNCATLG
  
 
 ### Referencing DD Names in Your Programs
