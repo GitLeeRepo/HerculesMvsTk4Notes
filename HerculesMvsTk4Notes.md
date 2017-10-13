@@ -375,7 +375,12 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 * **/C jobname** - terminates the job/process
 * **/C mf1** - cancels the job that provides stats, but is not needed
 * **/C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
-* **D U,DASD,ONLINE** - display the online DASD devices
+* **/D U,DASD,ONLINE** - display the online DASD devices
+* **/D TS,L** - List TSO users
+* **/D TS,username** - List detailed info on the user
+* **/D TS,ALL** - list detailed info on all users
+* **/D A,taskname** - list detail information on a specific task
+* **/D J,jobname** - list detailed info on the specified job
 
 ## Non-MVS Hercules commands (no slash as a prefix)
 
