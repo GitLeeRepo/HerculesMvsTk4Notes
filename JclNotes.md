@@ -170,7 +170,38 @@ The **allocation** page which contains the information on what physical devices 
 
 The **allocation** page does include one particularly import piece of information, the return code (may show as "CONDIION CODE" or "RC" with zero indicate no issues.  For the standard utilities "4' incdicates minor errors, while "8" and "12" indicate progressively more serious errors.  Custom programs may follow this sandard or may choose another.
 
-The remaining pages of will contain the output of the program
+The remaining pages of the JCL output will contain any output of the program specifies
 
+# Using System Utiliies
 
+## IEBUPDTE
 
+### Description
+
+The IEBUPDTE utility creates multiple members in a partitioned data set, or updates records within a member. While it can be used for other types of records, its main use is to create or maintain JCL procedure libraries or assembler macro libraries.
+
+* When a library is to be updated, then SYSUT1 and SYSUT2 both point to that library. (If they point to different libraries, the SYSUT1 library is copied to the SYSUT2 library and then updated.)
+* The IEBUPDTE utility uses **control statements** with the symbols **./** (a period and slash) in the first two columns.
+* The function statement (**ADD, CHANGE, REPL, or REPRO**) is used to begin an IEBUPDTE operation. At least one function statement must be provided for each member or data set to be processed.
+
+### References
+
+* [IBM IEUBPDTE](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zdatamgmt/zsysprogc_utilities_IEBUPDTE.htm)
+* [IBM IEBUPDTE Examples](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1437.htm)
+
+### SYSIN Control Statements
+
+* The **SYSIN** Control Statement begins with **./** (note: other utilities use the standard **//** for their control statements)
+* The control statement must contain one of the following **Control Functions**:
+  * **ADD** - If the target is a **new data set** it is added.  For an **existing data set** , it specifies that a member or a data set is added if it doesn't exist. If a member already exists processing is ended, unless **PARM=NEW** is specified on the EXEC statement, the member is replaced. For a sequential output data set, PARM=NEW must always be specified on the EXEC statement.
+  * **REPL** - the entire dataset or member should be replaced.  It must already exist or else it is an error
+  * **CHANGE** - used to specify specific changes to a data set or member.  It must exist or else it is an error.  It uses **NUMBER** and/or **DELETE** to specify changes.
+  * **REPRO** - specifies that a data set or member is copied in its entirety to a **new data set**
+
+### Control Statement Parameters
+
+* **LIST** - specifies how much of the data set contents is sent to SYSPRINT 
+* **NAME** - the member named to be added or updated
+* **NEW \{PO\|PS\}** - specifies the organization of the old master data set and the organization of the updated output. NEW should not be specified unless the organization of the new master data set is different from the organization of the old master. NEW can only be coded on the first control record.
+  **PO** - specifies that the old master data set is a sequential data set, and that the updated output is to become a member of a partitioned data set or PDSE.
+  **PS** - specifies that the old master data set is a partitioned data set or PDSE, and that a member of that data set is to be converted into a sequential data set.
