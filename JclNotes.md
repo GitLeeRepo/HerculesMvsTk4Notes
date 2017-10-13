@@ -4,7 +4,25 @@ Notes on the Job Control Language (JCL)
 
 # References
 
-* Placeholder
+## IBM Manuals
+
+* [JCL Reference](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
+
+## YouTube
+
+* [JCL Tutorial](https://www.youtube.com/watch?v=lgg_4lBQHNw) - Good overview with good instructor
+
+# JCL Sequence
+
+It can be helpful to look at JCL as a series of steps the computer goes through to run programs and manager their inputs and outputs.
+
+1. The JCL is submitted and read by JES2/JES3
+2. JCL requests a program
+3. The program is loaded
+4. JCL allocates resources needed by the program
+5. Those resources are provided to the loaded program
+6. The program writes its output to the JES Spool
+7. Results are output (printer, job output file) which varies by various JCL parameters
 
 # Format of the JOB, EXEC, and DD statements
 
