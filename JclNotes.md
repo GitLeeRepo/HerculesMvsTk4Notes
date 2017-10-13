@@ -210,4 +210,35 @@ A few of the possible possible parameters, refer to the IBM docs [IBM IEUPDTE Fu
 * **NAME** - the member named to be added or updated
 * **NEW \{PO\|PS\}** - specifies the organization of the old master data set and the organization of the updated output. NEW should not be specified unless the organization of the new master data set is different from the organization of the old master. NEW can only be coded on the first control record.
   * **PO** - specifies that the old master data set is a sequential data set, and that the updated output is to become a member of a partitioned data set or PDSE.
-  * **PS** - specifies that the old master data set is a partitioned data set or PDSE, and that a member of that data set is to be converted into a sequential data set.
+  * **PS** - specifies that the old master data set is a partitioned data set or PDSE, and that a member of that data set is to be converted into a sequential data set
+  
+### Detail statement 
+
+*	The detail statement is used in conjunction with a function statement to provide additional information 
+*	Valid detail keywords are: 
+	* **NUMBER**	specifies a new sequence numbering scheme 
+  * **DELETE**	specifies the logical records that are to be removed from the member or data set 
+ 
+ 
+### Data statement 
+
+*	The data statement is used to supply the logical records that are used as replacement statements or new data to be merged into the output data set 
+*	When used with an ADD or REPL function, a data statement contains the new data to be placed in the output dataset 
+*	When used with a CHANGE function, a data statement contains the new data or the data which replaces existing logical records in the input data set 
+* The data statement does not have a fixed syntax. 
+* Each logical record begins in column 1 and must contain sequence numbers 
+* The sequence numbers must be in the same relative position in the data statement as in the existing logical records 
+* The sequence numbers are assumed to be in columns 73 though 80 until otherwise specified in a SEQFLD parameter 
+
+### Alias statement 
+
+* The ALIAS statement is used to create or to retain existing alias in an output data set directory 
+* Up to 16 aliases can be assigned to a single member 
+* This format of the ALIAS statement is as follows: 
+  ./{name} ALIAS NAME=cccccccc 
+  where NAME=cccccccc specifies the name of an alias for this member 
+
+### ENDUP Statement
+
+An ENDUP statement is optional. It is used to indicate the end of SYSIN input to this job step. If there is no other preceding delimiter statement, it serves as an end-of-data indication. The ENDUP statement follows the last group of SYSIN control statements.
+
