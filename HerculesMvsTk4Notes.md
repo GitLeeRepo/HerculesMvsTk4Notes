@@ -92,6 +92,7 @@ name).
   * **Type** -The identifier for the type of information in the ISPF library, such as JCLLIB, PL/I, SCRIPT, or COBOL.
 * **JCL** - Job Control Language.  Refer to [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview) for more information.
 * **JES** - Job Entry System - responsible for spooling, job queuing, and I/O for jobs
+* **JES SPOOL** - Used for **JES** queuing and output (custom indexed data sets).  Job output can be sent to the printer from this spool or held to be viewed.
 * **JOB** - a unit of work for the operating system defined in JCL
 * **JOB CLASS** - a category of job used to distinguish its characterist (for example I/O intensive vs processor intensive)
 * **LIBRARY** - smiliar to a directory in Linux/Windows
