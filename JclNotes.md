@@ -16,6 +16,8 @@ Notes on the Job Control Language (JCL)
 
 * JCL can be used to submit **batch** jobs to be run by the **JES2** or **JES3** scheduler.  It must have at least a **JOB** statement and an **EXEC** statement to run a program.  It can have multiple **EXEC** statements in order to run a series of programs.  Most **JCL** also includes serveral **DD** (Data Definition) statements.  **JCL** instructs its own output to be written to the **JES SPOOL** where it can be printed or if held viewed.
 
+One of the fundamental reasons for **JCL** to is to **virutalize** the data sets used by programs.  The programs don't refer to the data sets directly, but through the **Symbolic Referencess** of the **DDName** label on the **DD** statement.  That was the underlying data set can change, for example **USER1.JCL** in one case and **USER2.JCL** in another, and the program's code doesn't have to account for these differences.  Of course the internal structures of the data sets should be consistent with what the program expects.
+
 # JCL Sequence
 
 It can be helpful to look at JCL as a series of steps the computer goes through to run programs and manager their inputs and outputs.
@@ -114,6 +116,10 @@ Note: In order to show the **DD** statements in relation to the **EXEC** stateme
 * **SYSPRINT** - used with **SYSOUT** parameters
 * **SYSUT1** - in the case of IEBGENER it is used with the input data set
 * **SYSUT2** - in the case of IEBGENER it is used with the output data set
+
+### Symbolic References DDNames
+
+The **DDNAME** labels in the **label** column of the **DD Statements** are referred to as **Symbolic References**.  They are used to tie the particular **DD** statement to the program that is being executed.  That program uses this symbolic reference internally to references its inputs and outputs.
 
 ### DD Statement Parameters
 
