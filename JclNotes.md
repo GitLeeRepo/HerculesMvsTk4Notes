@@ -139,7 +139,7 @@ NEW | DELETE | DELETE
 OLD | KEEP | KEEP
 SHR | PASS | PASS
 MOD | CATLG | CATLG
- x | UNCATLG | UNCATLG
+    | UNCATLG | UNCATLG
  
 
 ### Referencing DD Names in Your Programs
