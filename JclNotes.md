@@ -12,6 +12,10 @@ Notes on the Job Control Language (JCL)
 
 * [JCL Tutorial](https://www.youtube.com/watch?v=lgg_4lBQHNw) - Good overview with good instructor
 
+# JCL Overview
+
+* JCL can be used to submit **batch** jobs to be run by the **JES2** or **JES3** scheduler.  It must have at least a **JOB** statement and an **EXEC** statement to run a program.  It can have multiple **EXEC** statements in order to run a series of programs.  Most **JCL** also includes serveral **DD** (Data Definition) statements.  **JCL** instructs its own output to be written to the **JES SPOOL** where it can be printed or if held viewed.
+
 # JCL Sequence
 
 It can be helpful to look at JCL as a series of steps the computer goes through to run programs and manager their inputs and outputs.
@@ -22,7 +26,7 @@ It can be helpful to look at JCL as a series of steps the computer goes through 
 4. JCL allocates resources needed by the program
 5. Those resources are provided to the loaded program
 6. The program writes its output to the JES Spool
-7. Results are output (printer, job output file) which varies by various JCL parameters
+7. Results are output (printer, JES Spool held output, job output file) levels of which varies by various JCL parameters
 
 # Format of the JOB, EXEC, and DD statements
 
@@ -106,6 +110,7 @@ Note: In order to show the **DD** statements in relation to the **EXEC** stateme
 
 ### Common **ddnames** include
 * **SYSIN** - used with **DUMMY** and **\*** parameters for program input
+* **SYSOUT** - with the the **SYSOUT=\*** parameter is telling it to write to the **JES Spool** 
 * **SYSPRINT** - used with **SYSOUT** parameters
 * **SYSUT1** - in the case of IEBGENER it is used with the input data set
 * **SYSUT2** - in the case of IEBGENER it is used with the output data set
