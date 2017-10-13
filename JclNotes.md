@@ -188,6 +188,7 @@ The IEBUPDTE utility creates multiple members in a partitioned data set, or upda
 
 * [IBM IEUBPDTE](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zdatamgmt/zsysprogc_utilities_IEBUPDTE.htm)
 * [IBM IEBUPDTE Examples](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1437.htm)
+* [IBM IEUPDTE Function Statement](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1432.htm)
 
 ### SYSIN Control Statements
 
@@ -199,6 +200,9 @@ The IEBUPDTE utility creates multiple members in a partitioned data set, or upda
   * **REPRO** - specifies that a data set or member is copied in its entirety to a **new data set**
 
 ### Control Statement Parameters
+
+A few of the possible possible parameters, refer to the IBM docs [IBM IEUPDTE Function Statement](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/u1432.htm)
+ for the full list
 
 * **LIST** - specifies how much of the data set contents is sent to SYSPRINT 
 * **NAME** - the member named to be added or updated
