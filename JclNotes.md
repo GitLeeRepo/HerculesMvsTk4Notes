@@ -7,7 +7,9 @@ Notes on the Job Control Language (JCL)
 ## IBM Manuals
 
 * [JCL Reference zos](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
+* [JCL Users Guide PDF](http://publibz.boulder.ibm.com/epubs/pdf/iea2b560.pdf)
 * [JCL User Guide MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA5B506/CCONTENTS?)
+* [JCL Reference PDF](http://publibz.boulder.ibm.com/epubs/pdf/iea2b6a0.pdf)
 * [JCL Language Reference MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA1B640/CCONTENTS?)
 * [The Utilities](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/toc.htm)
 
