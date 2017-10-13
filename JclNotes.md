@@ -203,5 +203,5 @@ The IEBUPDTE utility creates multiple members in a partitioned data set, or upda
 * **LIST** - specifies how much of the data set contents is sent to SYSPRINT 
 * **NAME** - the member named to be added or updated
 * **NEW \{PO\|PS\}** - specifies the organization of the old master data set and the organization of the updated output. NEW should not be specified unless the organization of the new master data set is different from the organization of the old master. NEW can only be coded on the first control record.
-  **PO** - specifies that the old master data set is a sequential data set, and that the updated output is to become a member of a partitioned data set or PDSE.
-  **PS** - specifies that the old master data set is a partitioned data set or PDSE, and that a member of that data set is to be converted into a sequential data set.
+  * **PO** - specifies that the old master data set is a sequential data set, and that the updated output is to become a member of a partitioned data set or PDSE.
+  * **PS** - specifies that the old master data set is a partitioned data set or PDSE, and that a member of that data set is to be converted into a sequential data set.
