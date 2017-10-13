@@ -41,8 +41,7 @@ The individual screens in **RFE** are refer to as **Panels**.  You can navigate 
 * **END** - end a command
 * **CANCEL**, **CAN** - same as **END** but user profile changes not saved (way to cancel changes made to a file)
 * **RESET** - reset the editor.  Useful if you have issues with your line commands an want to clear the commands from the left pane
-* **COPY** - Copy those lines marked with **C** to a specified data set.  If none is provided you will be prompted to enter a sequential data set name.
-
+* **COPY** - Import (Copy) the contents of another data set or Member into the current file.  Refer to the **Importing (Copying) text...*** section below for details.
 
 ## Primary Commands 
 
@@ -50,6 +49,12 @@ Primary Commands are the commands entered on the Command line at the top of the 
 
 * **PROFILE** - show your editor profile setting such as Cap State, Syntax Highlighting
 * **CHANGE** or **C** - Search and replace, for example **C THIS THAT ALL** will change all occurances of THIS to THAT
+
+### Importing (Copying) text from other data PS data sets and PD Members
+
+The **COPY** Primary Command is used to import the entire contents of another sequential PS data set or from a Member in a PDS data set, into the current data set/member records.  This is done by marking the location to insert the text using the **A** after line command and typing **COPY** on the Command Line.  It will then prompt you for a sequential data set name to copy **from**.  You can enter the dataset name for a **PS** data set, ex. **HERC02.TEST.SEQDS**, of for a **Member** in a **PO** data set the full data set name(member) notation, for example **HERC02.TEST.MYPDS(MEMBERNAME)**.  In both cases, assuming they exist, they will be inserted after pressing **Enter**.
+
+You can also import (copy) a **Member** from within the same data set you are in.  In this case you can simply type **COPY MemberName** on the commands line of the file you are inserting into (currently marked with an **A** line command to insert the copied text after that line. 
 
 ## Line Editing Commands
 
