@@ -6,7 +6,10 @@ Notes on the Job Control Language (JCL)
 
 ## IBM Manuals
 
-* [JCL Reference](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
+* [JCL Reference zos](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
+* [JCL User Guide MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA5B506/CCONTENTS?)
+* [JCL Language Reference MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA1B640/CCONTENTS?)
+
 
 ## YouTube
 
@@ -141,6 +144,27 @@ SHR | PASS | PASS
 MOD | CATLG | CATLG
  _   | UNCATLG | UNCATLG
  
+ Note the difference between **OLD** and **SHR** is that with **OLD** it wants exclusive access, and with **SHR** it is willing to share the data set with others.  Keep in mind if you use **SHR** while updating it, then anybody reading it will be in a **dirty read** situation.  Specify **CATLG** to update the catalog so the system can find it in the future.
+ 
+### Concatenation vs Continuation on DD Statement
+
+You can have **DD Statements** that span multiple lines.  
+
+For **Continuation** you can separate individual paramaters on to multiple lines by ending the prior line with a comma and starting the next line with **//** and at least one space.
+
+```
+//SYSUT1   DD DSN=HERC02.AOK.JCLLIB,
+              DISP=SHR
+```
+
+For **Concatenation** you can have multiple data sets on there own lines that will be combined as if it were one data set.  You do NOT separate the lines with commas, but you do start the line with with **//** and at least one space (but no DDName) before the next **DD**.
+
+```
+//SYSUT1   DD DSN=HERC02.AOK.Part1,DISP=OLD
+//         DD DSN=HERC02.AOK.Part2,DISP=OLD
+//         DD DSN=HERC02.AOK.Part3,DISP=OLD
+              
+```
 
 ### Referencing DD Names in Your Programs
 
