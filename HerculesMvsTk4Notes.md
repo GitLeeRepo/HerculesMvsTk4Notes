@@ -29,6 +29,8 @@ A lot of the notes here come from his videos
 
 ## IBM Documents
 
+* [Older MVS Manuals](http://ibmmainframes.com/manuals.php)
+
 Most of these docs will be for Z/OS, but many things still apply for earlier OSes
 
 * [IBM Library Server](http://m.ibm.com/http/publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/library?wirelessshow=2)
