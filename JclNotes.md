@@ -10,10 +10,13 @@ Notes on the Job Control Language (JCL)
 * [JCL User Guide MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA5B506/CCONTENTS?)
 * [JCL Language Reference MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA1B640/CCONTENTS?)
 
-
 ## YouTube
 
 * [JCL Tutorial](https://www.youtube.com/watch?v=lgg_4lBQHNw) - Good overview with good instructor
+
+## Other Sources
+
+* [Wikipedia JCL](https://en.wikipedia.org/wiki/Job_Control_Language)
 
 # JCL Overview
 
