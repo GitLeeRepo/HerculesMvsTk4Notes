@@ -14,13 +14,22 @@ I come at this from the perspective of having extremely limited mainframe experi
 
 * [MVS Tur(n)key Cookbook](http://www.bsp-gmbh.com/turnkey/cookbook/) - good info, but only covers TK3
 
-## Excellent series of YouTube videos by [moshix](https://www.youtube.com/channel/UCR1ajTWGiUtiAv8X-hpBY7w)
+## YouTube Videos
 
-A lot of the notes here come from his videos
-
+### Videos by [moshix](https://www.youtube.com/channel/UCR1ajTWGiUtiAv8X-hpBY7w/videos)
 * [How to Install and Operate the MVS turnkey TK4 system](https://www.youtube.com/watch)
 * [Editing and Executing a COBOL program](https://www.youtube.com/watch?v=YA3FQOzr0ag)
 * [Using the Hercules mainframe console](https://www.youtube.com/watch)
+
+### Videos by [J. Packy Laverty](https://www.youtube.com/channel/UCux76e_mflOhblBmp9A5BZg/videos)
+
+z/OS videos, but much is still applicable to earlier systems
+
+* [TSO, ISPF, ISPF Editor](https://www.youtube.com/watch?v=vOiHiI7b9iY)
+* [Data Sets](https://www.youtube.com/watch?v=NT_1AmdmlGg)
+* [MVS and JES Commands](https://www.youtube.com/watch?v=9a2hrGroxl0&t=60s)
+
+### Videos by 
 
 ## Hercules References
 
