@@ -392,9 +392,10 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 * **/D A,taskname** - list detail information on a specific task
 * **/D J,jobname** - list detailed info on the specified job
 
-## Non-MVS Hercules commands (no slash as a prefix)
+## Hercules commands (no slash as a prefix)
 
 * **devlist** - display a list of devices that you can page up and down
+* **MAXRATES** - display the maximimu MIPS and I/O rates for a given period
 
 # TSO Commands
 
