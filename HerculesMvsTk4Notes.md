@@ -383,6 +383,8 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 
 The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the locaction where **MVS System Commands**, **JES/2 Commands**, and commands for **Hecules** itself can be entered.
 
+**Credits:** the commands here were copied in part from the [MVS and JES2 Commands](http://www.bsp-gmbh.com/hercules/oscmds.html) site.
+
 ## MVS Console Commands 
 
 These are entered from **Herucules prompt**, which requireds that a **/** be entered before the MVS commands with no space following.
@@ -400,23 +402,25 @@ These are entered from **Herucules prompt**, which requireds that a **/** be ent
 
 ## JES/2 Commands
 
+JES/2 command begin with a **$**, but as with the **MVS System Commands** above they are preceeded by a **/** slash to let Hercules know the command is for the OS Console.
+
 * **/$A** - Release all held jobs
-* **$A ' jobname'** - Release specific job. Quotes required.
-* **$C 'jobname'** - Cancel job or user
-* **$C PRTn** - Cancel job on printer
-* **$DA,ALL** - Status of all JES2 functions
-* **$D ' jobname'** - Display JES status of job or user
-* **$DU,allPRTS** - Display all JES devices
-* **$E ' jobname'** - Restart job after it completes
-* **$H A** or **$H ' jobname'** - Hold jobs
-* **$I PRTn** - Interrupt printing and return job to queue
-* **$PI3** - Stop an initiator
-* **$P ' jobname'** Purge a job (including spooled output)
-* **$SI3** or **$SPRT2**  - Start an initiator or printer
-* **$T I3,C=AB** - Assign job classes for an initiator
-* **$T PRT3,Q=AT** - Change output classes for printer
-* **$DN** - Display input queues
-* **$DQ** - Display queues
+* **/$A ' jobname'** - Release specific job. Quotes required.
+* **/$C 'jobname'** - Cancel job or user
+* **/$C PRTn** - Cancel job on printer
+* **/$DA,ALL** - Status of all JES2 functions
+* **/$D ' jobname'** - Display JES status of job or user
+* **/$DU,allPRTS** - Display all JES devices
+* **/$E ' jobname'** - Restart job after it completes
+* **/$H A** or **/$H ' jobname'** - Hold jobs
+* **/$I PRTn** - Interrupt printing and return job to queue
+* **/$PI3** - Stop an initiator
+* **/$P ' jobname'** Purge a job (including spooled output)
+* **/$SI3** or **/$SPRT2**  - Start an initiator or printer
+* **/$T I3,C=AB** - Assign job classes for an initiator
+* **/$T PRT3,Q=AT** - Change output classes for printer
+* **/$DN** - Display input queues
+* **/$DQ** - Display queues
 
 
 ## Hercules commands (no slash as a prefix)
