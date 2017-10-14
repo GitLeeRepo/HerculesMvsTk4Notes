@@ -13,6 +13,7 @@ I come at this from the perspective of having extremely limited mainframe experi
 ## TK3 and TK4 References
 
 * [MVS Tur(n)key Cookbook](http://www.bsp-gmbh.com/turnkey/cookbook/) - good info, but only covers TK3
+* [MVS & JES Commands](http://www.bsp-gmbh.com/hercules/oscmds.html)
 
 ## YouTube Videos
 
@@ -378,9 +379,14 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 4. Enter **logoff** enter
 5. The shutdown process will proceed, with the automated shutdown it will automatically exit Hercules when completed
 
-# Entering MVS Console commands from Herucules prompt
+# Hercules Console
 
-* **/** - place a slash at the beginning of MVS commands to run them from the Hercules command prompt
+The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the locaction where **MVS System Commands**, **JES/2 Commands**, and commands for **Hecules** itself can be entered.
+
+## MVS Console Commands 
+
+These are entered from **Herucules prompt**, which requireds that a **/** be entered before the MVS commands with no space following.
+
 * **/D A,L** - list active jobs and users
 * **/C jobname** - terminates the job/process
 * **/C mf1** - cancels the job that provides stats, but is not needed
@@ -392,10 +398,32 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 * **/D A,taskname** - list detail information on a specific task
 * **/D J,jobname** - list detailed info on the specified job
 
+## JES/2 Commands
+
+* **/$A** - Release all held jobs
+* **$A ' jobname'** - Release specific job. Quotes required.
+* **$C 'jobname'** - Cancel job or user
+* **$C PRTn** - Cancel job on printer
+* **$DA,ALL** - Status of all JES2 functions
+* **$D ' jobname'** - Display JES status of job or user
+* **$DU,allPRTS** - Display all JES devices
+* **$E ' jobname'** - Restart job after it completes
+* **$H A** or **$H ' jobname'** - Hold jobs
+* **$I PRTn** - Interrupt printing and return job to queue
+* **$PI3** - Stop an initiator
+* **$P ' jobname'** Purge a job (including spooled output)
+* **$SI3** or **$SPRT2**  - Start an initiator or printer
+* **$T I3,C=AB** - Assign job classes for an initiator
+* **$T PRT3,Q=AT** - Change output classes for printer
+* **$DN** - Display input queues
+* **$DQ** - Display queues
+
+
 ## Hercules commands (no slash as a prefix)
 
 * **devlist** - display a list of devices that you can page up and down
 * **MAXRATES** - display the maximimu MIPS and I/O rates for a given period
+* **HST** - display a history of the commands entered
 
 # TSO Commands
 
