@@ -109,6 +109,7 @@ name).
 * **JOB CLASS** - a category of job used to distinguish its characterist (for example I/O intensive vs processor intensive)
 * **LIBRARY** - smiliar to a directory in Linux/Windows
 * **LP** - logical partition
+* **LPAR** - Part of IBMs virtualization architecture.  LPAR, is a subset of a computer's hardware resources, virtualized as a separate computer. In effect, a physical machine can be partitioned into multiple logical partitions, each hosting a separate operating syste
 * **LRECL** - logical record length
 * **LU** - logical unit
 * **MEMBER** -  A file in a **PDS** (Partitioned Data Set).  Most editing of source files takes place in **MEMBERS**
