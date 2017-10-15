@@ -39,6 +39,10 @@ It can be helpful to look at JCL as a series of steps the computer goes through 
 6. The program writes its output to the JES Spool
 7. Results are output (printer, JES Spool held output, job output file) levels of which varies by various JCL parameters
 
+# Creating a JCL Program
+
+You must allocate a data set to contains the JC, itL must have a fixed-block format (RECFM=FB) with a logical record length of 80 (LRECL=80). 
+
 # Format of the JOB, EXEC, and DD statements
 
 ## General
@@ -322,7 +326,9 @@ An ENDUP statement is optional. It is used to indicate the end of SYSIN input to
 
 # Submitting the Job
 
-TBD: Provide details
+In addition to submitting the job from within the **RFE** editor you can submit it from **TSO** by specifying the dataset that contains the JCL with the following syntax:
+
+**SUBMIT 'USERID.XXX.YYY(Membername)'**
 
 ## Submit Error messages
 
