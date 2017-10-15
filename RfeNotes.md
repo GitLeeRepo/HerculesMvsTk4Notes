@@ -26,6 +26,11 @@ The individual screens in **RFE** are refer to as **Panels**.  You can navigate 
 * **RECALL**, **RETRIEVE** - recall the prior command
 * **TSO** - issue a **TSO** command.  Example, **TSO DSN** to list the logged on user's catalogs.  It will switch to another screen to show the output, simply press **enter** to return to where you were.
 
+# Creating a Data Set
+
+Using **3 Utilities** / **2 DATASET**
+
+Note if you want to base your data set on an exiting one, then before allocating a data set with the **A** command, you can model your data set on an exiting data set by entering the existing name on the **DATA SET NAME** line, pressing **Enter**, which will display its definition screen, press **Enter** again to return to the Dataset Utility screen.  Now when you type **A** on the **COMMAND** line and enter the dataset name (make sure to replace the exiting one you just used) the new one will use all the paramaters (Record size, block size, etc) of the prior one.  You can still make changes to it if you want some variations.
 
 # Editing Data Set
 
@@ -49,6 +54,9 @@ Primary Commands are the commands entered on the Command line at the top of the 
 
 * **PROFILE** - show your editor profile setting such as Cap State, Syntax Highlighting
 * **CHANGE** or **C** - Search and replace, for example **C THIS THAT ALL** will change all occurances of THIS to THAT
+* **COLS** - display a columns ruler at the top of the page so you can easily see the column positon, which otherwise isn't as obvious since the sequence numbers at the start of the edit area are also included on the column number shown on the lower right.  So for example in a COBOL program in which you must start in column 8, the lower right number will show 16 instead of 8, whereas the ruler shows the correct posistion.
+**CUT** - Copies (it does not remove it from the original in the Windows sense) the text marked with with the "**C* or **CC** block line commands into the clipboard.  You can append to existing clipboard text by adding an **A** parameter, **CUT A**.  The **D** parameter will discard the prior clipboard text.
+**PASTE** - Pastes the text copied with **CUT** to the location specified by the **A** after line command.  This does not have to be in the same data set but can be pasted into another data set.
 
 ### Importing (Copying) text from other data PS data sets and PD Members
 
