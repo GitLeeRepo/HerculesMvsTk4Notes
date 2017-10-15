@@ -17,19 +17,42 @@ Notes on the COBOL programming languages as it applies to the MVS mainframe envi
 
 1 thru 6 | 7 | 8 thru 11 | 12 thru 72 | 73 thru 80
 ---------|---|-----------|------------|-----------
-seq numb | C | Area A    | Area B     | Comment
+Seq \#s  | C | Area A    | Area B     | Comment
 
 Column 7 is for a special purposes character
 * **\*** - Marks the remainder of a line as a comment
 * **/** - Printing new line
 * **-** - Continuation of the prior line
 
+DIVISIONS, SECTIONS, AND PARAGRAPHS start in Area A.
+
+SENTENCE, STATEMENT, CLAUSE, WORD, CHARACTER start in Area B
+
+SENTENCEs are made up of STATEMENTs and are terminated by period.  A SENTENCE can have one STATEMENT or multiple STATEMENTs.  The period is referred to as an implicit scope terminator.
+
 ## Program Divisions
 
 ### INDENTIFICATION DIVISION
 
+Contains the **PROGRAM-ID** which is mandatory.  It identifies the program name.
+
+Also contains optional AUTHOR, DATE-WRITTEN, DATE-COMPILED, etc.
+
 ### ENVIROMENT DIVISION
 
+* **CONFIGURATION SECTION**
+  * **SOURCE-COMPUTER**
+  * **OBJECT-COMPUTER**
+
+* **INPUT-OUTPUT SECTION**
+  * **FILE-CONTROL**
+ 
+* **I-O SECTION**
+
 ### DATA DIVISION
+
+* **FILE SECTION** - Contains the file definitions
+* **WORKING-STORAGE SECTION** - Contains the programs variables
+* **LINKAGE SECTION** - used to link one program module to another
 
 ### PROCEDURE DIVISION
