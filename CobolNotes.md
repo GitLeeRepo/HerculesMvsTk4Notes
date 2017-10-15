@@ -76,6 +76,8 @@ For output (such as reports) you can specify other symbols as part of the **PICT
 * **PIC 9(6).99** - an explicit decimal is dispayed/stored
 * **PIC ZZZ,ZZ9** - dispay the commas in the number.  The **Z** specifieds that leading zeros should be suppressed.
 
+Variables can be initialized using a **VALUE** clause
+
 ### PROCEDURE DIVISION
 
 Contains the program logic.  There are no specific system define sections here as in the above division, but their can be user defined sections.
