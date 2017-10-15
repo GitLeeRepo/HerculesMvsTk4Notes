@@ -64,12 +64,17 @@ There a five basic data types in COBOL.  They are defined using the **PICTURE** 
 * **X** - Alphanumeric character A-Z, 0-9 and other characters
 
 **PICTURE Examples:**
-**PIC 9(10)** - a 10 digit integer
-**PIC 9(6)V99** - an implied decimal with 6 digits to the left and 2 to the right.  The actual decimal point isn't stored
-**PIC 9(6).99** - an explicit decimal where the decimal point is stored
-**PIC ZZZ,ZZ9** - specifies the display of a comma.  **Z** means leading zeros are suppressed.  Typically for reports only.
-**PIC A(20)** - can hold a 20 character alphabetic string.
-**PIC Z(20)** - can hold a 20 character string with both letters, numbers, and special symbols, such as an email address.
+* **PIC -9(5)** - a 5 digit signed integer.
+* **PIC 9(10)** - a 10 digit unsigned integer
+* **PIC 9(6)V99** - an implied decimal with 6 digits to the left and 2 to the right.  The actual decimal point isn't stored
+* **PIC A(20)** - can hold a 20 character alphabetic string.
+* **PIC Z(20)** - can hold a 20 character string with both letters, numbers, and special symbols, such as an email address.
+
+For output (such as reports) you can specify other symbols as part of the **PICTURE**, such as **$**, **+/-**, **,**
+
+* **PIC -9(5)** - preceed negative numbers with a minus sign.
+* **PIC 9(6).99** - an explicit decimal is dispayed/stored
+* **PIC ZZZ,ZZ9** - dispay the commas in the number.  The **Z** specifieds that leading zeros should be suppressed.
 
 ### PROCEDURE DIVISION
 
