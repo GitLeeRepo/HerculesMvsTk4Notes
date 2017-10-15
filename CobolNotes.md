@@ -6,6 +6,7 @@ Notes on the COBOL programming languages as it applies to the MVS mainframe envi
 
 * [IBM COBOL for VSE/VME Programming Guide](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/download/IGYVA002.pdf?DT=20041222113748) - for the IBM OS/370 environment, supporting COBOL 85 Standard
 * [Compiler Languages available on Hercules](http://www.jaymoseley.com/hercules/compilers/list_of.htm)
+* [COBOL Introduction](https://www.youtube.com/watch?v=DTyKHm92oI4) - YouTube video from which some of these notes came from.
 
 # COBOL Compilers on the **Hercules with TK3-** emulator environment
 
@@ -24,11 +25,11 @@ Column 7 is for a special purposes character
 * **/** - Printing new line
 * **-** - Continuation of the prior line
 
-DIVISIONS, SECTIONS, AND PARAGRAPHS start in Area A.
+**DIVISIONS, SECTIONS, AND PARAGRAPHS** start in Area A.
 
-SENTENCE, STATEMENT, CLAUSE, WORD, CHARACTER start in Area B
+**SENTENCE, STATEMENT, CLAUSE, WORD, CHARACTER** start in Area B
 
-SENTENCEs are made up of STATEMENTs and are terminated by period.  A SENTENCE can have one STATEMENT or multiple STATEMENTs.  The period is referred to as an implicit scope terminator.
+**SENTENCEs** are made up of **STATEMENTs** and are terminated by **period**.  A SENTENCE can have one STATEMENT or multiple STATEMENTs.  The **period** is referred to as an **implicit scope terminator**.  Prior to **COBOL 75** (the Hercules 3.8 compiler i pre-COBOL 75) the **period** was used to terminate **IF** and **PERFORM** blocks, in addition to terminating statements.  **COBOL 75** introduced **END-IF**, **END-PEFORM** and **END-EVALUATE** **explicit scope terminators**. 
 
 ## Program Divisions
 
@@ -55,4 +56,22 @@ Also contains optional AUTHOR, DATE-WRITTEN, DATE-COMPILED, etc.
 * **WORKING-STORAGE SECTION** - Contains the programs variables
 * **LINKAGE SECTION** - used to link one program module to another
 
+There a five basic data types in COBOL.  They are defined using the **PICTURE** clause in the FILE and WORKING-STORAGE sections
+* **S** - Signed integers
+* **9** - Unsigned integers
+* **V** - Assumed Deceimal, or **.** for an explicit decimal
+* **A** - Alphabetic character A-Z
+* **X** - Alphanumeric character A-Z, 0-9 and other characters
+
+**PICTURE Examples:**
+**PIC 9(10)** - a 10 digit integer
+**PIC 9(6)V99** - an implied decimal with 6 digits to the left and 2 to the right.  The actual decimal point isn't stored
+**PIC 9(6).99** - an explicit decimal where the decimal point is stored
+**PIC ZZZ,ZZ9** - specifies the display of a comma.  **Z** means leading zeros are suppressed.  Typically for reports only.
+**PIC A(20)** - can hold a 20 character alphabetic string.
+**PIC Z(20)** - can hold a 20 character string with both letters, numbers, and special symbols, such as an email address.
+
 ### PROCEDURE DIVISION
+
+Contains the program logic.  There are no specific system define sections here as in the above division, but their can be user defined sections.
+
