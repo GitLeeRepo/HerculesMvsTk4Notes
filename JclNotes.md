@@ -121,7 +121,7 @@ Note: In order to show the **DD** statements in relation to the **EXEC** stateme
 
 ### Common **ddnames** include
 * **SYSIN** - used with **DUMMY** and **\*** parameters for program input
-* **SYSOUT** - with the the **SYSOUT=\*** parameter is telling it to write to the **JES Spool** 
+* **SYSOUT** - with the the **SYSOUT=\*** parameter is tells it to write output device defined by the **MSGCLASS** statement. 
 * **SYSPRINT** - used with **SYSOUT** parameters
 * **SYSUT1** - in the case of IEBGENER it is used with the input data set
 * **SYSUT2** - in the case of IEBGENER it is used with the output data set
@@ -319,4 +319,13 @@ The **SYSIN**data begins with **./** indicating that the Data Statements are to 
 ### ENDUP Statement
 
 An ENDUP statement is optional. It is used to indicate the end of SYSIN input to this job step. If there is no other preceding delimiter statement, it serves as an end-of-data indication. The ENDUP statement follows the last group of SYSIN control statements.
+
+# Submitting the Job
+
+TBD: Provide details
+
+## Submit Error messages
+
+If the message begins with HASP, the job was failed by JES2
+
 
