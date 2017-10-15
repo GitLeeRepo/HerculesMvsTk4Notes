@@ -55,14 +55,9 @@ Primary Commands are the commands entered on the Command line at the top of the 
 * **PROFILE** - show your editor profile setting such as Cap State, Syntax Highlighting
 * **CHANGE** or **C** - Search and replace, for example **C THIS THAT ALL** will change all occurances of THIS to THAT
 * **COLS** - display a columns ruler at the top of the page so you can easily see the column positon, which otherwise isn't as obvious since the sequence numbers at the start of the edit area are also included on the column number shown on the lower right.  So for example in a COBOL program in which you must start in column 8, the lower right number will show 16 instead of 8, whereas the ruler shows the correct posistion.
-**CUT** - Copies (it does not remove it from the original in the Windows sense) the text marked with with the "**C* or **CC** block line commands into the clipboard.  You can append to existing clipboard text by adding an **A** parameter, **CUT A**.  The **D** parameter will discard the prior clipboard text.
-**PASTE** - Pastes the text copied with **CUT** to the location specified by the **A** after line command.  This does not have to be in the same data set but can be pasted into another data set.
-
-### Importing (Copying) text from other data PS data sets and PD Members
-
-The **COPY** Primary Command is used to import the entire contents of another sequential PS data set or from a Member in a PDS data set, into the current data set/member records.  This is done by marking the location to insert the text using the **A** after line command and typing **COPY** on the Command Line.  It will then prompt you for a sequential data set name to copy **from**.  You can enter the dataset name for a **PS** data set, ex. **HERC02.TEST.SEQDS**, of for a **Member** in a **PO** data set the full data set name(member) notation, for example **HERC02.TEST.MYPDS(MEMBERNAME)**.  In both cases, assuming they exist, they will be inserted after pressing **Enter**.
-
-You can also import (copy) a **Member** from within the same data set you are in.  In this case you can simply type **COPY MemberName** on the commands line of the file you are inserting into (currently marked with an **A** line command to insert the copied text after that line. 
+* **CUT** - Copies the text marked with with the "**C* or **CC** block line commands into the clipboard.  You can append to existing clipboard text by adding an **A** parameter, **CUT A** (it does not remove it from the original in the Windows notion of cut).  The **D** parameter will discard the prior clipboard text.
+* **PASTE** - Pastes the text copied with **CUT** to the location specified by the **A** after line command.  This does not have to be in the same data set but can be pasted into another data set.
+* **COPY** Primary Command is used to import the entire contents of another sequential PS data set or from a Member in a PDS data set, into the current data set/member records.  This is done by marking the location to insert the text using the **A** after line command and typing **COPY** on the Command Line.  It will then prompt you for a sequential data set name to copy **from**.  You can enter the dataset name for a **PS** data set, ex. **HERC02.TEST.SEQDS**, of for a **Member** in a **PO** data set the full data set name(member) notation, for example **HERC02.TEST.MYPDS(MEMBERNAME)**.  In both cases, assuming they exist, they will be inserted after pressing **Enter**.  You can also import (copy) a **Member** from within the same data set you are in.  In this case you can simply type **COPY MemberName** on the commands line of the file you are inserting into (currently marked with an **A** line command to insert the copied text after that line. 
 
 ## Line Editing Commands
 
@@ -81,6 +76,25 @@ You make line editing commands by typing the command at the beginning of the lin
 * **\<INS\>** - Toggle insert mode, which is off by default.  Note that within a text file insert mode will not allow you to push the characters beyond the current last character (regardless of not being at the end of the record).  The only way I have found to do this is to add extra spaced on the end of the line to provide enough of a buffer for the shifted line to move into.  The extra spaces are not retained.
 * **UC** - Convert the entire line to uppercase.  As with other commands numeric qualifiers can be used for multiple commands.
 * **LC** - Convert the entire line to lowercase.  As with other commands numeric qualifiers can be used for multiple commands
+* **)#** - Shift the text on the line the specified number of characters to the right
+* **(#** - Shift the text on the line the specified number of characters to the left
+* **))#** - Shift the group of lines the specified number of characters to the right
+* **((#** - Shift the group of lines the specified number of characters to the left
+
+**Function Keys**
+* **F1** - Help
+* **F2** - Split
+* **F3** - End Edit - changes saved returning to prior screen
+* **F5** - RFind - Find the next search occurance
+* **F6** - RChange - Change the next replace
+* **F7** - Pg Up
+* **F8** - Pg Down
+* **F9** - Swap
+* **F10** - Shift the screen left
+* **F11** - Shift the screen right
+* **F12** - Cancel Edit - changes abandoned
+
+
 
 ## DaSequential (PS) Specific
 
