@@ -385,22 +385,20 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 
 The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the locaction where **MVS System Commands**, **JES/2 Commands**, and commands for **Hecules** itself can be entered.
 
-**Credits:** the commands here were copied in part from the [MVS and JES2 Commands](http://www.bsp-gmbh.com/hercules/oscmds.html) site.
+**Credits:** some of the commands here were copied in part from the [MVS and JES2 Commands](http://www.bsp-gmbh.com/hercules/oscmds.html) site.
 
 ## MVS Console Commands 
 
-These are entered from **Herucules prompt**, which requireds that a **/** be entered before the MVS commands with no space following.
+These are entered from **Hercules prompt**, which requireds that a **/** be entered before the MVS commands with no space following.
 
-* **/D A,L** - list active jobs and users
-* **/C jobname** - terminates the job/process
-* **/C mf1** - cancels the job that provides stats, but is not needed
+Note: Several of the MVS commands are under the **JES2 Related MVS Commands** section below.  Ones not directly related to **JES2** are shown here.
+
 * **/C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
 * **/D U,DASD,ONLINE** - display the online DASD devices
 * **/D TS,L** - List TSO users
 * **/D TS,username** - List detailed info on the user
 * **/D TS,ALL** - list detailed info on all users
 * **/D A,taskname** - list detail information on a specific task
-* **/D J,jobname** - list detailed info on the specified job
 
 ## JES/2 Commands
 
@@ -408,7 +406,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 
 * **/$A** - Release all held jobs
 * **/$A ' jobname'** - Release specific job. Quotes required.
-* **/$C 'jobname'** - Cancel job or user
+* **/$C 'jobname/user'** - Cancel job or user
 * **/$C PRTn** - Cancel job on printer
 * **/$DA,ALL** - Status of all JES2 functions
 * **/$D ' jobname'** - Display JES status of job or user
@@ -417,20 +415,24 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **F BSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
 * **/$H A** or **/$H ' jobname'** - Hold jobs
 * **/$I PRTn** - Interrupt printing and return job to queue
-* **/$PI3** - Stop an initiator
 * **/$P ' jobname'** Purge a job (including spooled output)
+* **/$PI3** - Stop an initiator
+* **/$PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down (typical message says "JES2 is not dormant"), and you can't resolve the reason why, then use the **ABEND** parameter listed next. 
+* **/$PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **/pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.
+* **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers
 * **$S  JES2,PARM=(COLD)** – to clear JES2 queue and start it cold. (all job queue entries and job output elements are cleared and formatted.)  - Haven't tried this yet to see if it works
 * **/$SI3** or **/$SPRT2**  - Start an initiator or printer
 * **/$T I3,C=AB** - Assign job classes for an initiator
 * **/$T PRT3,Q=AT** - Change output classes for printer
 * **/$DN** - Display input queues
 * **/$DQ** - Display queues
-* **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers
 
 **JES2 Related MVS Commands**
 
-* **/PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down, and you can't resolve the reason why, then use the **ABEND** parameter listed next.
-* **/PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **/pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.
+* **/D A,L** - list active jobs and users
+* **/D J,jobname** - list detailed info on the specified job
+* **/C jobname** - terminates the job/process
+* **/C mf1** - cancels the job that provides stats, but is not needed
 
 ## Hercules commands (no slash as a prefix)
 
