@@ -420,12 +420,16 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **F BSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
 * **/$H A** or **/$H ' jobname'** - Hold jobs
 * **/$I PRTn** - Interrupt printing and return job to queue
+* **/$P** - Stop all **JES2** processing, all printers, punches, and System Iniators will stop receiving new work and will becom inactive, although new jobs will be accepted through input devices.   Do this before shutting down JES with **/$PJEST2**.
 * **/$P ' jobname'** Purge a job (including spooled output)
 * **/$PI3** - Stop an initiator
 * **/$PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down (typical message says "JES2 is not dormant"), and you can't resolve the reason why, then use the **ABEND** parameter listed next. 
-* **/$PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **/pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.
+* **/$PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **/pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.  **JES2** can be restarted with the **$S** command
 * **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers
-* **$S  JES2,PARM=(COLD)** – to clear JES2 queue and start it cold. (all job queue entries and job output elements are cleared and formatted.)  - Haven't tried this yet to see if it works
+* **$P PRTx** - prevent the device from receiving work
+* **$S JES2,PARM=(COLD)** – to clear JES2 queue and start it cold. (all job queue entries and job output elements are cleared and formatted.)  - Haven't tried this yet to see if it works
+* **$S JES2,PARM=(WARM)** - do a warm restart of **JES2** retaining prior queue and output entries.
+* **$S PRTX** - start the printer.
 * **/$SI3** or **/$SPRT2**  - Start an initiator or printer
 * **/$T I3,C=AB** - Assign job classes for an initiator
 * **/$T PRT3,Q=AT** - Change output classes for printer
@@ -438,6 +442,15 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **/D J,jobname** - list detailed info on the specified job
 * **/C jobname** - terminates the job/process
 * **/C mf1** - cancels the job that provides stats, but is not needed
+
+### JES2 Statuses
+
+* **Active** - the device or initiator is actively performing a function
+* **Inactive** - the device or initiator is available but no jobs are present
+* **Draining** - the device or initiator is performing a function, but will not receive new work when completed
+* **Drained** - the device or initiator will not receive work and must be restarted with the **$S** command
+* **Halting** - similar to **Draining**
+* **Halted** - similar to **Drained**
 
 ## Hercules commands (no slash as a prefix)
 
