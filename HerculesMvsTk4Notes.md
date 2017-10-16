@@ -97,6 +97,7 @@ name).
   * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
   * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.  The number of secondary extents you can receive for a non-VSAM data set is limited, on z/OS it is 250, so it may be less on the earlier versions.
 * **IDCAMS** - used to define, copy, delete, and rename VSAM Data Sets.
+* **IMS** - IBM Information Management System (IMS) is a hierarchical database and information management system with extensive transaction processing capabilities.
 * **ISAM** - Indexexed Sequential Access Methed
 * **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
