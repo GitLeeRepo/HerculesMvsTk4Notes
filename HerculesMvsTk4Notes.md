@@ -414,16 +414,23 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **/$D ' jobname'** - Display JES status of job or user
 * **/$DU,allPRTS** - Display all JES devices
 * **/$E ' jobname'** - Restart job after it completes
+* **F BSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
 * **/$H A** or **/$H ' jobname'** - Hold jobs
 * **/$I PRTn** - Interrupt printing and return job to queue
 * **/$PI3** - Stop an initiator
 * **/$P ' jobname'** Purge a job (including spooled output)
+* **$S  JES2,PARM=(COLD)** – to clear JES2 queue and start it cold. (all job queue entries and job output elements are cleared and formatted.)  - Haven't tried this yet to see if it works
 * **/$SI3** or **/$SPRT2**  - Start an initiator or printer
 * **/$T I3,C=AB** - Assign job classes for an initiator
 * **/$T PRT3,Q=AT** - Change output classes for printer
 * **/$DN** - Display input queues
 * **/$DQ** - Display queues
+* **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers
 
+**JES2 Related MVS Commands**
+
+* **/PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down, and you can't resolve the reason why, then use the **ABEND** parameter listed next.
+* **/PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **/pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.
 
 ## Hercules commands (no slash as a prefix)
 
@@ -456,4 +463,5 @@ Why do I receive the message: IER040A INSUFFICIENT WORK UNITS when I attempt to 
 
 The MVT Sort/Merge utility requires at least three (and may use up to a maximum of 32) intermediate storage datasets.  Unlike current Sort/Merge utilities (such as DFSORT or Syncsort), the MVT Sort/Merge is unable to dynamically allocate datasets for use as intermediate storage.  You must supply DD statements for the DD Names SORTWK01, SORTWK02, SORTWK03 ... SORTWK32.  Also the SORTWK?? datasets must reside on 2311/2314 DASD.  Although some efforts have been reported of using tape datasets with the MVT Sort/Merge under Hercules, it is probably a better idea to utilize DASD for the SORTWK?? datasets.  If the MVT Sort/Merge is called indirectly (as by a COBOL program that includes the SORT verb), you must also supply SORTWK?? DD cards to the EXEC step.
 
-Back to Previous Page
+## 
+
