@@ -465,5 +465,13 @@ Why do I receive the message: IER040A INSUFFICIENT WORK UNITS when I attempt to 
 
 The MVT Sort/Merge utility requires at least three (and may use up to a maximum of 32) intermediate storage datasets.  Unlike current Sort/Merge utilities (such as DFSORT or Syncsort), the MVT Sort/Merge is unable to dynamically allocate datasets for use as intermediate storage.  You must supply DD statements for the DD Names SORTWK01, SORTWK02, SORTWK03 ... SORTWK32.  Also the SORTWK?? datasets must reside on 2311/2314 DASD.  Although some efforts have been reported of using tape datasets with the MVT Sort/Merge under Hercules, it is probably a better idea to utilize DASD for the SORTWK?? datasets.  If the MVT Sort/Merge is called indirectly (as by a COBOL program that includes the SORT verb), you must also supply SORTWK?? DD cards to the EXEC step.
 
-## 
+## JES2 Resource Shortage
+
+I received a **JES2 Resource Shortage** message which froze my 3270 termial.  I was unable to log back on because I could not terminate the users **TSO** session with the **/C U=UserName** system console command (it just didn't do anything, it normally works fine).  I tried to logon with another user and it would just get stuck indefinately at the logon screen.
+
+Turns out I could not run any commands that rely on **JES2**, which is a lot, including a lot of services need to reboot the system (ISL) to the **TSO** logon.  It couldn't get past trying to load the **BSPPILOT** job which is used for automating a lot off the **ISL** process.  On restart it would show the **JES2 Resource Shortage - JOES** message, which relates to the output queue.
+
+I finally solved the problems by purging a lot of jobs using the **$PJOB #-#** command to purge a lot of jobs.  I had almost 200 jobs initially, and I purged just about everything other than the most recent runs.  I wanted to just shut shutdown the **JES2** and restart it again without having to reboot the entire system again, but I had issues with providing the necessary reply to the **/$PJES2,ABEND** command from the Hercules prompt.  I tried both with and without the **/** prefix to enter the confirmation reply.  I eventually just rebooted the system and this fixed the problem.
+
+In the future I need to keep an eye on the number of jobs in the output queue (I like to specify they be held so I can look at the output their, rather than having it sent to the printer).  I will need to periodically purge these (keep them under 100), or go through the **JES2 procedures** for increasing the amount of resources available to this queue.
 
