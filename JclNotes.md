@@ -17,6 +17,10 @@ Notes on the Job Control Language (JCL)
 
 * [JCL Tutorial](https://www.youtube.com/watch?v=lgg_4lBQHNw) - Good overview with good instructor
 
+## TK3 Site JCL related
+
+* [Adding a User Library](http://www.jaymoseley.com/hercules/faq/mvsfaq04.htm#USER012) - Instructions on adding your own Cataloged JCL library, in addition to SYS1.PROCLIB.  This was for TK3 and the SYS1.PROCLIB(JES2) member has been changed since this version, but this still may provide some ideas on doing this.
+
 ## Other Sources
 
 * [Wikipedia JCL](https://en.wikipedia.org/wiki/Job_Control_Language)
