@@ -39,7 +39,7 @@ z/OS videos, but much is still applicable to earlier systems
 
 ## IBM Documents
 
-* [OS/VS2 RELEASE 3.8 Manuals](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/)
+* [OS/VS2 RELEASE 3.8 1978 Manuals](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/)
 * [MVS Manuals](http://ibmmainframes.com/manuals.php)
 * [OS/390 Bookshelf](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/SHELVES/IEA1BK37)
 
