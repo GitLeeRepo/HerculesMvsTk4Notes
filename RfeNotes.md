@@ -1,6 +1,6 @@
 # Overview
 
-Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS emulator
+Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS emulator.  This is a replacement for the **IBM ISPF** productivity tool, with most of the same functionality, and similar screen layout.
 
 # References
 
@@ -58,6 +58,7 @@ Primary Commands are the commands entered on the Command line at the top of the 
 * **CUT** - Copies the text marked with with the "**C* or **CC** block line commands into the clipboard.  You can append to existing clipboard text by adding an **A** parameter, **CUT A** (it does not remove it from the original in the Windows notion of cut).  The **D** parameter will discard the prior clipboard text.
 * **PASTE** - Pastes the text copied with **CUT** to the location specified by the **A** after line command.  This does not have to be in the same data set but can be pasted into another data set.
 * **COPY** Primary Command is used to import the entire contents of another sequential PS data set or from a Member in a PDS data set, into the current data set/member records.  This is done by marking the location to insert the text using the **A** after line command and typing **COPY** on the Command Line.  It will then prompt you for a sequential data set name to copy **from**.  You can enter the dataset name for a **PS** data set, ex. **HERC02.TEST.SEQDS**, of for a **Member** in a **PO** data set the full data set name(member) notation, for example **HERC02.TEST.MYPDS(MEMBERNAME)**.  In both cases, assuming they exist, they will be inserted after pressing **Enter**.  You can also import (copy) a **Member** from within the same data set you are in.  In this case you can simply type **COPY MemberName** on the commands line of the file you are inserting into (currently marked with an **A** line command to insert the copied text after that line. 
+* **NULLS** - toggle nulls on and off.  **IMPORTANT: to be able to use insert mode to move text to the right you must set NULLS ON**.  You can check the current **NULLS** setting by typing **PROFILE** on the command line.  With **NULLS** set off the remainder of the record after the last alpha numeric character is filled with spaces, which is why you can't push the text to the right, the entire record is full.  This would make sense for a data record.
 
 ## Line Editing Commands
 
