@@ -398,50 +398,63 @@ These are entered from **Hercules prompt**, which requireds that a **/** be ente
 
 Note: Several of the MVS commands are under the **JES2 Related MVS Commands** section below.  Ones not directly related to **JES2** are shown here.
 
-* **/C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
-* **/D U,DASD,ONLINE** - display the online DASD devices
-* **/D TS,L** - List TSO users
-* **/D TS,username** - List detailed info on the user
-* **/D TS,ALL** - list detailed info on all users
-* **/D A,taskname** - list detail information on a specific task
+* **C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
+* **D U,DASD,ONLINE** - display the online DASD devices
+* **D TS,L** - List TSO users
+* **D TS,username** - List detailed info on the user
+* **D TS,ALL** - list detailed info on all users
+* **D A,taskname** - list detail information on a specific task
 
 ## JES/2 Commands
 
 JES/2 command begin with a **$**, but as with the **MVS System Commands** above they are preceeded by a **/** slash to let Hercules know the command is for the OS Console.
 
-* **/$A** - Release all held jobs
-* **/$A ' jobname'** - Release specific job. Quotes required.
-* **/$C 'jobname/user'** - Cancel job or user
-* **/$C PRTn** - Cancel job on printer
-* **/$DA,ALL** - Status of all JES2 functions
-* **/$D ' jobname'** - Display JES status of job or user
-* **/$DU,allPRTS** - Display all JES devices
-* **/$E ' jobname'** - Restart job after it completes
+Note the commands here don't always require a space between the comamand and its subcommand.  The example below have both version, with and witout spaces, to show the variety
+
+* **$A** - Release all held jobs
+* **$A ' jobname'** - Release specific job. Quotes required.
+* **$C 'jobname/user'** - Cancel job or user
+* **$C PRTn** - Cancel job on printer
+* **$C RDRn** - Cancel the reader activity
+* **$DA,ALL** - Status of all JES2 functions
+* **$D ' jobname'** - Display JES status of job or user
+* **$DF** - display the backlog of work for the output devices
+* **$DI** - display the initators, including their class
+* **$DN** - Display input queues
+* **$DQ** - Display queues
+* **$DU** - display JES2 devices such as readers, punches and printers
+* **$DU,allPRTS** - Display all JES devices.  This includes internal Readers, which the **$DU** alone didn't.
+* **$E ' jobname'** - Restart job after it completes
 * **F BSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
-* **/$H A** or **/$H ' jobname'** - Hold jobs
-* **/$I PRTn** - Interrupt printing and return job to queue
-* **/$P** - Stop all **JES2** processing, all printers, punches, and System Iniators will stop receiving new work and will becom inactive, although new jobs will be accepted through input devices.   Do this before shutting down JES with **/$PJEST2**.
-* **/$P ' jobname'** Purge a job (including spooled output)
-* **/$PI3** - Stop an initiator
-* **/$PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down (typical message says "JES2 is not dormant"), and you can't resolve the reason why, then use the **ABEND** parameter listed next. 
-* **/$PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **/pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.  **JES2** can be restarted with the **$S** command
-* **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers
-* **$P PRTx** - prevent the device from receiving work
+* **$H A** or **/$H ' jobname'** - Hold jobs
+* **$I PRTn** - Interrupt printing and return job to queue
+* **$P** - Stop all **JES2** processing, all printers, punches, and System Iniators will stop receiving new work and will becom inactive, although new jobs will be accepted through input devices.   Do this before shutting down JES with **$PJEST2**.
+* **$P ' jobname'** Purge a job (including spooled output)
+* **$PI3** - Stop an initiator
+* **$PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down (typical message says "JES2 is not dormant"), and you can't resolve the reason why, then use the **ABEND** parameter listed next. 
+* **$PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **Pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.  **JES2** can be restarted with the **$S** command
+* **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers.  Frees resources.
+* **$P PRTx** - prevent the device from receiving work.  Free resources.
+* **$P RDRx** - prevent the reader from receiving work.  Free resources.
 * **$S JES2,PARM=(COLD)** – to clear JES2 queue and start it cold. (all job queue entries and job output elements are cleared and formatted.)  - Haven't tried this yet to see if it works
 * **$S JES2,PARM=(WARM)** - do a warm restart of **JES2** retaining prior queue and output entries.
-* **$S PRTX** - start the printer.
-* **/$SI3** or **/$SPRT2**  - Start an initiator or printer
-* **/$T I3,C=AB** - Assign job classes for an initiator
-* **/$T PRT3,Q=AT** - Change output classes for printer
-* **/$DN** - Display input queues
-* **/$DQ** - Display queues
+* **$S PRTx** - start the printer.
+* **$S RDRx** - start a reader
+* **$SI3** or **/$SPRT2**  - Start an initiator or printer
+* **$T I3,C=AB** - Assign job classes for an initiator
+* **$T JOBx,C=A** - Change the class on a queued job.  The **CLASS** in JCL
+* **$T JOBx,Q=A** - Change the message class on a queued job.  The **MSGCLASS** in JCL
+* **$T JOBx,P=priority** - Change the priority of a job
+* **$T PRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
+* **$T PRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
+
 
 **JES2 Related MVS Commands**
 
-* **/D A,L** - list active jobs and users
-* **/D J,jobname** - list detailed info on the specified job
-* **/C jobname** - terminates the job/process
-* **/C mf1** - cancels the job that provides stats, but is not needed
+* **D A,L** - list active jobs and users
+* **D J,jobname** - list detailed info on the specified job
+* **C jobname** - terminates the job/process
+* **C mf1** - cancels the job that provides stats, but is not needed
 
 ### JES2 Statuses
 
@@ -451,6 +464,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **Drained** - the device or initiator will not receive work and must be restarted with the **$S** command
 * **Halting** - similar to **Draining**
 * **Halted** - similar to **Drained**
+* **Paused** - the printer or punch has been paused.  It can be restarted with the **$S** command
 
 ## Hercules commands (no slash as a prefix)
 
