@@ -368,6 +368,23 @@ An assembly language program for generating prime numbers.
 
 * Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
 
+# JES2
+
+Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/edit/master/HerculesMvsTk4Notes.md) section below for the list of **JES2 Commands** entered on the Hercules Console.
+
+## Default TK4- Printer setup
+
+The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selcted by the **MSGCLASS** in **JCL** and are mapped as follows:
+
+JCL MSGCLASS | SYSOUT=?     | JES2 Printer | Ubuntu File Name
+-------------|--------------|--------------|-----------------
+MSGCLASS=A   | SYSOUT=A     | Printer1     | prt00e.txt
+MSGCLASS=Z   | SYSOUT=Z     | Printer2     | prt00f.txt
+MSGCLASS=X   | SYSOUT=X     | Printer3     | prt002.txt
+MSGCLASS=H   | N/A - HELD   | N/A - HELD   | N/A - HELD
+
+Note: You can specify MSGCLASS=A in your JCL and your JCL output will go to Printer1, and have the output of the program being run in the JCL go to Printer2 by specifying SYSOUT=Z.
+
 # Transferring Data To and From the Mainframe
 
 ## Using the 3270 Emulator's File Transfer Feature IND$FILE
@@ -390,23 +407,6 @@ This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$
 * Important: Make sure you are not in the **PDS** you are uploading to because it will place a lock, and from within ftp you will get a **550** not authorized message.  Doesn't seem to be an issue downloading from the mainframe.
 * If you are **uploading** to the mainframe use the **put** or **mput** ftp commands to upload the file (remember the **Member Name** is limitted to 8 characters and does not have a file extension.  You can use the **lcd** (local cd) to change to the appropriate directory on Ubuntu if you were not already in that directory when you started ftp.
 * If you are **downloading** from the mainframe use **get** to download the member as an Ubuntu file.  Again, if necessary change to the local Ubuntu directory with the **lcd** ftp command.
-
-# JES2
-
-Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/edit/master/HerculesMvsTk4Notes.md) section below for the list of **JES2 Commands** entered on the Hercules Console.
-
-## Default TK4- Printer setup
-
-The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selcted by the **MSGCLASS** in **JCL** and are mapped as follows:
-
-JCL MSGCLASS | SYSOUT=?     | JES2 Printer | Ubuntu File Name
--------------|--------------|--------------|-----------------
-MSGCLASS=A   | SYSOUT=A     | Printer1     | prt00e.txt
-MSGCLASS=Z   | SYSOUT=Z     | Printer2     | prt00f.txt
-MSGCLASS=X   | SYSOUT=X     | Printer3     | prt002.txt
-MSGCLASS=H   | N/A - HELD   | N/A - HELD   | N/A - HELD
-
-Note: You can specify MSGCLASS=A in your JCL and your JCL output will go to Printer1, and have the output of the program being run in the JCL go to Printer2 by specifying SYSOUT=Z.
 
 # Logging off and Shutdown the system
 
