@@ -368,6 +368,19 @@ An assembly language program for generating prime numbers.
 
 * Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
 
+# JES2
+
+Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/edit/master/HerculesMvsTk4Notes.md) section below for the list of **JES2 Commands** entered on the Hercules Console.
+
+## Default TK4- Printer setup
+
+The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selcted by the **MSGCLASS** in **JCL** and are mapped as follows:
+
+JCL MSGCLASS | JES2 Printer | Ubuntu File Name
+-------------|--------------|-----------------
+MSGCLASS=A   | Printer1     | prt00e.txt
+MSGCLASS=Z   | Printer2     | prt00f.txt
+MSGCLASS=X   | Printer3     | prt002.txt
 
 # Logging off and Shutdown the system
 
