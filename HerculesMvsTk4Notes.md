@@ -376,11 +376,14 @@ Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4No
 
 The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selcted by the **MSGCLASS** in **JCL** and are mapped as follows:
 
-JCL MSGCLASS | JES2 Printer | Ubuntu File Name
--------------|--------------|-----------------
-MSGCLASS=A   | Printer1     | prt00e.txt
-MSGCLASS=Z   | Printer2     | prt00f.txt
-MSGCLASS=X   | Printer3     | prt002.txt
+JCL MSGCLASS | SYSOUT=?     | JES2 Printer | Ubuntu File Name
+-------------|--------------|--------------|-----------------
+MSGCLASS=A   | SYSOUT=A     | Printer1     | prt00e.txt
+MSGCLASS=Z   | SYSOUT=Z     | Printer2     | prt00f.txt
+MSGCLASS=X   | SYSOUT=X     | Printer3     | prt002.txt
+MSGCLASS=H   | N/A - HELD   | N/A - HELD   | N/A - HELD
+
+Note: You can specify MSGCLASS=A in your JCL and your JCL output will go to Printer1, and have the output of the program being run in the JCL go to Printer2 by specifying SYSOUT=Z.
 
 # Logging off and Shutdown the system
 
