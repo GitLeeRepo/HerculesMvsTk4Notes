@@ -451,7 +451,6 @@ Note the commands here don't always require a space between the comamand and its
 * **$T PRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
 * **$T PRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
 
-
 **JES2 Related MVS Commands**
 
 * **D A,L** - list active jobs and users
