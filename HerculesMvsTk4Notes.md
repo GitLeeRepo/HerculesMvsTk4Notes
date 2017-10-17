@@ -442,6 +442,9 @@ Note the commands here don't always require a space between the comamand and its
 * **$S RDRx** - start a reader
 * **$SI3** or **/$SPRT2**  - Start an initiator or printer
 * **$T I3,C=AB** - Assign job classes for an initiator
+* **$TA** - disaply automated jobs (jobs that run at a specific time or schedule)
+* **$TA,I=30,'$DU'** - Automate the command in quotes, in this case **DU**, running it every 30 seconds.
+* **$TA4,CANCEL** - Cancel automated job number 4.  Use **$TA** to see the list of automated jobs.
 * **$T JOBx,C=A** - Change the class on a queued job.  The **CLASS** in JCL
 * **$T JOBx,Q=A** - Change the message class on a queued job.  The **MSGCLASS** in JCL
 * **$T JOBx,P=priority** - Change the priority of a job
