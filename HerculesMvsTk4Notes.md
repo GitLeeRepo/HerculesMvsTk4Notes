@@ -370,7 +370,7 @@ An assembly language program for generating prime numbers.
 
 # JES2
 
-Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/edit/master/HerculesMvsTk4Notes.md) section below for the list of **JES2 Commands** entered on the Hercules Console.
+Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/HerculesMvsTk4Notes.md#jes2-commands) section below for the list of **JES2 Commands** entered on the Hercules Console.
 
 ## Default TK4- Printer setup
 
