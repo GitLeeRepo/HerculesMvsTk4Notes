@@ -368,6 +368,29 @@ An assembly language program for generating prime numbers.
 
 * Back in Ubuntu look in the **prt** directory and `grep '<theUsernameWithTag' *` to find the job results in the printer output
 
+# Transferring Data To and From the Mainframe
+
+## Using the 3270 Emulator's File Transfer Feature IND$FILE
+
+This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$FILE** program from within **TSO**, which is the IBM method for transfering files using the 3270.
+
+* While logged onto the mainframe in the **c3270** emulator, exit the **RFE** menus all the way back to the **TSO** prompt.
+* Select **File Transfer** from the **c3270** File menu
+* Follow the prompts (send or receive, filenames, etc).  
+* Note that when transferring a member in a data set use the standard **'USERID.XXX.YYY(MEMBER)'** notation.  Note the inclusion of the single quotes, the fully qualified name is required, so the quotes are neccessary.
+* If uploading to the mainframe to a **PDS** it is not necessary to provide the record formats and disk geometry.  But for a **PS** that is new you should provide this info when prompted
+
+# Using FTP
+
+* To use this method you must start the **ftpd** daemon on the mainframe.  You do this from the **Hercules Console** by entering the **/START FTPD,SRVPORT=2100** (I assume other ports are allowed but this is what I used).  You can verify this is now running by entering **/D A,L** at the console.
+* From Ubuntu command line enter **ftp localhost 2100** and logon to your **TSO** account
+* If you type **ls** at this point you can see all the datasets on the system, since you are essentially at the root.
+* Change to the **PDS** you want to upload to or download from, ex **cd HERC02.TEST.JCL**.  Now if you type **ls** you will only see the members of that **PDS**
+* Type **ascii** to make sure the **FTP** program is set to ascii mode.
+* Important: Make sure you are not in the **PDS** you are uploading to because it will place a lock, and from within ftp you will get a **550** not authorized message.  Doesn't seem to be an issue downloading from the mainframe.
+* If you are **uploading** to the mainframe use the **put** or **mput** ftp commands to upload the file (remember the **Member Name** is limitted to 8 characters and does not have a file extension.  You can use the **lcd** (local cd) to change to the appropriate directory on Ubuntu if you were not already in that directory when you started ftp.
+* If you are **downloading** from the mainframe use **get** to download the member as an Ubuntu file.  Again, if necessary change to the local Ubuntu directory with the **lcd** ftp command.
+
 # JES2
 
 Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/edit/master/HerculesMvsTk4Notes.md) section below for the list of **JES2 Commands** entered on the Hercules Console.
