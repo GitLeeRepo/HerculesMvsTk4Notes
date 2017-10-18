@@ -95,7 +95,7 @@ name).
 * **CATALOG** - A directory of files and libraries, with reference to their locations, including what volume it is on.  This volume could be tape or disk.  If it is a tape it has the information to request the tape be mounted by its volume name. If it is on disk it has the information on what disk volume it is on, in which the **VTOC** will have the information on where it is physically located. The catalog itself is actually a **VSAM** data set filled with meta data about other data sets.  A system typically has a **MASTER CATALOG** and several **USER CATALOGS**.  The **MASTER CATALOG** doesn't contain info on all the datasets on the system, but it can redirect to the appropriate **USER CATALOG**, much like a DNS server.
 * **CATALOGED DATASET** - An indexed dataset associated with a **Catalog**
 * **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
-* **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units
+* **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units. Because I/O devices are relatively slow, a CPU could waste time (in computer perspective) waiting for the data from the device. This situation is called 'I/O bound'.  Channel architecture avoids this problem by using a separate, independent, low-cost processor. Channel processors are simple, but self-contained, with minimal logic and sufficient on-board scratchpad memory (working storage) to handle I/O tasks.
 * **CICS** - application servers that provide online transaction management and connectivity for applications on IBM Mainframe systems. CICS is middleware designed to support rapid, high-volume online transaction processing. **This processing is usually interactive (screen-oriented)**, but background transactions are possible.  Recent CICS Transaction Server enhancements include support for Web services and Java, Event processing, Atom feeds, and RESTful interfaces.
 * **DATASET** - the **sequential PS** data sets are similar to a file in Linux/Windows, although they are composed of a series of records as opposed to a stream of bytes.  There is also the **PDS** (Partition Data Set) in MVS, which is a data set that contains **Members** that contain the set of records (in the way the entire PS data set does)
 * **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**. The space on disk is contiguous, which means it may be hard to find enough contiguous space on disk for a large extent if the disk is highly fragmented. There are two types of extents in which you specify how many tracks/cylinders you want for each type:
@@ -131,6 +131,15 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
 * **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
 * **RECORD SET** - Data sets with a record-oriented structure that are accessed record by record. This is the most typical data set structure on MVS
 * **RJE** - Remoote Job Entry
+* **SMF** - System management facilities collects and records system and job-related information.  SMF formats the information that it gathers into system-related records (or job-related records). System-related SMF records include information about the configuration, paging activity, and workload. Job-related records include information on the CPU time, SYSOUT activity, and data set activity of each job step, job, APPC/MVS transaction program, and TSO/E session.
+  * **Users Billing**
+  * **Reliability Reporting**
+  * **Analyzing the configuration**
+  * **Scheduling jobs**
+  * **Summarizing direct access volume activity**
+  * **Evaluating data set activity**
+  * **Profiling system resource use**
+  * **Maintaining system security**
 * **SNA** - Systems Network Architecture.  a complete protocol stack for interconnecting computers and their resources. SNA describes formats and protocols and is, in itself, not a piece of software. Refer to VTAM which is one of the key technologies using this specification.  SNA is a key architecture use in communication devices such as the 3270 terminal
 * **SPOOLING** - Reading and writing of input and output streams on auxiliary storage devices, concurrently with job execution,
 * **TSO** - Time Sharing Option -  allows users to interactively share computer time and resources - interact in either line by line mode or full screen menu mode with the results displayed on the terminal screen - refer also to **ISPF** which is built on top of **TSO** allowing it to be controlled through menus, the two are often referred to as TSO/ISPF- commonly used by mainframe system admins and programmers because it provides:
