@@ -529,6 +529,16 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **PROFILE NOPREFIX** - turns off the default prefix for data sets (your username) so that if you were to type **LISTCAT** you will see all the systems catalogs, not just your own.  If you want to break out of the list select the **PA** key on the c3270 emulator.
 * **PROFILE PREFIX(thePrefixName)** - sets the prefix.  Now whenever you use **LISTCAT** it will show the data sets for that prefix.  Use this command to change it back to your username.  
  
+# Important Configuration Members
+
+* **SYS1.PARAMLIB(PARMTZ)** - time difference from GMT
+* **SYS1.PARAMLIB(PARMTZ-1)** - time difference from GMT during DST
+* **SYS1.PARAMLIB(TSOKEY00)** - set **RECONLIM** (Maximum disconnect minutes for TSO Logons)
+* **SYS1.PARAMLIB(IRBMF100)** - has **INTERVAL** in it to change how often the **MF1 Report** prints to thee console
+* **SYS1.PARAMLIB(smfprm00)** - has **SID** where you can change the System ID (hostname equiv).  Changing it could potential cause  issues with some programs.
+* **SYS1.PARAMLIB(VATLST00)** - has the list of **DASD volumes**.  If you add any, make sure to end them to the end, so you won't effect a critical volume during ISL
+* **SYS1.JES2PARM(JES2PARM)** - has all the **JES2 parameters**, including **Printer Definitions**
+
 # ISSUES
 
 ## SORT Utility
