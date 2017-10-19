@@ -285,10 +285,12 @@ There will be some variation between different disk types, here are some typical
 
 Device Type | Track Capacity (Bytes) | Tracks Per Cylinder | Cylinder Capacity (Bytes)
 ------------|------------------------|---------------------|--------------------------
-3330        | 13,030                 | 19 (varies)         | 247,570
+3330        | 13,030                 | 19                  | 247,570
 3350        | 19,069                 | 30                  | 572,070
 3380        | 47,476                 | 15                  | 712,140
 3390        | 56,664                 | 15                  | 849,960
+
+Refer to [ibmmainframes.com](http://ibmmainframes.com/references/disk.html) for more examples, along with total disk sizes.
 
 ### Record Format Types
 
