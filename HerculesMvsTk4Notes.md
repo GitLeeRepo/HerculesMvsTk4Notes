@@ -560,6 +560,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **SYS1.PARAMLIB(smfprm00)** - has **SID** where you can change the System ID (hostname equiv).  Changing it could potential cause  issues with some programs.
 * **SYS1.PARAMLIB(VATLST00)** - has the list of **DASD volumes**.  If you add any, make sure to end them to the end, so you won't effect a critical volume during ISL
 * **SYS1.JES2PARM(JES2PARM)** - has all the **JES2 parameters**, including **Printer Definitions**
+* **SYS1.SYSGEN.CNTL(IOGEN)** - has the mappings between diffrent device types and device Ids.  When creating a new **DASD** device check this Member to make sure the **Cua** device number you are planning to use is valid for that **DASD** Type.
 
 # Connecting to Console with c3270 Emulator
 
