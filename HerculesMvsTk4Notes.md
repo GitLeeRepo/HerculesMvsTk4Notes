@@ -281,6 +281,8 @@ The listing specifieds:
 
 ### Disk Geometry
 
+There will be some variation between different disk types, a typical **3390 DASD** has the following geometry:
+
 * 1 track = 56,664 bytes
 * 1 cylinder = 15 tracks = 849,960 bytes
 
