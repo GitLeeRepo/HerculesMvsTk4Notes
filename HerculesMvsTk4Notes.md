@@ -77,6 +77,10 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 * [DD Statement](https://www.tutorialspoint.com/jcl/jcl_dd_statement.htm)
 * [Sample JCL & COBOL Code](http://www.simotime.com/utldat02.htm)
 
+## Forums
+
+* [Hercules390](http://hercules390.996247.n3.nabble.com/)
+
 # Concepts
 
 * **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** comamand **LISTCAT**.
