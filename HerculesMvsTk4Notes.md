@@ -281,14 +281,18 @@ The listing specifieds:
 
 ### Disk Geometry
 
-There will be some variation between different disk types, a typical **3390 DASD** has the following geometry:
+There will be some variation between different disk types, here are some typical geometries:
 
-* 1 track = 56,664 bytes
-* 1 cylinder = 15 tracks = 849,960 bytes
+Device Type | Track Capacity (Bytes) | Tracks Per Cylinder | Cylinder Capacity (Bytes)
+------------|------------------------|---------------------|--------------------------
+3330        | 13,030                 | 19 (varies)         | 247,570
+3350        | 19,069                 | 30                  | 572,070
+3380        | 47,476                 | 15                  | 712,140
+3390        | 56,664                 | 15                  | 849,960
 
 ### Record Format Types
 
-* **U** - Undefined
+* **U** - Undefined.  Up to the application to define.  Typically binary.
 * **FB** - Fixed block - for example a block with a records size of 80, and a block size of 800, creates a block of 10 records
 * **VB** - Variable block - the record length is fixed, but the block length is variable
 * **F** - Fixed record length
