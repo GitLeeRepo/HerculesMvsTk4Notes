@@ -561,6 +561,24 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **SYS1.PARAMLIB(VATLST00)** - has the list of **DASD volumes**.  If you add any, make sure to end them to the end, so you won't effect a critical volume during ISL
 * **SYS1.JES2PARM(JES2PARM)** - has all the **JES2 parameters**, including **Printer Definitions**
 
+# Connecting to Console with c3270 Emulator
+
+The basic procedure here comes from the [TK4- User Manual](http://wotho.ethz.ch/tk4-/MVS_TK4-_v1.00_Users_Manual.pdf).  Refer to this for more details.
+
+You can define additional Consoles (for Entering MVS and JES2 commands) that can be accessed from the c3270 (or any tn3270) emulator.  In the **config/extcons.cnf** config file you can add additional Consoles.  The main console is the **0009 3215-C** entry (even though it is commented out in this  file, you can see it with the **/D U,ALL** MVS command.  There are two consoles that are not commented out in this file **001F 3215 CONS** and **0010 3270 CONS**.  These consoles show up with the **/D U,ALL** commands, but show off line.  To bring the **0010 3270 CONS** online do the following:
+
+* Type **ATTACH 010 3270 CONS** at the Hercules prompt (either from the existing console or the Web Console).  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.
+* With the **c3270 emulator** logon to the mainframe with **CONS@localhost:3270**.  
+* Back at the other main console or Web Inerface type **/v 010,console,auth=all**.  This will activate the Console on the **c3270**.
+
+At this point the Console on the **3270** is able to issue some commands and receieve replies to those commands.  However, you will notice that a command such as **D U,ALL** will not return as many records as on the main console.  At this point it also isn't receiving any messages on the screen.  It is going to require some additional configurations to increase its functionality.  I will update these notes after this is done.
+
+Note this new **3270** console differs from the main Hercules console and the Web Interface console in that it is not necessary to proceed the **MVS** and **JES2** commands with a forward slash.
+
+# Detaching the Console added above
+
+According to the manual, having these extra consoles can cause issues with WTO Buffers during ISL.  To detach the console added above enter this command **detach 010** from the Hercules or Web Console.  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.  
+
 # ISSUES
 
 ## SORT Utility
