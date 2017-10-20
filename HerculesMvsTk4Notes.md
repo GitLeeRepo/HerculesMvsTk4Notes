@@ -582,18 +582,20 @@ Note that when entering TSO commands that include data sets the primary index (t
 
 The basic procedure here comes from the [TK4- User Manual](http://wotho.ethz.ch/tk4-/MVS_TK4-_v1.00_Users_Manual.pdf).  Refer to this for more details.
 
-You can define additional Consoles (for Entering MVS and JES2 commands) that can be accessed from the c3270 (or any tn3270) emulator.  In the **config/extcons.cnf** config file you can add additional Consoles.  The main console is the **0009 3215-C** entry (even though it is commented out in this  file, you can see it with the **/D U,ALL** MVS command.  There are two consoles that are not commented out in this file **001F 3215 CONS** and **0010 3270 CONS**.  These consoles show up with the **/D U,ALL** commands, but show off line.  To bring the **0010 3270 CONS** online do the following:
+You can define additional Consoles (for Entering MVS and JES2 commands) that can be accessed from the c3270 (or any tn3270) emulator.  When **MVS** is **IPL**ed with the **./MVS** shell script in unattended mode the **config/intcons.cnf** config file the main console is defined with the **0009 3215-C** entry   From MVS you can see what console device are define (but not necessarily active) with the **/D U,ALL** commands (they are at the top of the list and have type **3215** and **3277**).
+
+To bring the **0010 3270 CONS** online do the following:
 
 * Type **ATTACH 010 3270 CONS** at the Hercules prompt (either from the existing console or the Web Console).  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.
 * With the **c3270 emulator** logon to the mainframe with **CONS@localhost:3270**.  
-* Back at the other main console or Web Inerface type **/v 010,console,auth=all**.  This will activate the Console on the **c3270** and should display output similiar to the following:
+* Back at the other main console or Web Inerface type **/VARY 010,CONSOLE,AUTH=ALL**.  This will activate the Console on the **c3270** and should display output similiar to the following:
 
   ```
   05.39.23           IEE349I CONSOLES
   CONSOLE/ALT     COND   AUTH   ID  AREA    ROUTCD
   010/011         A      ALL    01  Z,A     1-13,15-16
   ```
-  Note this shows the Id, its Condition code (TBD: look these up), the authorization level (the **ALL** we specified), the AREA of the console (A,Z here, these are areas on the console screen) and what commands are being routed to it
+  The **CONSOLE/ALT** shows the console's **UNIT** (device) number for the console and its designated alternate), the **COND** Condition code (TBD: look these up), the **AUTH** authorization level (in this case the **ALL** specified in the **VARY** command above), the **AREA** of the console (A,Z here, these are areas on the console screen) and the **ROUTCD** showing what message types are being routed to it
   
   To see this info for all consoles type **DISPLAY CONSOLES** OR **D C**.  Example output:
   
@@ -601,17 +603,16 @@ You can define additional Consoles (for Entering MVS and JES2 commands) that can
   05.50.44           IEE250I 05.50.44 CONSOLE DISPLAY 503
   WTO BUFFERS:    CURR =     1      LIM =  250
   CONSOLE/ALT     COND    AUTH   ID AREA  NBUF ROUTCD
-    30E/010     H      CMDS    05            ALL
-    010/011     A,J     ALL    01 Z,A        1-13,15
-    011/01F     N,J     ALL    02 Z,A        1-13,15
-    009/010     M,T     ALL    03            1-13,15
-    01F/009     N,T     ALL    04            1-13,15
-    30E/010     A       NONE   05            ALL
+    30E/010       H       CMDS    05            ALL
+    010/011       A,J     ALL     01 Z,A        1-13,15
+    011/01F       N,J     ALL     02 Z,A        1-13,15
+    009/010       M,T     ALL     03            1-13,15
+    01F/009       N,T     ALL     04            1-13,15
+    30E/010       A       NONE    05            ALL
   ```
 
-At this point the Console on the **3270** is able to issue some commands and receieve replies to those commands.  However, you will notice that a command such as **D U,ALL** will not return as many records as on the main console.  At this point it also isn't receiving any messages on the screen.  It is going to require some additional configurations to increase its functionality.  I will update these notes after this is done.
 
-Note this new **3270** console differs from the main Hercules console and the Web Interface console in that it is not necessary to proceed the **MVS** and **JES2** commands with a forward slash.
+Note this new **3270** console differs from the main **Hercules console** and the Web Interface console in that it is not necessary to proceed the **MVS** and **JES2** commands with a forward slash.  But since it is not a **Hercules console** you cannot enter **Hercules** commands here.
 
 # Detaching the Console added above
 
