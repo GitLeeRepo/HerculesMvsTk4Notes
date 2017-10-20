@@ -39,7 +39,7 @@ z/OS videos, but much is still applicable to earlier systems
 
 ## IBM Documents
 
-**Frequently Used:**
+**Frequently Used** since these most closely correspond to **MVS 3.8** used here:
 * [OS/VS2 RELEASE 3.8 1978 Manuals](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/)
 * [OS/VS2 MVS Overview](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.7_1977/GC28-0984-0_OS_VS2_MVS_Overview_Rel_3.7_Jun78.pdf)
 * [OS/VS2 MVS System Commands](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.7_1977/GC38-0229-1_OS_VS2_MVS_System_Commands_Rel_3.7_Jul78.pdf)
