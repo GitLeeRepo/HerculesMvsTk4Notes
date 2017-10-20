@@ -586,7 +586,28 @@ You can define additional Consoles (for Entering MVS and JES2 commands) that can
 
 * Type **ATTACH 010 3270 CONS** at the Hercules prompt (either from the existing console or the Web Console).  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.
 * With the **c3270 emulator** logon to the mainframe with **CONS@localhost:3270**.  
-* Back at the other main console or Web Inerface type **/v 010,console,auth=all**.  This will activate the Console on the **c3270**.
+* Back at the other main console or Web Inerface type **/v 010,console,auth=all**.  This will activate the Console on the **c3270** and should display output similiar to the following:
+
+  ```
+  05.39.23           IEE349I CONSOLES
+  CONSOLE/ALT     COND   AUTH   ID  AREA    ROUTCD
+  010/011         A      ALL    01  Z,A     1-13,15-16
+  ```
+  Note this shows the Id, its Condition code (TBD: look these up), the authorization level (the **ALL** we specified), the AREA of the console (A,Z here, these are areas on the console screen) and what commands are being routed to it
+  
+  To see this info for all consoles type **DISPLAY CONSOLES** OR **D C**.  Example output:
+  
+  ```
+  05.50.44           IEE250I 05.50.44 CONSOLE DISPLAY 503                                                                  
+  WTO BUFFERS:    CURR =     1      LIM =  250
+  CONSOLE/ALT     COND    AUTH   ID AREA  NBUF ROUTCD
+    30E/010     H      CMDS    05            ALL
+    010/011     A,J     ALL    01 Z,A        1-13,15
+    011/01F     N,J     ALL    02 Z,A        1-13,15
+    009/010     M,T     ALL    03            1-13,15
+    01F/009     N,T     ALL    04            1-13,15
+    30E/010     A       NONE   05            ALL
+  ```
 
 At this point the Console on the **3270** is able to issue some commands and receieve replies to those commands.  However, you will notice that a command such as **D U,ALL** will not return as many records as on the main console.  At this point it also isn't receiving any messages on the screen.  It is going to require some additional configurations to increase its functionality.  I will update these notes after this is done.
 
