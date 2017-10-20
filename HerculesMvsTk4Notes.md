@@ -598,7 +598,7 @@ You can define additional Consoles (for Entering MVS and JES2 commands) that can
   To see this info for all consoles type **DISPLAY CONSOLES** OR **D C**.  Example output:
   
   ```
-  05.50.44           IEE250I 05.50.44 CONSOLE DISPLAY 503                                                                  
+  05.50.44           IEE250I 05.50.44 CONSOLE DISPLAY 503
   WTO BUFFERS:    CURR =     1      LIM =  250
   CONSOLE/ALT     COND    AUTH   ID AREA  NBUF ROUTCD
     30E/010     H      CMDS    05            ALL
