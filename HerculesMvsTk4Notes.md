@@ -595,7 +595,7 @@ To bring the **0010 3270 CONS** online do the following:
   CONSOLE/ALT     COND   AUTH   ID  AREA    ROUTCD
   010/011         A      ALL    01  Z,A     1-13,15-16
   ```
-  The **CONSOLE/ALT** shows the console's **UNIT** (device) number for the console and its designated alternate), the **COND** Condition code (TBD: look these up), the **AUTH** authorization level (in this case the **ALL** specified in the **VARY** command above), the **AREA** of the console (A,Z here, these are areas on the console screen) and the **ROUTCD** showing what message types are being routed to it
+  The **CONSOLE/ALT** shows the console's **UNIT** (device) number for the console and its designated alternate), the **COND** Condition code (TBD: look these up), the **AUTH** authorization level (in this case the **ALL** specified in the **VARY** command above), the **ID** is important since this is the **Console Name** that is entered for many **MVS** commands that ask for a **Console Name** as a operand, the **AREA** of the console (A,Z here, these are areas on the console screen) and the **ROUTCD** showing what message types are being routed to it
   
   To see this info for all consoles type **DISPLAY CONSOLES** OR **D C**.  Example output:
   
@@ -603,12 +603,12 @@ To bring the **0010 3270 CONS** online do the following:
   05.50.44           IEE250I 05.50.44 CONSOLE DISPLAY 503
   WTO BUFFERS:    CURR =     1      LIM =  250
   CONSOLE/ALT     COND    AUTH   ID AREA  NBUF ROUTCD
-    30E/010       H       CMDS    05            ALL
-    010/011       A,J     ALL     01 Z,A        1-13,15
-    011/01F       N,J     ALL     02 Z,A        1-13,15
-    009/010       M,T     ALL     03            1-13,15
-    01F/009       N,T     ALL     04            1-13,15
-    30E/010       A       NONE    05            ALL
+    30E/010       H       CMDS   05            ALL
+    010/011       A,J     ALL    01 Z,A        1-13,15
+    011/01F       N,J     ALL    02 Z,A        1-13,15
+    009/010       M,T     ALL    03            1-13,15
+    01F/009       N,T     ALL    04            1-13,15
+    30E/010       A       NONE   05            ALL
   ```
 
 
