@@ -39,7 +39,16 @@ z/OS videos, but much is still applicable to earlier systems
 
 ## IBM Documents
 
+**Frequently Used:**
 * [OS/VS2 RELEASE 3.8 1978 Manuals](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/)
+* [OS/VS2 MVS Overview](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.7_1977/GC28-0984-0_OS_VS2_MVS_Overview_Rel_3.7_Jun78.pdf)
+* [OS/VS2 MVS System Commands](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.7_1977/GC38-0229-1_OS_VS2_MVS_System_Commands_Rel_3.7_Jul78.pdf)
+* [OS/VS2 MVS Utilities](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC26-3902-1_OS_VS2_MVS_Utilities_Rel_3.8_Sep83.pdf)
+* [OS/VS2 TSO Termial Users Guide](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC28-0645-4_OS_VS2_Rel_3.8_TSO_Termial_Users_Guide_Jun78.pdf)
+* [OS/VS2 MVS JCL](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC28-0692-5_OS_VS2_MVS_JCL_Rel_3.8_Apr84.pdf)
+* [OS/VS2 MVS JES2 Commands](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/GC23-0007-1_Operators_Library_OS_VS2_MVS_JES2_Commands_Jan79.pdf)
+
+**Less Frequently Used**
 * [MVS Manuals](http://ibmmainframes.com/manuals.php)
 * [OS/390 Bookshelf](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/SHELVES/IEA1BK37)
 
