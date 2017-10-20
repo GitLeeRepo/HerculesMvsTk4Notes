@@ -83,6 +83,21 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 
 # Concepts
 
+## Role of Hercules vs TK4-
+
+* **Hercules** is the emulator of the IBM mainframe Environment, which includes the machine level instruction set and the devices for **System/370**, **System/390**, and **zSeries/System z**, which are all one the hardware side of things.  It is not the operating system, but provides the environment for the operating system to run on.  It provides an environment to run public domain operating systems such as  **OS/360**, **DOS/360**, **DOS/VS**, **MVS** (see all the variations below), **VM/370**, and **TSS/370**.  It can also run **OS/390**, **z/OS**, **VSE/ESA**, **z/VSE**, **VM/ESA**, **z/VM**, **TPF/ESA**, and **z/TPF** are licensed products and cannot be legally run.
+* **TK4- (OS/VS2 MVS 3.8j)** - Is the **MVS** operating system itself, in this case **OS/VS2 MVS 3.8j** which ran on the **System/370**.  Apart from the operating system itself it also provides additional functionality such as scripting automatic **IPL**, integrations with the host OS (Ubuntu in my case), etc.
+
+## MVS Concepts
+
+* **MVS** - Multiple Virtual Storage was the most commonly used operating system on the System/370 and System/390 IBM mainframe computers. It was developed by IBM, but is unrelated to IBM's other mainframe operating systems, e.g., VSE, VM, TPF.  **MVS** has been update over the years, here a some of the extensions in order of release:
+  * **OS/VS2 Release 2** - the initial release of **MVS** on **System/370** (and thus synonymous with **MVS**).  Has **24-bit addressing**, supporting **16MB** of main memory.
+  * **MVS/SE** (MVS/System Extensions) on **System/370**.  Has **24-bit addressing**, supporting **16MB** of main memory.
+  * **MVS/SP** (MVS/System Product) Version 1, on **System/370**.  Has **24-bit addressing**, supporting **16MB** of main memory.  The first to add POSIX Unix Support.
+* **MVS/XA** - (MVS/eXtended Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
+* **MVS/ESA** - (MVS/Enterprise Systems Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
+* **OS/390** - MVS branded as **OS/390** running on **System/390**
+* **z/OS** - MVS branded as **z/OS** 
 * **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** comamand **LISTCAT**.
 * **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a scondary size in the same units which will increase the size by that amount if needed, which will create addional **extents**.  If secondary size increases aren't specified it won't grow beyond the inial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
 
