@@ -94,10 +94,11 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
   * **OS/VS2 Release 2** - the initial release of **MVS** on **System/370** (and thus synonymous with **MVS**).  Has **24-bit addressing**, supporting **16MB** of main memory.
   * **MVS/SE** (MVS/System Extensions) on **System/370**.  Has **24-bit addressing**, supporting **16MB** of main memory.
   * **MVS/SP** (MVS/System Product) Version 1, on **System/370**.  Has **24-bit addressing**, supporting **16MB** of main memory.  The first to add POSIX Unix Support.
-* **MVS/XA** - (MVS/eXtended Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
-* **MVS/ESA** - (MVS/Enterprise Systems Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
-* **OS/390** - MVS branded as **OS/390** running on **System/390**
-* **z/OS** - MVS branded as **z/OS** 
+  * **MVS/XA** - (MVS/eXtended Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
+  * **MVS/ESA** - (MVS/Enterprise Systems Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
+  * **OS/390** - MVS branded as **OS/390** running on **System/390**
+  * **z/OS** - MVS branded as **z/OS** 
+  
 * **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** comamand **LISTCAT**.
 * **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a scondary size in the same units which will increase the size by that amount if needed, which will create addional **extents**.  If secondary size increases aren't specified it won't grow beyond the inial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
 
@@ -141,8 +142,8 @@ name).
 * **LRECL** - logical record length
 * **LU** - logical unit
 * **MEMBER** -  A file in a **PDS** (Partitioned Data Set).  Most editing of source files takes place in **MEMBERS**
-* **MVS** - Multiple Virtual Storage
-* **MVS/ESA** - Multiple Virtual Storage/Enterprise System Architecture
+* **MVS** - Multiple Virtual Storage.  Refer to the **Concepts** section above for more information.
+* **MVS/ESA** - Multiple Virtual Storage/Enterprise System Architecture.  Ran on **System/370** as a 31 bit OS (2GB Main Memory)
 * **PDS** - Partitioned Data Set - It is a data set that can contain partitions called **MEMBERS**, which are programs, parts of programs, and data.  members, each of which can contain a program, part of a program, or
 data. Synonymous with program library. Contrast with sequential data set. Identifed by **PO** under the ORG heading when listing datasets and in JCL commands
 * **PDS/E** - just like PDS but more advanced in that unclaimed space is autmatically reclaimed and they are more efficient
