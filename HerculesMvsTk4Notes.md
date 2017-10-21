@@ -63,6 +63,10 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 
 * [Data Sets in Depth](https://www.youtube.com/watch?v=NT_1AmdmlGg) - part of an excellent series of videos
 
+## Jay Moseley
+
+* [Hercules](http://www.jaymoseley.com/hercules/)
+
 ## Additional Notes References
 
 * [JclNotes](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/JclNotes.md#overview)
