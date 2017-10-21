@@ -8,6 +8,10 @@ Notes on the COBOL programming languages as it applies to the MVS mainframe envi
 * [Compiler Languages available on Hercules](http://www.jaymoseley.com/hercules/compilers/list_of.htm)
 * [COBOL Introduction](https://www.youtube.com/watch?v=DTyKHm92oI4) - YouTube video from which some of these notes came from.
 
+## Info on writing to a Data set
+
+* [Appending Records to an Existing File](https://stackoverflow.com/questions/3226843/append-records-to-an-existing-file)
+
 # COBOL Compilers on the **Hercules with TK3-** emulator environment
 
 * **CB545 V2 LVL78 01May1972** - **COBUCG on the JCL EXEC** - and **s/360** pre COBOL 1974 Standard compiler
