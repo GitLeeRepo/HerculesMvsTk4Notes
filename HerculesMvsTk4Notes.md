@@ -505,6 +505,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 
 * **$AA** - Release all held jobs
 * **$A ' jobname'** - Release specific job. Quotes required.
+* **$CJOBn** - Cancel job by Job Number
 * **$C 'jobname/user'** - Cancel job or user
 * **$CPRTn** - Cancel job on printer
 * **$CRDRn** - Cancel the reader activity
