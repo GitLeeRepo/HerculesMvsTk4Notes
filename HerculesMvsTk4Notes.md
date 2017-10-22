@@ -527,7 +527,11 @@ Note the commands and their subcommands can optionally have a space between them
 * **D TS,L** - List TSO users
 * **D TS,username** - List detailed info on the user
 * **D TS,ALL** - list detailed info on all users
-* **D U,DASD,ONLINE** - display the online DASD devices
+* **D U,DASD,ONLINE** - display the online DASD devices (2314, 3330, 3340, 3350, 3375, 3380, 3390 devices)
+* **D U,GRAPHIC,ONLINE** - display the online Graphic devices (3270 family of devices)
+* **D U,TAPE,ONLINE** - display the online Tape devices (3400 devices)
+* **D U,TP,ONLINE** - display the online **Communication devices** (2700 & 3700 families of devices)
+* **D U,UR,ONLINE** - display the online **Unit Record** devices (3215 console, 1403 and 3211 printers, 2540 reader/punch)
 * **FBSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
 * **K A,10** - set display area 1 to 10 lines (this is the status area)
 * **K A,NONE** - no display areas, everything in the message area.  Note: You must clear the status area before you can remove it
@@ -755,19 +759,20 @@ To set the **Message Display** so it displays the **Job Number** enter the follo
 
 The default install of **TK4-** has the following devices (not exhaustive)
 
-Unit | Type   | Device
------|--------|--------------------------------------------
-0002 | PRT    | IBM 3211 Printer (mapped to prt/prt002.txt)
-000E | PRT    | IBM 1403 Printer (mapped to prt/prt00e.txt)
-000C | RDR    | IBM 3505 Card Reader (rdr directory)
-000D | PCH    | IBM 3525 Card Punch (mapped to pch/prt00d.txt)
-0480 | TAPE   | IBM 3420 Tape Drive (tapes directory)
-010C | RDR    | IBM 3505 Card Reader (jcl directory)
-010D | PCH    | IBM 3525 PCH Card Punch (mapped to pch/prt10d.txt)
-000F | PRT    | IBM 1403 Printer (mapped to prt/prt00f.txt)
-030E | PRT    | IBM 1403 Printer (mapped to log/hardcopy.log)
-0009 | CON    | IBM 3215 Console (default Hercules Console)
-00C0 | DSP    | IBM 3270 Display
+ Type |Unit | Device
+------|-----|--------------------------------------------
+ CON  |0009 | IBM 3215 Console (default Hercules Console)
+ CON  |0010 | IBM 3277 Console (default Hercules Console)
+ DSP  |00C0 | IBM 3270 Display (1st session's 3270 host)
+ PCH  |000D | IBM 3525 Card Punch (mapped to pch/prt00d.txt)
+ PCH  |010D | IBM 3525 PCH Card Punch (mapped to pch/prt10d.txt)
+ PRT  |0002 | IBM 3211 Printer (mapped to prt/prt002.txt)
+ PRT  |000E | IBM 1403 Printer (mapped to prt/prt00e.txt)
+ PRT  |000F | IBM 1403 Printer (mapped to prt/prt00f.txt)
+ PRT  |030E | IBM 1403 Printer (mapped to log/hardcopy.log)
+ RDR  |000C | IBM 3505 Card Reader (rdr directory)
+ RDR  |010C | IBM 3505 Card Reader (jcl directory)
+ TAPE |0480 | IBM 3420 Tape Drive (tapes directory)
 
 # Issues
 
