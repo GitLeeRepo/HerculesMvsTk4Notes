@@ -66,6 +66,7 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 ## Jay Moseley
 
 * [Hercules](http://www.jaymoseley.com/hercules/)
+* [Good Info on MVS and JES Commands](http://www.jaymoseley.com/hercules/faq/mvsfaq01.htm)
 
 ## Additional Notes References
 
@@ -492,18 +493,27 @@ Note the commands and their subcommands can optionally have a space between them
 
 **Shortcuts used below**:
 
-* **C** - **CANCEL**
-* **D** - **DISPLAY**
-* **K** - **CONTROL**
+* **C** - **CANCEL** - cancel a job, TSO user, a mount, etc
+* **D** - **DISPLAY** - display system I/O, Job Status, console, and other information
+* **F** - **FORCE** - force job, mount, etc. to terminate (use when **CANCEL** won't terminate)
+* **K** - **CONTROL** - used to change display **console** characteristics
+* **L** - **LOG** - make log entries into the system log
+* **MN** - **MONITOR** - 
 * **MR** - **MSGRT** - message route
-* **R** - **REPLY**
-* **V** - **VARY**
+* **R** - **REPLY** - reply to **Action Commands**
+* **V** - **VARY** - 
+* **Z** - **HALT** - record staticsics prior to shutting down the operating system
 
 **Example Commands**:
 
 * **C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
 * **D A,L** - list active jobs, tasks, and users
-* **D PFK**	 - display function key assignments fir the console
+* **D C** - diplay **console** information
+* **D C,K** - display detailed **Control** settings for a **console**
+* **D J,L** - list job information
+* **D M** - display CPU, device, and Main Storage information
+* **D PFK** - display function key assignments fir the console
+* **D R,L** - list operator messages waiting for a **reply**
 * **D T** - display time
 * **D TS,L** - List TSO users
 * **D TS,username** - List detailed info on the user
@@ -515,6 +525,9 @@ Note the commands and their subcommands can optionally have a space between them
 * **K A,5,4** - set display area A to 5 lines, and B to 4 lines, the remainder (10) is the general message area
 * **K D,F** - scroll forward on **Frame** in the **Status Area** of a console
 * **K E,D** - clear the **Status Area** of a console
+* **K N,PFK=(n,CMD='command text'),CON=N** - set function key **n** to the specified command, with no for **Conversation Mode**
+* **K V,USE=FC,L=01** - Place console **01** in **Full Capability** mode (it can both receive and send messages/commands). 
+* **L text** - make a log entry into the system log
 * **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
 * **MR D=A** - remove the message routing for the D A command
 * **MR REF** - Show the currently defined **Message Routes**
@@ -522,6 +535,7 @@ Note the commands and their subcommands can optionally have a space between them
 * **R Id MsgText** - Reply to an **Action Message**
 * **/V 010,CONSOLE,AUTH=ALL** - enable a console on Unit 010 with Authority All.  Refer to the section **Connecting to a Console with the c3270 Emulator** below.
 * **V 010,OFFLINE** - place the console offline
+* **Z EOD** - record statisics prior to shutting down the operating system
 
 ## JES/2 Commands
 
@@ -588,6 +602,8 @@ $tosc1,d=j
 
 ## Hercules commands (no slash as a prefix)
 
+* **ATTACH** - attach a device to a specific MVS Unit
+* **DETACH** - detach a device from a specific MVS Unit
 * **devlist** - display a list of devices that you can page up and down
 * **MAXRATES** - display the maximimu MIPS and I/O rates for a given period
 * **HST** - display a history of the commands entered
@@ -680,6 +696,9 @@ Many of the commands will take a **L** operand that allows you to specify the di
 ## Action vs Non-Action Messages
 
 **Action Messages** are those messages in the **Message Area** that require a response from the operator using the **REPLY** command 
+
+**D R,L** - list operator messages waiting for a **reply**
+
 ## Deleting Messages
 
 * To **non-action messages** from the **Message Area** using the cursor on the message line you want to delete and hit return, this message and all messages above will be deleted
@@ -687,7 +706,7 @@ Many of the commands will take a **L** operand that allows you to specify the di
 
 ## Console Keyboard
 
-**D PFK**	 - display function key assignments fir the console.  These can be defined with custom settings.
+**D PFK**	 - display function key assignments fir the console.  These can be defined with custom settings using the **K N,PFK=(n,CMD='command text'),CON=N** command (set function key **n** to the specified command with **Conversation Mode** set to no).
 
 **A Few Default Examples**:
 
@@ -713,7 +732,7 @@ I received a **JES2 Resource Shortage** message which froze my 3270 termial.  I 
 
 Turns out I could not run any commands that rely on **JES2**, which is a lot, including a lot of services need to reboot the system (ISL) to the **TSO** logon.  It couldn't get past trying to load the **BSPPILOT** job which is used for automating a lot off the **ISL** process.  On restart it would show the **JES2 Resource Shortage - JOES** message, which relates to the output queue.
 
-I finally solved the problems by purging a lot of jobs using the **$PJOB #-#** command to purge a range of jobs (**$PJOB 5-100** for example).  I had almost 200 jobs initially, and I purged just about everything other than the most recent runs.  I wanted to just shut shutdown the **JES2** and restart it again without having to reboot the entire system again, but I had issues with providing the necessary reply to the **/$PJES2,ABEND** command from the Hercules prompt.  I tried both with and without the **/** prefix to enter the confirmation reply.  I eventually just rebooted the system and this fixed the problem.
+I finally solved the problems by purging a lot of jobs using the **$PJOB #-#** command to purge a range of jobs (**$PJOB 5-100** for example).  I had almost 200 jobs initially, and I purged just about everything other than the most recent runs.  I wanted to just shut shutdown the **JES2** and restart it again without having to reboot the entire system again, but I had issues with providing the necessary reply to the **/$PJES2,ABEND** command from the Hercules prompt. 
 
 In the future I need to keep an eye on the number of jobs in the output queue (I like to specify they be held so I can look at the output their, rather than having it sent to the printer).  I will need to periodically purge these (keep them under 100), or go through the **JES2 procedures** for increasing the amount of resources available to this queue.
 
