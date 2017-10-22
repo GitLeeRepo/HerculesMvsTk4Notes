@@ -492,10 +492,19 @@ Note the commands and their subcommands can optionally have a space between them
 
 * **C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
 * **D A,L** - list active jobs, tasks, and users
+* **D PFK**	 - display function key assignments fir the console
 * **D TS,L** - List TSO users
 * **D TS,username** - List detailed info on the user
 * **D TS,ALL** - list detailed info on all users
 * **D U,DASD,ONLINE** - display the online DASD devices
+* **K D,F** - scroll forward on **Frame** in the **Status Area** of a console
+* **K E,D** - clear the **Status Area** of a console
+* **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
+* **MR D=A** - remove the message routing for the D A command
+* **MR REF** - Show the currently defined **Message Routes**
+* **MR NONE** - remove all message routing commands
+* **/VARY 010,CONSOLE,AUTH=ALL** - enable a console on Unit 010 with Authority All.  Refer to the section **Connecting to a Console with the c3270 Emulator** below.
+* **VARY 010,OFFLINE** - place the console offline
 
 * **FBSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
 
@@ -541,8 +550,10 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$TJOBx,C=A** - Change the class on a queued job.  The **CLASS** in JCL
 * **$TJOBx,Q=A** - Change the message class on a queued job.  The **MSGCLASS** in JCL
 * **$TJOBx,P=priority** - Change the priority of a job
+* **$TOSCL,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
 * **$TPRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
 * **$TPRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
+$tosc1,d=j
 
 **JES2 Related MVS Commands**
 
@@ -592,7 +603,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **SYS1.JES2PARM(JES2PARM)** - has all the **JES2 parameters**, including **Printer Definitions**
 * **SYS1.SYSGEN.CNTL(IOGEN)** - has the mappings between diffrent device types and device Ids.  When creating a new **DASD** device check this Member to make sure the **Cua** device number you are planning to use is valid for that **DASD** Type.
 
-# Connecting to Console with c3270 Emulator
+# Connecting to a Console with the c3270 Emulator
 
 The basic procedure here comes from the [TK4- User Manual](http://wotho.ethz.ch/tk4-/MVS_TK4-_v1.00_Users_Manual.pdf).  Refer to this for more details.
 
@@ -625,12 +636,40 @@ To bring the **0010 3270 CONS** online do the following:
     30E/010       A       NONE   05            ALL
   ```
 
-
 Note this new **3270** console differs from the main **Hercules console** and the Web Interface console in that it is not necessary to proceed the **MVS** and **JES2** commands with a forward slash.  But since it is not a **Hercules console** you cannot enter **Hercules** commands here.
 
-# Detaching the Console added above
+## Detaching the Console added above
 
 According to the manual, having these extra consoles can cause issues with WTO Buffers during ISL.  To detach the console added above enter this command **detach 010** from the Hercules or Web Console.  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.  
+
+## Specifying a Console and Dispaly Area
+
+Many of the commands will take a **L** operand that allows you to specify the display area of a particular console to display the messages on.  It has the format:
+
+**L={a, cc, cca}** where **a** is the **AREA** of the console display (**A** for **Status Area** and **Z** for the **General Message Area** for example); **cc** is the **Console Id/Name** (**L=01** or **L=03** for example); and **cca** is a combination of both (**L=01Z** for example) 
+
+**For Example:**
+* **L=Z** - display output to **AREA Z** of the console (The Message AREA) - Can Page Up and Down
+* **L=A** - display output to **AREA A** of the console (The Status Area) - Use **K D,F** to scroll forward a frame and **K E,D** to clear the Status Area.
+
+## Message Routing Commands
+
+* **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
+* **MR D=A** - remove the message routing for the D A command
+* **MR REF** - Show the currently defined **Message Routes**
+* **MR NONE** - remove all message routing commands
+
+## Console Keyboard
+
+**D PFK**	 - display function key assignments fir the console.  These can be defined with custom settings.
+
+**A Few Default Examples**:
+
+* **PA2** - Cancel
+* **F1** - Remove top line displayed in Message area, shifting others up - K E,1
+* **F7** - clear the status area - K E,D
+* **F8** - scroll the status area forward one record K D,F
+	
 
 # ISSUES
 
