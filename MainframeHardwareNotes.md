@@ -10,3 +10,5 @@ Notes and refences to IBM Mainframe harware platforms and components.
 ## YouTube References
 
 * [Hardware and Software Stack](https://www.youtube.com/watch?time_continue=186&v=edDx2L71yR0)
+* [1964 IBM 029 Keypunch](https://www.youtube.com/watch?v=YnnGbcM-H8c)
+* [IBM 3525 Cardpunch](https://www.youtube.com/watch?v=Z34MdA9rzVI)
