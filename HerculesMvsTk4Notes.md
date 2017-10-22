@@ -513,7 +513,6 @@ Note the commands and their subcommands can optionally have a space between them
 * **K A,10** - set display area 1 to 10 lines (this is the status area)
 * **K A,NONE** - no display areas, everything in the message area.  Note: You must clear the status area before you can remove it
 * **K A,5,4** - set display area A to 5 lines, and B to 4 lines, the remainder (10) is the general message area
-
 * **K D,F** - scroll forward on **Frame** in the **Status Area** of a console
 * **K E,D** - clear the **Status Area** of a console
 * **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
