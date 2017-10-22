@@ -1,6 +1,6 @@
 # Overview
 
-Notes on the Hercules IBM MVS mainframe \(System/370, System/390, and zSeries/System z\) emulator, using the ready to use **MVS 3.8j Tur(n)key 4- \("TK4-"\)** preconfigured system, which can be found [here](http://wotho.ethz.ch/tk4-/).  It is available for both Linux and Windows, these notes are based on an Ubuntu 17.04 setup.  TK4- is an extension by Jürgen Winkelmann of TK3 by Volker Bandke.  Since TK4- does not claim to be an official new release of TK3, it uses the TK4- (with the dash) moniker, although here in these notes and in other sources it may be referred to as TK4 (without the dash).
+Notes on the Hercules IBM MVS mainframe \(System/370, System/390, and zSeries/System z\) emulator, using the ready to use **MVS 3.8j Tur(n)key 4- \("TK4-"\)** preconfigured system, which can be found [here](http://wotho.ethz.ch/tk4-/).  It is available for both Linux and Windows, these notes are based on an Ubuntu 17.04 setup.  TK4- is an extension by Jürgen Winkelmann of TK3 by Volker Bandke.  Since TK4- does not claim to be an official new release of TK3, it uses the TK4- (with the dash) moniker.
 
 I come at this from the perspective of having extremely limited mainframe experience (JCL and COBOL classes back in the mid 1980s), with most of my experience being in the Windows/Mac/Linux/Unix world, with a few years of VMS work experience in the late 80s early 90s.  But I have always had an interest in knowing what it was like to work in a mainframe envirorment, this emulation software allows me to get a flavor of that (from the software/OS side anyway, not so much the hardware side, other than virtual hardware)
 
@@ -751,8 +751,25 @@ To set the **Message Display** so it displays the **Job Number** enter the follo
 * **F7** - clear the status area - K E,D
 * **F8** - scroll the status area forward one record K D,F
 	
+# Devices
 
-# ISSUES
+The default install of **TK4-** has the following devices (not exhaustive)
+
+Unit | Type   | Device
+-----|--------|--------------------------------------------
+0002 | PRT    | IBM 3211 Printer (mapped to prt/prt002.txt)
+000E | PRT    | IBM 1403 Printer (mapped to prt/prt00e.txt)
+000C | RDR    | IBM 3505 Card Reader (rdr directory)
+000D | PCH    | IBM 3525 Card Punch (mapped to pch/prt00d.txt)
+0480 | TAPE   | IBM 3420 Tape Drive (tapes directory)
+010C | RDR    | IBM 3505 Card Reader (jcl directory)
+010D | PCH    | IBM 3525 PCH Card Punch (mapped to pch/prt10d.txt)
+000F | PRT    | IBM 1403 Printer (mapped to prt/prt00f.txt)
+030E | PRT    | IBM 1403 Printer (mapped to log/hardcopy.log)
+0009 | CON    | IBM 3215 Console (default Hercules Console)
+00C0 | DSP    | IBM 3270 Display
+
+# Issues
 
 ## SORT Utility
 
