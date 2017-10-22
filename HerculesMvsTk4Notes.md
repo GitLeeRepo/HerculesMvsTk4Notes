@@ -498,9 +498,11 @@ Note the commands and their subcommands can optionally have a space between them
 * **F** - **FORCE** - force job, mount, etc. to terminate (use when **CANCEL** won't terminate)
 * **K** - **CONTROL** - used to change display **console** characteristics
 * **L** - **LOG** - make log entries into the system log
-* **MN** - **MONITOR** - 
+* **M** - **MOUNT** - mount a storage device (DASD, tape, etc)
+* **MN** - **MONITOR** - continually monitor jobs, users, volumes, data sets, etc.
 * **MR** - **MSGRT** - message route
 * **R** - **REPLY** - reply to **Action Commands**
+* **SE** - **SEND** - Send a message to another console, user, or broadcast
 * **V** - **VARY** - 
 * **Z** - **HALT** - record staticsics prior to shutting down the operating system
 
@@ -528,11 +530,25 @@ Note the commands and their subcommands can optionally have a space between them
 * **K N,PFK=(n,CMD='command text'),CON=N** - set function key **n** to the specified command, with no for **Conversation Mode**
 * **K V,USE=FC,L=01** - Place console **01** in **Full Capability** mode (it can both receive and send messages/commands). 
 * **L text** - make a log entry into the system log
+* **M 282,VOL=(sl,222222),use=private** - specify that volume labeled 222222 is mounted to device 282.  Private ensures the OS won't used it for temporary files
+* **MN JOBNAMES,T** - continually display job information.  The **T** ensures the job number and time are displayed.
+* **MN SESS,T** - display info on the **TSO User** whenever they log on or off
+* **MN DSNAME** - dispay the first non-temporary DSN on a volume whenever it is mounted
+* **MN SPACE** - display the space available on the device whenever it is demounted
+* **MN STATUS** - display the Disposition (KEEP, CATLG, UNCATLG) of a data set whenever it is freed
 * **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
 * **MR D=A** - remove the message routing for the D A command
 * **MR REF** - Show the currently defined **Message Routes**
 * **MR NONE** - remove all message routing commands
 * **R Id MsgText** - Reply to an **Action Message**
+* **SE 23,CN=03** - send message 23 to console 03 (use **SE SAVE** operand to create messages with numbers)
+* **SE 'Hello',CN=03** - send the message 'Hello' to console 03
+* **SE 'Hello',BRDCST** - send a broadcast message to anyone receiving broadcast messages
+* **SE 'Hello' HERC02** - send the message 'Hello' to user HERC02 (note no comma in this case)
+* **SE 'Welcome',SAVE** - save the meessage to the **Broadcast LIST** (the first will be 001) use this message id to send broadcat messages.  These message in the **LIST** will display whenever someone logs on or to whom it is specifically set.
+* **SE LIST** - list **Broadcast** messages saved with the **SE msg,SAVE** command
+* **SE msgno** - send the message associated with the number in the message **LIST** as a broadcast message
+* **SE msgno,DELETE** - delete the specified message from the message **LIST**
 * **/V 010,CONSOLE,AUTH=ALL** - enable a console on Unit 010 with Authority All.  Refer to the section **Connecting to a Console with the c3270 Emulator** below.
 * **V 010,OFFLINE** - place the console offline
 * **Z EOD** - record statisics prior to shutting down the operating system
@@ -698,6 +714,12 @@ Many of the commands will take a **L** operand that allows you to specify the di
 **Action Messages** are those messages in the **Message Area** that require a response from the operator using the **REPLY** command 
 
 **D R,L** - list operator messages waiting for a **reply**
+
+## Mesage Job Detail
+
+To set the **Message Display** so it displays the **Job Number** enter the following:
+
+* **$TOSCL,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
 
 ## Deleting Messages
 
