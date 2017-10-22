@@ -490,23 +490,39 @@ Note: Several of the MVS commands are under the **JES2 Related MVS Commands** se
 
 Note the commands and their subcommands can optionally have a space between them or no space between them, for example **$DA** or **$D A**.  In the list below I chose the no space option, just keep in mind the first letter is the command and the subseqent letters before a comma, or other delimiter are secondary commands.
 
+**Shortcuts used below**:
+
+* **C** - **CANCEL**
+* **D** - **DISPLAY**
+* **K** - **CONTROL**
+* **MR** - **MSGRT** - message route
+* **R** - **REPLY**
+* **V** - **VARY**
+
+**Example Commands**:
+
 * **C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
 * **D A,L** - list active jobs, tasks, and users
 * **D PFK**	 - display function key assignments fir the console
+* **D T** - display time
 * **D TS,L** - List TSO users
 * **D TS,username** - List detailed info on the user
 * **D TS,ALL** - list detailed info on all users
 * **D U,DASD,ONLINE** - display the online DASD devices
+* **FBSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
+* **K A,10** - set display area 1 to 10 lines (this is the status area)
+* **K A,NONE** - no display areas, everything in the message area.  Note: You must clear the status area before you can remove it
+* **K A,5,4** - set display area A to 5 lines, and B to 4 lines, the remainder (10) is the general message area
+
 * **K D,F** - scroll forward on **Frame** in the **Status Area** of a console
 * **K E,D** - clear the **Status Area** of a console
 * **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
 * **MR D=A** - remove the message routing for the D A command
 * **MR REF** - Show the currently defined **Message Routes**
 * **MR NONE** - remove all message routing commands
-* **/VARY 010,CONSOLE,AUTH=ALL** - enable a console on Unit 010 with Authority All.  Refer to the section **Connecting to a Console with the c3270 Emulator** below.
-* **VARY 010,OFFLINE** - place the console offline
-
-* **FBSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
+* **R Id MsgText** - Reply to an **Action Message**
+* **/V 010,CONSOLE,AUTH=ALL** - enable a console on Unit 010 with Authority All.  Refer to the section **Connecting to a Console with the c3270 Emulator** below.
+* **V 010,OFFLINE** - place the console offline
 
 ## JES/2 Commands
 
@@ -644,6 +660,9 @@ According to the manual, having these extra consoles can cause issues with WTO B
 
 ## Specifying a Console and Dispaly Area
 
+* **Message Area** - at the top of the console
+* **Status Area** - below Message area area	 
+
 Many of the commands will take a **L** operand that allows you to specify the display area of a particular console to display the messages on.  It has the format:
 
 **L={a, cc, cca}** where **a** is the **AREA** of the console display (**A** for **Status Area** and **Z** for the **General Message Area** for example); **cc** is the **Console Id/Name** (**L=01** or **L=03** for example); and **cca** is a combination of both (**L=01Z** for example) 
@@ -658,6 +677,14 @@ Many of the commands will take a **L** operand that allows you to specify the di
 * **MR D=A** - remove the message routing for the D A command
 * **MR REF** - Show the currently defined **Message Routes**
 * **MR NONE** - remove all message routing commands
+
+## Action vs Non-Action Messages
+
+**Action Messages** are those messages in the **Message Area** that require a response from the operator using the **REPLY** command 
+## Deleting Messages
+
+* To **non-action messages** from the **Message Area** using the cursor on the message line you want to delete and hit return, this message and all messages above will be deleted
+* To delete **action message** with cursor postion cursor on the astricks or @ and press enter.
 
 ## Console Keyboard
 
