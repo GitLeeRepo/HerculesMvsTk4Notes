@@ -613,7 +613,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$TJOBx,C=A** - Change the class on a queued job.  The **CLASS** in JCL
 * **$TJOBx,Q=A** - Change the message class on a queued job.  The **MSGCLASS** in JCL
 * **$TJOBx,P=priority** - Change the priority of a job
-* **$TOSCL,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
+* **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
 * **$TPRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
 * **$TPRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
 $tosc1,d=j
