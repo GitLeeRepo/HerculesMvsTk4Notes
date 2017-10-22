@@ -515,6 +515,7 @@ Note the commands and their subcommands can optionally have a space between them
 
 **Example Commands**:
 
+* **C jobname** - terminates the job/process
 * **C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
 * **D A,L** - list active jobs, tasks, and users
 * **D C** - diplay **console** information
@@ -616,13 +617,6 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
 * **$TPRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
 * **$TPRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
-$tosc1,d=j
-
-**JES2 Related MVS Commands**
-
-* **D J,jobname** - list detailed info on the specified job
-* **C jobname** - terminates the job/process
-* **C mf1** - cancels the job that provides stats, but is not needed
 
 ### JES2 Statuses
 
