@@ -499,11 +499,18 @@ Note the commands and their subcommands can optionally have a space between them
 * **K** - **CONTROL** - used to change display **console** characteristics
 * **L** - **LOG** - make log entries into the system log
 * **M** - **MOUNT** - mount a storage device (DASD, tape, etc)
-* **MN** - **MONITOR** - continually monitor jobs, users, volumes, data sets, etc.
+* **MN** - **MONITOR** - continually monitor jobs, users, volumes, data sets, etc.  Use **STOPMN** to stop the display of info.
+* **P** - **STOP** - stop job execution (only if the programmer has specified a Stop routine), a writer, GTF, MF/1, TSO/VTAM
 * **MR** - **MSGRT** - message route
+* **PT** - **STOPTR** - stop or reduce the information displayed by the **TRACK** command
 * **R** - **REPLY** - reply to **Action Commands**
+* **S** - **START** - start a job (in Catagloged Procedure), a reader or writer, GTF (Generalized Trace Facility), MF/1 Recording Facility, TSO/VTAM.
 * **SE** - **SEND** - Send a message to another console, user, or broadcast
-* **V** - **VARY** - 
+* **SP** - **STOPMN** - stops the continual display of information that was started with the **MONITOR** command
+* **TR** - **TRACK** - periodcially display info on jobs and users (requires a display area to be set)
+* **U** - **UNLOAD** - Unload (Dismount) a tape or DASD drive
+* **V** - **VARY** - used to configure **device**, **channel**, and **processors**
+* **W** - **WRITELOG** - Queue the **System Log** for printing and control what printer device Class is used for the System log
 * **Z** - **HALT** - record staticsics prior to shutting down the operating system
 
 **Example Commands**:
@@ -540,7 +547,9 @@ Note the commands and their subcommands can optionally have a space between them
 * **MR D=A** - remove the message routing for the D A command
 * **MR REF** - Show the currently defined **Message Routes**
 * **MR NONE** - remove all message routing commands
+* **P jobname/procname** - stop the executing job
 * **R Id MsgText** - Reply to an **Action Message**
+* **S procname** - start the specified job which must be in a Cataloged Procedure
 * **SE 23,CN=03** - send message 23 to console 03 (use **SE SAVE** operand to create messages with numbers)
 * **SE 'Hello',CN=03** - send the message 'Hello' to console 03
 * **SE 'Hello',BRDCST** - send a broadcast message to anyone receiving broadcast messages
@@ -549,8 +558,13 @@ Note the commands and their subcommands can optionally have a space between them
 * **SE LIST** - list **Broadcast** messages saved with the **SE msg,SAVE** command
 * **SE msgno** - send the message associated with the number in the message **LIST** as a broadcast message
 * **SE msgno,DELETE** - delete the specified message from the message **LIST**
+* **SP monitorcmd** - stops the continual display of info set by the **MN** command (JOBNAME, SESS, DSNAME, SPACE, STATUS)
+* **TR A** - periodically display info on both jobs and users (requires a console display **Area** to be set)
+* **U unitaddr** - **dismount** the **tape** or **DASD** at the specified Unit Address
 * **/V 010,CONSOLE,AUTH=ALL** - enable a console on Unit 010 with Authority All.  Refer to the section **Connecting to a Console with the c3270 Emulator** below.
 * **V 010,OFFLINE** - place the console offline
+* **V (282,283,287),ONLINE** - place the specified devices (by their **Unit Number** online
+* **W class** - write the **System Log** to the queue to be printed for the specified output class.
 * **Z EOD** - record statisics prior to shutting down the operating system
 
 ## JES/2 Commands
