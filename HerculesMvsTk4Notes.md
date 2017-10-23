@@ -540,7 +540,8 @@ Note the commands and their subcommands can optionally have a space between them
 * **K D,F** - scroll forward on **Frame** in the **Status Area** of a console
 * **K E,D** - clear the **Status Area** of a console
 * **K N,PFK=(n,CMD='command text'),CON=N** - set function key **n** to the specified command, with no for **Conversation Mode**
-* **K V,USE=FC,L=01** - Place console **01** in **Full Capability** mode (it can both receive and send messages/commands). 
+* **K, Q,L=04** - free up the **WTO Buffers** on the 04 console.  This is needed to free the buffers when receiving a **WTO Buffer Shortage** message.
+* **K V,USE=FC,L=04** - Place console **01** in **Full Capability** mode (it can both receive and send messages/commands). 
 * **L text** - make a log entry into the system log
 * **M 282,VOL=(sl,222222),use=private** - specify that volume labeled 222222 is mounted to device 282.  Private ensures the OS won't used it for temporary files
 * **MN JOBNAMES,T** - continually display job information.  The **T** ensures the job number and time are displayed.
@@ -731,7 +732,7 @@ Many of the commands will take a **L** operand that allows you to specify the di
 
 To set the **Message Display** so it displays the **Job Number** enter the following:
 
-* **$TOSCL,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
+* **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
 
 ## Deleting Messages
 
@@ -787,4 +788,34 @@ Turns out I could not run any commands that rely on **JES2**, which is a lot, in
 I finally solved the problems by purging a lot of jobs using the **$PJOB #-#** command to purge a range of jobs (**$PJOB 5-100** for example).  I had almost 200 jobs initially, and I purged just about everything other than the most recent runs.  I wanted to just shut shutdown the **JES2** and restart it again without having to reboot the entire system again, but I had issues with providing the necessary reply to the **/$PJES2,ABEND** command from the Hercules prompt. 
 
 In the future I need to keep an eye on the number of jobs in the output queue (I like to specify they be held so I can look at the output their, rather than having it sent to the printer).  I will need to periodically purge these (keep them under 100), or go through the **JES2 procedures** for increasing the amount of resources available to this queue.
+
+## WTO Buffer Shortage
+
+Received a console warning about **WTO Buffer Shortage - 80% Full** message.  This was due to defining a new 3215 Console 01F that was enabled, but not used.  The problem was resolved by issuing a **K Q,L=04** command from the **Master Console** (the Web interface).  **L=04** is the Console name for the Unit 01F 3215 console.  I tried initially running this command from my **01** 3270 console that I access from  3270 emulator, but it would not accept it (apparently needed to be done from the Master Console).  Here is the output, showing the **Display Consosoles (D C)** command before and after freeing the buffers, along with the **/K Q,L=04** command in between.
+
+```
+HHC00008I /D C
+16.16.32           IEE250I 16.16.32 CONSOLE DISPLAY 164 
+ WTO BUFFERS:    CURR =   206      LIM =  250
+ CONSOLE/ALT     COND    AUTH   ID AREA  NBUF ROUTCD
+     30E/010     H      CMDS    05          1 ALL
+     010/011     A,J     ALL    01 Z          1-13,15
+     011/01F     N,J     ALL    02 Z,A        1-13,15
+     009/010     M,T     ALL    03            1-13,15
+     01F/009     N,P,T   ALL    04        204 1-13,15
+     30E/010     A       NONE   05          1 ALL
+HHC00008I /K Q,L=04
+16.16.49           IEE188I MESSAGE QUEUE MANIPULATION ON CONSOLE 04 COMPLETE
+16.16.49           IEA406I WTO BUFFER SHORTAGE RELIEVED
+HHC00008I /D C
+16.18.38           IEE250I 16.18.38 CONSOLE DISPLAY 170 
+ WTO BUFFERS:    CURR =     1      LIM =  250
+ CONSOLE/ALT     COND    AUTH   ID AREA  NBUF ROUTCD
+     30E/010     H      CMDS    05            ALL
+     010/011     A,J     ALL    01 Z          1-13,15
+     011/01F     N,J     ALL    02 Z,A        1-13,15
+     009/010     M,T     ALL    03            1-13,15
+     01F/009     N,P,T   ALL    04            1-13,15
+     30E/010     A       NONE   05            ALL
+```
 
