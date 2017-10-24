@@ -7,7 +7,7 @@ Notes on the COBOL programming languages as it applies to the MVS mainframe envi
 * [IBM COBOL for VSE/VME Programming Guide](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/download/IGYVA002.pdf?DT=20041222113748) - for the IBM OS/370 environment, supporting COBOL 85 Standard
 * [Compiler Languages available on Hercules](http://www.jaymoseley.com/hercules/compilers/list_of.htm)
 * [COBOL Introduction](https://www.youtube.com/watch?v=DTyKHm92oI4) - YouTube video from which some of these notes came from.
-* [Compiling, Linnking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1)
+* [Compiling, Linnking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1) - From jaymoseley.com site
 
 ## Info on writing to a Data set
 
