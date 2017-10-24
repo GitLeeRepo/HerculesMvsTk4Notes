@@ -160,6 +160,14 @@ MOD | CATLG | CATLG
  
  Note the difference between **OLD** and **SHR** is that with **OLD** it wants exclusive access, and with **SHR** it is willing to share the data set with others.  Keep in mind if you use **SHR** while updating it, then anybody reading it will be in a **dirty read** situation.  Specify **CATLG** to update the catalog so the system can find it in the future.
  
+### Data Set UNIT Types
+
+Units can be specified from the specific to the general (device number, to group name).
+
+* **UNIT Device Address** - specify a specfic device with the 3 digit device address
+* **Generic Device Type** - specify by the device type, such as the **3350 DASD** family
+* **Groups of Devices** - use **SYSALLDA** for any available **DASD**, **SYSDS** available for general use, **TAPE** for any tape drive.
+
 ### Concatenation vs Continuation on DD Statement
 
 You can have **DD Statements** that span multiple lines.  
