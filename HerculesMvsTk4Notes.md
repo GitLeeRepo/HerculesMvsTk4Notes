@@ -657,7 +657,20 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **PROFILE NOPREFIX** - turns off the default prefix for data sets (your username) so that if you were to type **LISTCAT** you will see all the systems catalogs, not just your own.  If you want to break out of the list select the **PA** key on the c3270 emulator.
 * **PROFILE PREFIX(thePrefixName)** - sets the prefix.  Now whenever you use **LISTCAT** it will show the data sets for that prefix.  Use this command to change it back to your username.  
  
-# Important Configuration Members
+# Important System Executable and Configuration Data Sets and Members
+
+## Important System Data Sets
+
+* **SYS1.PARAMLIB** - system parameters that are read during startup
+* **SYS1.NUCLEUS** - contains the system Nucleus itself along with supporting members
+* **SYS1.L1NKLIB** - contains executable programs that are part of the OS or are User provided.  Similar to **SYS1LPALIB** but its programs don't remain in the common **Link Pack Area (LPA)** of memory that are always resident in memor.  They are loaded as needed.
+* **SYS1.LPALIB** - similar to **SYS1.LINKLIB** in that it provides OS and User programs, but it is always resident in main memory in the common **Link Pack Area (LPA)** 
+* **SYSI.MACLIB** - Contains the macro library that is used by the OS and user written programs.
+* **SYS1.PROCLIB** - Contains useful JCL procedures that can be used within your own JCL scripts.
+* **SYS1.CMDLIB** - contain program library modules
+
+
+## Important Members
 
 * **SYS1.PARAMLIB(PARMTZ)** - time difference from GMT
 * **SYS1.PARAMLIB(PARMTZ-1)** - time difference from GMT during DST
