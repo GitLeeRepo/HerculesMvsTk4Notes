@@ -67,6 +67,7 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 
 * [Hercules](http://www.jaymoseley.com/hercules/)
 * [Good Info on MVS and JES Commands](http://www.jaymoseley.com/hercules/faq/mvsfaq01.htm)
+* [Compiling, Linnking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1)
 
 ## Additional Notes References
 
