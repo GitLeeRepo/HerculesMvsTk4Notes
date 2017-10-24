@@ -168,6 +168,10 @@ Units can be specified from the specific to the general (device number, to group
 * **Generic Device Type** - specify by the device type, such as the **3350 DASD** family
 * **Groups of Devices** - use **SYSALLDA** for any available **DASD**, **SYSDS** available for general use, **TAPE** for any tape drive.
 
+### Temporary Vs Permanent Data Sets
+
+When running the Job you will likely have both permanent and temporary data sets.  A permanent data set must have a name, while a temporary data set can have a name, but **doesn't require a name**.  The temporary data sets will be deleted by the time the job completes.  In some cases the temporary data sets are handled behind the scenes, and you don't deal with them directly (often the case when running ProcLib modules).  In other cases you may control them directly, specifying they are to be deleted when the job is done.
+
 ### Concatenation vs Continuation on DD Statement
 
 You can have **DD Statements** that span multiple lines.  
