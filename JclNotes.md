@@ -172,6 +172,10 @@ Units can be specified from the specific to the general (device number, to group
 
 When running the Job you will likely have both permanent and temporary data sets.  A permanent data set must have a name, while a temporary data set can have a name, but **doesn't require a name**.  The temporary data sets will be deleted by the time the job completes.  In some cases the temporary data sets are handled behind the scenes, and you don't deal with them directly (often the case when running ProcLib modules).  In other cases you may control them directly, specifying they are to be deleted when the job is done.
 
+### DCB Information
+
+The **DCB** information comes from either the the data set's label or catalog entry, the JCL, or the program itself. When opening in **input mode**, the file must exist and records can be read but not written. With **output mode**, records can be written but not read. For existing files records are added to the end of the data set, and if it doesn't exist a new one is created.  With **I/O mode**, you can boh read and write to the data set.
+
 ### Concatenation vs Continuation on DD Statement
 
 You can have **DD Statements** that span multiple lines.  
