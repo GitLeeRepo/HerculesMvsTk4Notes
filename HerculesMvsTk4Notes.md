@@ -643,11 +643,12 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 
 ## Hercules commands (no slash as a prefix)
 
-* **ATTACH** - attach a device to a specific MVS Unit
-* **DETACH** - detach a device from a specific MVS Unit
+* **attach** - attach a device to a specific MVS Unit
+* **detach** - detach a device from a specific MVS Unit
 * **devlist** - display a list of devices that you can page up and down
-* **MAXRATES** - display the maximimu MIPS and I/O rates for a given period
-* **HST** - display a history of the commands entered
+* **devinit 00C jcl/vsizehs3.jcl** - instruct **Card Reader 00C** to run the JCL Job
+* **maxrates** - display the maximimu MIPS and I/O rates for a given period
+* **hst** - display a history of the commands entered
 
 # TSO Commands
 
@@ -793,6 +794,12 @@ The default install of **TK4-** has the following devices (not exhaustive)
  RDR  |000C | IBM 3505 Card Reader (rdr directory)
  RDR  |010C | IBM 3505 Card Reader (jcl directory)
  TAPE |0480 | IBM 3420 Tape Drive (tapes directory)
+ 
+ ## Card Reader Device
+ 
+ ### Running a JCL Job from the Card Reader
+ 
+ To run a JCL Job from the **00C Reader** enter **devinit 00C jcl/vsizehs3.jcl** at the Hercules console.  This is a Hercules command, not an MVS command.  No MVS commands need to be entered unless for some reason the device is not available.  In the JCL itself you need to make sure the username and password are specified to run the job, for example **//\* USER=HERC02,PASSWORD=CUL8TR** (note: it is entered as a comment)
 
 # Issues
 
