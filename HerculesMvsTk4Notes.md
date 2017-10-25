@@ -434,7 +434,7 @@ Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4No
 The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selcted by the **MSGCLASS** in **JCL** and are mapped as follows:
 
 JCL MSGCLASS | SYSOUT=?     | JES2 Printer | UNIT | Ubuntu File Name
--------------|--------------|--------------|-----------------
+-------------|--------------|--------------|------|-----------------
 MSGCLASS=A   | SYSOUT=A     | Printer1     | 00E  | prt/prt00e.txt
 MSGCLASS=Z   | SYSOUT=Z     | Printer2     | 00F  | prt/prt00f.txt
 MSGCLASS=X   | SYSOUT=X     | Printer3     | 002  | prt/prt002.txt
