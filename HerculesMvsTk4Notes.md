@@ -610,12 +610,14 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down (typical message says "JES2 is not dormant"), and you can't resolve the reason why, then use the **ABEND** parameter listed next. 
 * **$PJES2,ABEND –  with reply – XX,END** - restart JES/2 if it won't restart with just **Pjes2** - NOTE: I need to figure out how to reply from the Hercules terminal.  I tried both with and without the **/** prefix when typing the reply.  I tried a couple times but got errors.  **JES2** can be restarted with the **$S** command
 * **$PJOB # or a range $PJOB #-#** - Purge the Jobs that match the Job Number or the range of Job Numbers.  Frees resources.
-* **$PPRTx** - prevent the device from receiving work.  Free resources.
-* **$PRDRx** - prevent the reader from receiving work.  Free resources.
+* **$PPRTx** - stop printer and prevent the printer from receiving work.  Free resources.
+* **$PPUNx** - stop punch and prevent the punch from receiving work.  Free resources.
+* **$PRDRx** - stop reader and prevent the reader from receiving work.  Free resources.
 * **$SJES2,PARM=(COLD)** – to clear JES2 queue and start it cold. (all job queue entries and job output elements are cleared and formatted.)  - Haven't tried this yet to see if it works
 * **$SJES2,PARM=(WARM)** - do a warm restart of **JES2** retaining prior queue and output entries.
-* **$SPRTx** - start the printer.
-* **$SRDRx** - start a reader
+* **$SPRTx** - start the printer or restart a paused printer, ex **$SPRT1**
+* **$SPUNx** - start the punch or restart a paused punch, ex **$SPUN1**
+* **$SRDRx** - start a reader or restart a paused reader, ex **$SRDR1**
 * **$SI3** or **/$SPRT2**  - Start an initiator or printer
 * **$TI3,C=AB** - Assign job classes for an initiator
 * **$TA** - disaply automated jobs (jobs that run at a specific time or schedule)
@@ -627,6 +629,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
 * **$TPRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
 * **$TPRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
+* **$TPUN1,P=N** - prevent the punch from pausing between jobs, set to **Y** to enable tell it to pause between jobs.  Paused devices can be restarted again with the **$S** command, so in this case **$SPUN1**
 
 ### JES2 Statuses
 
