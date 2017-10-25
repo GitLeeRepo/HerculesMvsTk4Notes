@@ -364,9 +364,19 @@ An ENDUP statement is optional. It is used to indicate the end of SYSIN input to
 
 # Submitting the Job
 
+## Within RFE
+
+Simply enter **SUBMIT** on the command line while in the JCL file itself
+
+## From TSO
+
 In addition to submitting the job from within the **RFE** editor you can submit it from **TSO** by specifying the dataset that contains the JCL with the following syntax:
 
 **SUBMIT 'USERID.XXX.YYY(Membername)'**
+
+## From a Card Reader
+
+ To run a JCL Job from the **00C Reader** enter **devinit 00C jcl/vsizehs3.jcl** at the Hercules console.  This is a Hercules command, not an MVS command.  No MVS commands need to be entered unless for some reason the device is not available.  In the JCL itself you need to make sure the username and password are specified to run the job, for example **//\* USER=HERC02,PASSWORD=CUL8TR** (note: it is entered as a comment)
 
 ## Submit Error messages
 
