@@ -134,6 +134,24 @@ Note: In order to show the **DD** statements in relation to the **EXEC** stateme
 * **SYSUT1** - in the case of IEBGENER it is used with the input data set
 * **SYSUT2** - in the case of IEBGENER it is used with the output data set
 
+### Multipart DD Names and Back Referenes
+
+**Multipart Example:**
+
+**//PAYROLL.DAY DD**
+
+If the **procedure step named PAYROLL** includes a DD statement named DAY, this statement will override parameters on the statement named DAY. If the step does not include a DD statement named DAY, this statement will be added to the procedure step for the duration of the job step.
+
+**Back Reference Example:**
+
+Uses the **\*.PRIORSTEPNAME.DDNAME** notation to refer a prior steps DD statement 
+
+```
+//STEP2    EXEC PGM=UPDT
+//DDA      DD DSNAME=SYS1.LINKLIB(P40),DISP=OLD
+//STEP3    EXEC PGM=\*.STEP2.DDA
+```
+
 ### Symbolic References DDNames
 
 The **DDNAME** labels in the **label** column of the **DD Statements** are referred to as **Symbolic References**.  They are used to tie the particular **DD** statement to the program that is being executed.  That program uses this symbolic reference internally to references its inputs and outputs.
