@@ -626,7 +626,9 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$TJOBx,C=A** - Change the class on a queued job.  The **CLASS** in JCL
 * **$TJOBx,Q=A** - Change the message class on a queued job.  The **MSGCLASS** in JCL
 * **$TJOBx,P=priority** - Change the priority of a job
-* **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
+* **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **Job Number** in addition to the **Job Name** on console 1.
+* **$TOSC1,D=T** - change output of commands such as **$DN** so they display both the **Job Time** and the **Job Number** in addition to the **Job Name** on console 1.
+* **$TOSC1,D=M** - change output of commands such as **$DN** so they display just the **Job Name** without the Job Number or Time on console 1.
 * **$TPRT3,C=A** - Change job execution classes for printer.  The **CLASS** in JCL
 * **$TPRT3,Q=A** - Change output classes for printer.  The **MSGCLASS** in JCL.
 * **$TPUN1,P=N** - prevent the punch from pausing between jobs, set to **Y** to enable tell it to pause between jobs.  Paused devices can be restarted again with the **$S** command, so in this case **$SPUN1**
@@ -754,11 +756,12 @@ Many of the commands will take a **L** operand that allows you to specify the di
 
 **D R,L** - list operator messages waiting for a **reply**
 
-## Mesage Job Detail
+## Message Job Detail
 
 To set the **Message Display** so it displays the **Job Number** enter the following:
 
-* **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name**
+* **$TOSC1,D=J** - change output of commands such as **$DN** so they display the **JOB Number** in addition to the **Job Name** on Console 1.
+* **$TOSC1,D=T** - change output of commands such as **$DN** so they display both the **Job Time** and the **Job Number** in addition to the **Job Name** on Console 1.
 
 ## Deleting Messages
 
