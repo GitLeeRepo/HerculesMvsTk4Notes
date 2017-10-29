@@ -13,7 +13,7 @@ Notes on System/370 assembly language
 
 # Format of Assembly Language Program
 
-         |Name  | Operation | Operands and commends | Continuation Field
+Format   |Name  | Operation | Operands and commends | Continuation Field
 ---------|------|-----------|-----------------------|--------------------
 Position | 1-8  | 10-14     | 16-71                 | 72
 
