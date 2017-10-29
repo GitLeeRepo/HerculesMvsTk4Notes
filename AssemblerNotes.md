@@ -27,7 +27,7 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 
 ## Instruction Set Overview
 
-Instruction sets are broken down into four groups:
+The Assesmbly language instruction set goes in the **Operation** column, they can be broken down into four groups:
 
 * Data movement instructions
 * Arithmetic instructions
@@ -36,4 +36,5 @@ Instruction sets are broken down into four groups:
 
 ## Data Movement Instructions
 
-* **MVC** - Move Character.  Moves data from the second operand to the first
+* **MVC** - Move Character.  Moves data from the second operand to the first.  Ex., **MVC   op1,op2**
+
