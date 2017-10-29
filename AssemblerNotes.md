@@ -13,9 +13,15 @@ Notes on System/370 assembly language
 
 # Format of Assembly Language Program
 
-Format   |Name  | Operation | Operands and commends | Continuation Field
----------|------|-----------|-----------------------|--------------------
-Position | 1-8  | 10-14     | 16-71                 | 72
+Format   | Name  | Operation | Operands and commends | Continuation Field       
+---------|-------|-----------|-----------------------|--------------------
+Position | 1-8   | 10-14     | 16-71                 | 72
+
+* **Name** - the symbolic names used for references
+* **Operation** - the **mnemonic opration code**, which are the assembly language and compiler instructions
+* **Operands** - the operands used by the **Operation** instructions
+* **Comments** - any comments must follow the Operand with at least one space in between
+* **Continuation** - indicates the instruction is continued on the next line
 
 # Instruction Set
 
