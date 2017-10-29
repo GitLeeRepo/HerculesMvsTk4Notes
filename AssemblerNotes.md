@@ -36,5 +36,5 @@ The Assesmbly language instruction set goes in the **Operation** column, they ca
 
 ## Data Movement Instructions
 
-* **MVC** - Move Character.  Moves data from the second operand to the first.  Ex., **MVC   op1,op2**
+* **MVC** - Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2`
 
