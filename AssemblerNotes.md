@@ -60,13 +60,34 @@ In a business environment most arithmetic is done using **packed decimal** field
 ## Logical Instructions
 
 * **CP** - Compare decimal.  Two decimal fields are compared.  It uses 4 bits in the CPU to store the results so the branch instruction that follows it can know what to do.  If bit 0 is on they are equal, if bit 1 is on operand 1 is less than operand 2, if bit 2 is on operand 1 is greater than operand 2.  Bit 3 isn't used for this instruction.
-* **BC** - Branch-on-condition.  Uses a **mask** in bits 8-11 to compare to the condition code.  If it matches the condition code it branches to the address in bits 12-31, otherwise it continues with the next instruction.  If the prior **CP** compares two equal operands it will have **condition code** bits **1000** so if the mask is also **1000** (testing for equality) it will branch.  If operand 1 is less than operand 2 it will have a **condition code** **0100** so it will need an equivellent mask if branching is desired in this case.  If less than or equal is what is desired for the comparison the the mask would be **1100** or **1010** for operand 1 being greater than or equal to operand 2.
-* **BALR** - Branch-and-link-register.  A two byte instruction that places the address of the next instruction in the first register specified and then branches to the address of the second register specified. This allows control to return to the next statement after the branch has completed its instructions. There are also cases when the second register is set to zero and no branch takes place.
+* **Branch Instructions:**
+  * **B** - Unconditional Branch
+  * **BH** - Branch on operand 1 being higher than operand 2.  Used after a compare instruction.
+  * **BL** - Branch on operand 1 being lower than operand 2.  Used after a compare instruction.
+  * **BE** - Branch on operand 1 and operand 2 being equal.  Used after a compare instruction.
+  * **BNH** - Branch on operand 1 NOT being higher than operand 2.  Used after a compare instruction.
+  * **BNL** - Branch on operand 1 NOT being lower than operand 2.  Used after a compare instruction.
+  * **BNE** - Branch on operand 1 and operand 2 NOT being equal.  Used after a compare instruction.
+  * **BO** - Branch on overflow.  Used after an arithmetic instruction.
+  * **BP** - Branch on plus.  Used after an arithmetic instruction.
+  * **BM** - Branch on minus.  Used after an arithmetic instruction.  
+  * **BZ** - Branch on zero.  Used after an arithmetic instruction.
+  * **BNP** - Branch on not plus.  Used after an arithmetic instruction.
+  * **BNM** - Branch on not minus.  Used after an arithmetic instruction. 
+  * **BNZ** - Branch on not zero.  Used after an arithmetic instruction.
+  * **BC** - Branch-on-condition.  Uses a **mask** in bits 8-11 to compare to the condition code.  If it matches the condition code it branches to the address in bits 12-31, otherwise it continues with the next instruction.  If the prior **CP** compares two equal operands it will have **condition code** bits **1000** so if the mask is also **1000** (testing for equality) it will branch.  If operand 1 is less than operand 2 it will have a **condition code** **0100** so it will need an equivellent mask if branching is desired in this case.  If less than or equal is what is desired for the comparison the the mask would be **1100** or **1010** for operand 1 being greater than or equal to operand 2.
+  * **BALR** - Branch-and-link-register.  A two byte instruction that places the address of the next instruction in the first register specified and then branches to the address of the second register specified. This allows control to return to the next statement after the branch has completed its instructions. There are also cases when the second register is set to zero and no branch takes place.
+  
 
 ## I/O Instructions
 
-I/O instructions are not handled directly by the user program, but instead delegated to the MVS Supervisor Program.  During read operations the data is stored in a designated **input area**.  Data that is to be output (printer, disk, etc) is stored in an **output area**.  Numeric output data must be first converted to EBCDIC.
+I/O instructions are not handled directly by the user program, but instead delegated to the MVS Supervisor Program (through macros).  During read operations the data is stored in a designated **input area**.  Data that is to be output (printer, disk, etc) is stored in an **output area**.  Numeric output data must be first converted to EBCDIC.
 
+Macro Instruction
+
+* **OPEN** - format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set.
+* **GET** - reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation.
+* **PUT** - writes a record to a data set.  Format: **PUT DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  As with the **GET** operation the work area can either be specified as a user defined symbolic storage area, or ommitted when using a **MVS Supervisor** provided buffer.  As with the **GET** this is specified with the **MACRF** parameter of the **DCB** statement.
 
 # Memory Storage through Symbolic Names
 
@@ -92,7 +113,7 @@ FIELD1   DS    CL5
 FIELD2   DS    CL10   
 FIELD3   DS    CL5
 ```
-Defines an input area 20 bytes long that is divided into 3 fields, which total 20 types.  This way the overal input area can be referenced, or the individual fields can be referenced.
+Defines an input area 20 bytes long that is divided into 3 fields, which total 20 types.  This way the overall input area can be referenced, or the individual fields can be referenced.
 
 # Program Initialization and Termination
 
