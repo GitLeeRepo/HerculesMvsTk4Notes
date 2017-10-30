@@ -18,7 +18,7 @@ Format   | Name  | Operation | Operands and commends | Continuation Field
 Position | 1-8   | 10-14     | 16-71                 | 72
 
 * **Name** - the symbolic names used for references
-* **Operation** - the **mnemonic opration code**, which are the assembly language and compiler instructions
+* **Operation** - a specific instruction set instruction (machine and macro instructions, and assembler commands)
 * **Operands** - the operands used by the **Operation** instructions
 * **Comments** - any comments must follow the Operand with at least one space in between
 * **Continuation** - indicates the instruction is continued on the next line
@@ -27,7 +27,12 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 
 ## Instruction Set Overview
 
-The Assesmbly language instruction set goes in the **Operation** column, they can be broken down into four groups:
+The instruction set listed here consists of the following types of instructins:
+* Machine Instructions (nemonic) - translates directly to machines code using a mnemonic name (easy to remember name)
+* Macro Instruction - an instruction which represents multiple individual Machine Instructions to accomplish a task
+* Assembler Command (Directive) - provides the assembler with processing instructions, but doesn't get allocated in the object code
+
+The instructions are placed in the **Operation** column, they can be broken down into four groups:
 
 * Data movement instructions
 * Arithmetic instructions
@@ -61,6 +66,19 @@ In a business environment most arithmetic is done using **packed decimal** field
 ## I/O Instructions
 
 I/O instructions are not handled directly by the user program, but instead delegated to the MVS Supervisor Program.  During read operations the data is stored in a designated **input area**.  Data that is to be output (printer, disk, etc) is stored in an **output area**.  Numeric output data must be first converted to EBCDIC.
+
+
+# Memory Storage through Symbolic Names
+
+Specifies labels that are external symbols (can be referenced external to the program, by the link editor), along with the **type codes** of data stored there (EBCDIC characters, packed decimals, zoned decimals, etc)
+
+## Type Codes
+
+**C** - **Character set** data (EBCDIC, ASCII) of a specified link, **CL20** for example, which specifies a 20 byte character string
+**P** - **Packed Decimal** data of a specified length, **PL3** for example, which specifies a 3 byte packed decimal
+**Z** - **Zone Decimal** data of a specified length, **PL5** for example, which specified a 5 byte zoned decimal
+**F** - **Fullword** which is not followed by a length since a fullword is always 4 bytes, although it can be proceeded by a value indicating the number of fullwords desired **18F** for examble
+**X** - **Hexadecimal** - a **Hexadecimal** value in which two hex numbers are stored as one byte,
 
 # Program Housekeeping
 
