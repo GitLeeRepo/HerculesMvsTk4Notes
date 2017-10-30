@@ -34,13 +34,14 @@ The instruction set listed here consists of the following types of instructins:
 
 The instructions are placed in the **Operation** column, they can be broken down into four groups:
 
-* Data movement instructions
+* Data movement and storage instructions
 * Arithmetic instructions
 * Logical instructions
 * Input/output instructions
 
-## Data Movement Instructions
-
+## Data Movement and Storage Instructions
+* **DS** - Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location.
+* **DC** - Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself.
 * **MVC** - Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2`
 * **MVI** - Move Immediate. Moves a byte into storage
 * **ED** - Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros
