@@ -74,7 +74,7 @@ Specifies labels that are external symbols (can be referenced external to the pr
 
 ## Type Codes
 
-Type codes are part of the **operand** for **DS** and **DC** statements which consists of 3 parts: 1) the repeat factor; 2) the type code itself; 3) the length modifier.
+Type codes are part of the **operand** for **DS** and **DC** statements which consists of 3 parts: 1) the repeat factor; 2) the type code itself; 3) the length modifier.  The **type code** consists of:
 
 * **C** - **Character set** data (EBCDIC, ASCII) of a specified link, **CL20** for example, which specifies a 20 byte character string
 * **P** - **Packed Decimal** data of a specified length, **PL3** for example, which specifies a 3 byte packed decimal
@@ -94,9 +94,9 @@ FIELD3   DS    CL5
 ```
 Defines an input area 20 bytes long that is divided into 3 fields, which total 20 types.  This way the overal input area can be referenced, or the individual fields can be referenced.
 
-# Program Housekeeping
+# Program Initialization and Termination
 
-Here is a typical set of housekeeping instructions to save the registers of the calling program, and the base address of the current program.
+Here is a typical set of **intialization** instructions at the start of every program that is used to save the registers of the calling program (typically the MVS Supervisor program), and the base address of the current program.
 
 ```
 PROGNAME START 0     
@@ -107,5 +107,10 @@ BEGIN    SAVE  (14,12)                   Save registers 0-12 and 14-15
          LA    13,SAVE                   the current programs registers in the SAVE area
 ```
 
+The saved registers of the calling program are restored prior to the program exiting:
 
+```
+         L     13,SAVE+4        
+         RETURN (14,12),RC=0
+```
 
