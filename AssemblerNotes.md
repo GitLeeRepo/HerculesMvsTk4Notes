@@ -32,12 +32,14 @@ The instruction set listed here consists of the following types of instructins:
 * Macro Instruction - an instruction which represents multiple individual Machine Instructions to accomplish a task
 * Assembler Command (Directive) - provides the assembler with processing instructions, but doesn't get allocated in the object code
 
-The instructions are placed in the **Operation** column, they can be broken down into four groups:
+The instructions are placed in the **Operation** column, they can be broken down into four primary groups:
 
 * Data movement and storage instructions
 * Arithmetic instructions
 * Logical instructions
 * Input/output instructions
+
+Along with a few miscellaneous instructions that don't clearly fall in the above groups
 
 ## Data Movement and Storage Instructions
 * **DS** - Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location.
@@ -89,6 +91,11 @@ Macro Instruction
 * **OPEN** - format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set.
 * **GET** - reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation.
 * **PUT** - writes a record to a data set.  Format: **PUT DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  As with the **GET** operation the work area can either be specified as a user defined symbolic storage area, or ommitted when using a **MVS Supervisor** provided buffer.  As with the **GET** this is specified with the **MACRF** parameter of the **DCB** statement.
+
+Miscellaneous Instructions
+
+* **START** - an assembler command that signals the where the start of the object code should begin.  **START 0** tells the assembler to use zero as the starting reference point (this is relative since before the program is loaded into memory the actual starting address is unknown.  The **label name** for the **START** instruction becomes the name of the program.
+* **USING** - an assembler command that tells the assembler which register is going to be used as the base address register.  The first operand specifies the address, while the second operand specifies the register to store this base address.  The starting address is usually either a label name near the start of the program, or an astricks which signals starting now (which would be the address of the following statement since the **USING** assembler command is just a directive without any storage location in the object code.
 
 # Memory Storage through Symbolic Names
 
