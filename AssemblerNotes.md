@@ -8,8 +8,11 @@ Notes on System/370 assembly language
 
 # Terminology
 
+* **\*** - References the address of the current instruction
 * **CSECT** - Control Section.  Instructions in this section are allocated memory.  It is a relocatable module that can be link edited and executed.  Refer to **DSECT**.
 * **DSECT** - Dummy Section.  Describes memory but doesn't allocated it. Refer to **CSECT**.
+* **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
+* **Subfield** - 
 
 # Format of Assembly Language Program
 
@@ -103,6 +106,15 @@ The **MACRF=GM** specifies this is for a **GET** operation in which the record b
 * **START** - an assembler command that signals the where the start of the object code should begin.  **START 0** tells the assembler to use zero as the starting reference point (this is relative since before the program is loaded into memory the actual starting address is unknown.  The **label name** for the **START** instruction becomes the name of the program.
 * **USING** - an assembler command that tells the assembler which register is going to be used as the base address register.  The first operand specifies the address, while the second operand specifies the register to store this base address.  The starting address is usually either a label name near the start of the program, or an astricks which signals starting now (which would be the address of the following statement since the **USING** assembler command is just a directive without any storage location in the object code.
 
+# Machine Code Format Types
+
+* **RR** - mainly used to move data between registers
+* **RX** - mainly used to move data between registers and virtual storage
+* **RS** - mainly used to move data between registers, between registers and virtual storage, and for comparing registers.
+* **SI** - mainly used to move immediate data into virtual storage
+* **S** - used to perform I/O and other system instructions
+* **SS** - mainly used to move data between two virtual storage locations
+
 # Memory Storage through Symbolic Names
 
 Specifies labels that are external symbols (can be referenced external to the program, by the link editor), along with the **type codes** of data stored there (EBCDIC characters, packed decimals, zoned decimals, etc)
@@ -111,21 +123,21 @@ Specifies labels that are external symbols (can be referenced external to the pr
 
 Type codes are part of the **operand** for **DS** and **DC** statements which consists of 3 parts: 1) the repeat factor; 2) the type code itself; 3) the length modifier.  The **type code** consists of:
 
-* **A** - **Address**.  For example, **A(MYNAME)** returns the address of the storage for symbol MYNAME
+* **A** - **Address**.  Normally a fullword.  For example, **A(MYNAME)** returns the address of the storage for symbol MYNAME
 * **B** - **Binary** data, for example B'11111111', which is decimal 255.
 * **C** - **Character set** data (EBCDIC, ASCII) of a specified link, **CL20** for example, which specifies a 20 byte character string
 * **P** - **Packed Decimal** data of a specified length, **PL3** for example, which specifies a 3 byte packed decimal
 * **Z** - **Zone Decimal** data of a specified length, **PL5** for example, which specified a 5 byte zoned decimal
-* **H** - **Halfword** which is not followed by a length since a halfword is always 2 bytes, although it can be proceeded by a repeat factor indicating the number of fullwords desired **6H** for examble
-* **F** - **Fullword** which is not followed by a length since a fullword is always 4 bytes, although it can be proceeded by a repeat factor indicating the number of fullwords desired **18F** for examble
+* **H** - **Halfword** a signed fix point binary value with a length of 2 bytes.  Typically not followed by a length, but may be proceeded by a repeat factor, **6H** for examble.
+* **F** - **Fullword** a signed fix point binary value with a length of 4 bytes.  Typically not followed by a length, but may be proceeded by a repeat factor, **18F** for examble.
 * **X** - **Hexadecimal** - a **Hexadecimal** value in which two hex numbers are stored as one byte
-* **E** - Floating Point
-* **D** - Floating Point
-* **L** - Floating Point
-* **Y** - Address
-* **S** - Address
-* **V** - Address
-* **Q** - Address
+* **E** - Short Floating Point.  Normally a fullword
+* **D** - Long Floating Point.  Normally a doubleword (two fullwords)
+* **L** - Extended Floating Point.  Normally two doublewords (four fullwords).
+* **Y** - Address.  Normally a halfword
+* **S** - Address.  Base register and displacement value.  Normally a halfword
+* **V** - Address.  Space reserved for external symbol.  Normally a fullword
+* **Q** - Address. Space reserved for external dummy section offset
 
 * Each of the above can be preceeded by a repeat factor indicating how many times that allocation unit should be repeated, **5P3** would indicate a 3 byte packed decimal shoud be repeated 5 times in memory storage.  When it is ommitted it is implied to be a repeat factor of one.
 
