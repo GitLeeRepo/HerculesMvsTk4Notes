@@ -8,11 +8,13 @@ Notes on System/370 assembly language
 
 # Terminology
 
-* **\*** - References the address of the current instruction
+* **\*** - References the address of the current instruction.  Example, **USING \*,3** load the current line as the location for the base register (since USING is an assembler directive it isn't in memory so it is the following statement that is used).
+* **=** - Used to specify a literal, for example **AP LINECNT,=P'1'** adds 1 to LINECNT
 * **CSECT** - Control Section.  Instructions in this section are allocated memory.  It is a relocatable module that can be link edited and executed.  Refer to **DSECT**.
 * **DSECT** - Dummy Section.  Describes memory but doesn't allocated it. Refer to **CSECT**.
 * **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
-* **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc)
+* **Relative Addresses** - addresses relative to another address such as, **ST 13,SAVE+4** where the **SAVE+4** is specifying a relative address.
+* **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  Subfields in operands can be used to specify explicit lengths, for example **MVC MYFIELD(80),OTHER** will move in 80 characters, even if MYFIELD is declared as 120 characters.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc).  In this case the parenthesis are not used.
 
 # Format of Assembly Language Program
 
@@ -34,6 +36,32 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 * **Base Registers** are specified with the **USING** assembler directive
 * For **LM** (load multiple registers) and **STM** (store multiple registers) two registers are specified, in which those two registers and any registers between them are used for the operation.
 * The **control program** of the system/370 uses registers 0, 1, 13, 14, and 15
+
+## Explicit Base Registers and Displacement
+
+In addition to explicitly specifying the length of an operand by placing it in parenthesis,  **MVC MYFIELD(80),OTHER**, you can specify explicit addresses using explicit base registers and displacements by using parenthesis.  The format is **D(L,B)** where D=Displacement, L=length, and B=Base Register.
+
+* **PACK 0(3,6),0(3,6)** specifies a displacement of zero to pack a 3 byte field at the address in base register 6 (since there was zero displacement) in both operands 1 and 2.
+* **AP WKLYHRS,5(3,6)** has a displacement of 5 from the address at base register 6 with a length of 3.
+
+There are other formats which can be used, with the format used being dependent on the instructions format type (RR, RX, RS, SS, SI, etc).  Some use Index Registers in addition to or in place of Base Registers. The format is **D(X,B)** where D=Displacement, X=Index Register, and B=Base Register.  It is typical to specify zero for the index register.
+
+* **A 4,8(0,5)** - has a displacement of 8 from the address in base register 5.  The index is zero
+* **A 4,8(,5)** - same as the above.  By not specifying the Index Register it is the same as setting it to zero.
+* **A 4,8(5)** - here 5 is the index register, not the base register.  You don't need the comma when the base register is excluded.
+
+### Explicit Operand Formats based on Instruction Type
+
+Type | Operand Format
+-----|------------------------------
+SI   | Operation D1(L1,B2),I2
+SS   | Operation D1(L1,B1),D2(L2,B2)
+RR   | Operation R1, R2
+RX   | Operation R1,D2(X2,B2)
+RX   | Operation M1,D2(X2,B2)
+RS   | Operation R1,R3,D2(B2)
+
+Where D=Displacement, L=length, B=Base Register, X=Index Register, I=Immediate, and M=Mask
 
 
 # Instruction Set
