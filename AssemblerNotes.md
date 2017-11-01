@@ -111,13 +111,23 @@ Specifies labels that are external symbols (can be referenced external to the pr
 
 Type codes are part of the **operand** for **DS** and **DC** statements which consists of 3 parts: 1) the repeat factor; 2) the type code itself; 3) the length modifier.  The **type code** consists of:
 
+* **A** - **Address**.  For example, **A(MYNAME)** returns the address of the storage for symbol MYNAME
+* **B** - **Binary** data, for example B'11111111', which is decimal 255.
 * **C** - **Character set** data (EBCDIC, ASCII) of a specified link, **CL20** for example, which specifies a 20 byte character string
 * **P** - **Packed Decimal** data of a specified length, **PL3** for example, which specifies a 3 byte packed decimal
 * **Z** - **Zone Decimal** data of a specified length, **PL5** for example, which specified a 5 byte zoned decimal
+* **H** - **Halfword** which is not followed by a length since a halfword is always 2 bytes, although it can be proceeded by a repeat factor indicating the number of fullwords desired **6H** for examble
 * **F** - **Fullword** which is not followed by a length since a fullword is always 4 bytes, although it can be proceeded by a repeat factor indicating the number of fullwords desired **18F** for examble
 * **X** - **Hexadecimal** - a **Hexadecimal** value in which two hex numbers are stored as one byte
+* **E** - Floating Point
+* **D** - Floating Point
+* **L** - Floating Point
+* **Y** - Address
+* **S** - Address
+* **V** - Address
+* **Q** - Address
 
-Each of the above can be preceeded by a repeat factor indicating how many times that allocation unit should be repeated, **5P3** would indicate a 3 byte packed decimal shoud be repeated 5 times in memory storage.  When it is ommitted it is implied to be a repeat factor of one.
+* Each of the above can be preceeded by a repeat factor indicating how many times that allocation unit should be repeated, **5P3** would indicate a 3 byte packed decimal shoud be repeated 5 times in memory storage.  When it is ommitted it is implied to be a repeat factor of one.
 
 A **repeat factor of zero** is used to indicate an overall buffer that is followed by the declaration of individual symbolic names that make up that buffer.  For example,
 
