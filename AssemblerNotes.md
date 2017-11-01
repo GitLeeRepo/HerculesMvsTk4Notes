@@ -12,7 +12,7 @@ Notes on System/370 assembly language
 * **CSECT** - Control Section.  Instructions in this section are allocated memory.  It is a relocatable module that can be link edited and executed.  Refer to **DSECT**.
 * **DSECT** - Dummy Section.  Describes memory but doesn't allocated it. Refer to **CSECT**.
 * **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
-* **Subfield** - 
+* **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc)
 
 # Format of Assembly Language Program
 
@@ -25,6 +25,16 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 * **Operands** - the operands used by the **Operation** instructions
 * **Comments** - any comments must follow the Operand with at least one space in between
 * **Continuation** - indicates the instruction is continued on the next line
+
+# Registers
+
+* The **General Purpose Registers** are numbered 0 through 15.
+* Registers 0, 2, 4, and 6 are used for floating point operations
+* Even number registers must be used for double-shift instructions, fullword multiply and divide, move long and compare logical instructions. The odd number register that follows is used as part of the operation.
+* **Base Registers** are specified with the **USING** assembler directive
+* For **LM** (load multiple registers) and **STM** (store multiple registers) two registers are specified, in which those two registers and any registers between them are used for the operation.
+* The **control program** of the system/370 uses registers 0, 1, 13, 14, and 15
+
 
 # Instruction Set
 
