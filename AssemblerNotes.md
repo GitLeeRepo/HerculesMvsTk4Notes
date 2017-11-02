@@ -86,13 +86,13 @@ Along with a few miscellaneous instructions that don't clearly fall in the above
 
 Operator   | Description                                                          | Format   | Operands
 -----------|----------------------------------------------------------------------|----------|--------------------
-**DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | Asm Dir | N/A
-**DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself. | Test |Test
-**MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | Test | Test
-**MVI**    | Move Immediate. Moves a byte into storage | Test | Test
-**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros | Test | Test 
-**PACK**   | Converts EBCDIC into packed decimal or binary. | Test | Test
-**UNPK**   | Unpack.  Converts packed decimal into EBCDIC   | Test | Test
+**DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | AsmDir | N/A
+**DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself. | AsmDir |N/A
+**MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | SS | D1(L1,B1),D2(B2)
+**MVI**    | Move Immediate. Moves a byte into storage | SI | D1(B1),I2
+**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros | SS | D1(L1,B1),D2(B2) 
+**PACK**   | Converts EBCDIC into packed decimal or binary. | SS | D1(L1,B1),D2(L2,B2)
+**UNPK**   | Unpack.  Converts packed decimal into EBCDIC   | SS | D1(L1,B1),D2(L2,B2)
 
 ## Arithmetic Instructions
 
@@ -101,9 +101,9 @@ In a business environment most arithmetic is done using **packed decimal** field
 Operator   | Description                                                          | Format   | Operands
 -----------|----------------------------------------------------------------------|----------|--------------------
 **AP**     | Add decimal.  The operand 2 is added to operand 1 with the result stored in operand 1.  Ex., `AP     op1,op2` | SS | D1(L1,B1),D2(L2,B2)
-**SP**     | Subtract decimal.  Operand 2  is subtracted from operand 1 with the result stored in operand 1.  Ex., `SP    op1,op2` | Test | Test
-**MP**     | Multiply decimal - Operand 1 and 2 are multiplied with the result placed in operand 1. Ex., `MP    op1,op2` | Test | Test
-**DP**     | Divide decimal - Operand 2 (the divisor) is divided into Operand 1 (the dividend) with the result being placed into Operand 1.  This result contains both the quotient and the remainder.  The remainder is in the right most bytes of operand 1 (which can be up to 16 bytes).  The remainder is alway the same size as the divisor in operand 2 which can be up to 8 bytes long. | Test | Test
+**SP**     | Subtract decimal.  Operand 2  is subtracted from operand 1 with the result stored in operand 1.  Ex., `SP    op1,op2` | SS | D1(L1,B1),D2(L2,B2)
+**MP**     | Multiply decimal - Operand 1 and 2 are multiplied with the result placed in operand 1. Ex., `MP    op1,op2` | SS | D1(L1,B1),D2(L2,B2)
+**DP**     | Divide decimal - Operand 2 (the divisor) is divided into Operand 1 (the dividend) with the result being placed into Operand 1.  This result contains both the quotient and the remainder.  The remainder is in the right most bytes of operand 1 (which can be up to 16 bytes).  The remainder is alway the same size as the divisor in operand 2 which can be up to 8 bytes long. | SS | D1(L1,B1),D2(L2,B2)
 **ZAP**    | Zero-and-add.  Operand 1 is zeroed out, and then operand 2 is added to it. | Test | Test
 
 ## Logical Instructions
