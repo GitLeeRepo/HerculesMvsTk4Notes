@@ -99,8 +99,8 @@ Operator   | Description                                                        
 In a business environment most arithmetic is done using **packed decimal** fields rather than **binary** numbers since the conversion is simpler.  The five basic decimal instructions are **add, subtract, multiply, divide, and zero-and-add**.
 
 Operator   | Description                                                          | Format | Format
------------|----------------------------------------------------------------------|--------|--------------
-**AP**     | Add decimal.  The operand 2 is added to operand 1 with the result stored in operand 1.  Ex., `AP     op1,op2` | Test | Test
+-----------|----------------------------------------------------------------------|--------|------------------
+**AP**     | Add decimal.  The operand 2 is added to operand 1 with the result stored in operand 1.  Ex., `AP     op1,op2` | SS | D1(L1,B1),D2(L2,B2)
 **SP**     | Subtract decimal.  Operand 2  is subtracted from operand 1 with the result stored in operand 1.  Ex., `SP    op1,op2` | Test | Test
 **MP**     | Multiply decimal - Operand 1 and 2 are multiplied with the result placed in operand 1. Ex., `MP    op1,op2` | Test | Test
 **DP**     | Divide decimal - Operand 2 (the divisor) is divided into Operand 1 (the dividend) with the result being placed into Operand 1.  This result contains both the quotient and the remainder.  The remainder is in the right most bytes of operand 1 (which can be up to 16 bytes).  The remainder is alway the same size as the divisor in operand 2 which can be up to 8 bytes long. | Test | Test
