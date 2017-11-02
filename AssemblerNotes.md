@@ -90,11 +90,13 @@ Operator   | Description                                                        
 -----------|----------------------------------------------------------------------|----------|--------------------
 **DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself. | AsmDir |N/A
 **DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | AsmDir | N/A
-**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros | SS | D1(L1,B1),D2(B2)
+**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros.  Some of the Hex patterns include: 20=digit selector; 21=start significant; 22=field separater; 40=blank; 4B=period; 5B=dolar sign; 5C=astrisk; 6B=comma | SS | D1(L1,B1),D2(B2)
+**L**      | Load | RX | R1,D2(X2,B2)
 **LA**     | Load Address. | RX | R1,D2(X2,B2)
 **MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | SS | D1(L1,B1),D2(B2)
 **MVI**    | Move Immediate. Moves a byte into storage | SI | D1(B1),I2 
 **PACK**   | Converts EBCDIC into packed decimal or binary. | SS | D1(L1,B1),D2(L2,B2)
+**RETURN** | Macro that restores the specified resgisters for the calling program and returns to the calling program.  Example, **RETURN (14,12)** restores registers 0-12, and 14-15. | Macro | N/A
 **ST**     | Store | RX | R1,D2(X2,B2)
 **UNPK**   | Unpack.  Converts packed decimal into EBCDIC   | SS | D1(L1,B1),D2(L2,B2)
 
@@ -145,13 +147,14 @@ I/O instructions are not handled directly by the user program, but instead deleg
 Operator   | Description                                                          | Format  | Operands
 -----------|----------------------------------------------------------------------|---------|--------------------
 **CLOSE**  | format: **CLOSE(DBCName, option, DCBName, option,...)**.  Closes the data sets that were opened for input and/or output.  The option (Input, Output) can be ommitted but a placeholder comma must be included if it is not the last one specified, **CLOSE(MyDataset,,PrtOut)** for example. | Macro | N/A
-**DCB**    | Data Control Block (record formats, record lengths, block sizes, data set names). For example: `INVMAST  DCB DSORG=PS,RECFM=F,MACRF=GM,BLKSIZE=50,LRECL=50, DDNAME=INVMAST,EODAD=INVEOF'The **MACRF=GM** specifies this is for a **GET** operation in which the record buffer is **moved** into a defined program buffer. | Macro | N/A
+**DCB**    | Data Control Block (record formats, record lengths, block sizes, data set names). For example: `INVMAST  DCB DSORG=PS,RECFM=F,MACRF=GM,BLKSIZE=50,LRECL=50, DDNAME=INVMAST,EODAD=INVEOF'.  The **MACRF=GM** specifies this is for a **GET** operation in which the record buffer is **moved** into a defined program buffer. | Macro | N/A
 **GET**    | reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation. | Macro | N/A
 **OPEN**   | format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set. | Macro |N/A
 **PUT**   | writes a record to a data set.  Format: **PUT DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  As with the **GET** operation the work area can either be specified as a user defined symbolic storage area, or ommitted when using a **MVS Supervisor** provided buffer.  As with the **GET** this is specified with the **MACRF** parameter of the **DCB** statement. | Macro | N/A
 
 ## Miscellaneous Instructions
 
+* **END** - End assembly
 * **START** - an assembler command that signals the where the start of the object code should begin.  **START 0** tells the assembler to use zero as the starting reference point (this is relative since before the program is loaded into memory the actual starting address is unknown.  The **label name** for the **START** instruction becomes the name of the program.
 * **USING** - an assembler command that tells the assembler which register is going to be used as the base address register.  The first operand specifies the address, while the second operand specifies the register to store this base address.  The starting address is usually either a label name near the start of the program, or an astricks which signals starting now (which would be the address of the following statement since the **USING** assembler command is just a directive without any storage location in the object code.
 
