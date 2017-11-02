@@ -96,7 +96,7 @@ Operator   | Description                                                        
 **MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | SS | D1(L1,B1),D2(B2)
 **MVI**    | Move Immediate. Moves a byte into storage | SI | D1(B1),I2 
 **PACK**   | Converts EBCDIC into packed decimal or binary. | SS | D1(L1,B1),D2(L2,B2)
-**RETURN** | Macro that restores the specified resgisters for the calling program and returns to the calling program.  Example, **RETURN (14,12)** restores registers 0-12, and 14-15. | Macro | N/A
+**RETURN** | Macro that restores the specified registers for the calling program and returns to the calling program.  Example, **RETURN (14,12)** restores registers 0-12, and 14-15. | Macro | N/A
 **ST**     | Store | RX | R1,D2(X2,B2)
 **UNPK**   | Unpack.  Converts packed decimal into EBCDIC   | SS | D1(L1,B1),D2(L2,B2)
 
