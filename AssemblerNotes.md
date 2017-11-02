@@ -83,13 +83,16 @@ The instructions are placed in the **Operation** column, they can be broken down
 Along with a few miscellaneous instructions that don't clearly fall in the above groups
 
 ## Data Movement and Storage Instructions
-* **DS** - Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location.
-* **DC** - Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself.
-* **MVC** - Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2`
-* **MVI** - Move Immediate. Moves a byte into storage
-* **ED** - Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros
-* **PACK** - Converts EBCDIC into packed decimal or binary.
-* **UNPK** - Unpack.  Converts packed decimal into EBCDIC
+
+Operator   | Description                                                          | Format | Format
+-----------|----------------------------------------------------------------------|--------|--------------
+**DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | Test | Test
+**DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself. | Test |Test
+**MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | Test | Test
+**MVI**    | Move Immediate. Moves a byte into storage | Test | Test
+**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros | Test | Test 
+**PACK**   | Converts EBCDIC into packed decimal or binary. | Test | Test
+**UNPK**   | Unpack.  Converts packed decimal into EBCDIC   | Test | Test
 
 ## Arithmetic Instructions
 
