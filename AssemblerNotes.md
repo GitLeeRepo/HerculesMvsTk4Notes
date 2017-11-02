@@ -82,6 +82,8 @@ The instructions are placed in the **Operation** column, they can be broken down
 
 Along with a few miscellaneous instructions that don't clearly fall in the above groups
 
+Key for **Operands** below (D=Displacement from Base Register address; L=Length; B=Base Register; X=Index Register; I=Immediate Instruction; and M=Mask.
+
 ## Data Movement and Storage Instructions
 
 Operator   | Description                                                          | Format   | Operands
@@ -138,11 +140,11 @@ I/O instructions are not handled directly by the user program, but instead deleg
 
 Operator   | Description                                                          | Format  | Operands
 -----------|----------------------------------------------------------------------|---------|--------------------
-**OPEN**   | format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set. | Test |Test
-**GET**    | reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation. | Test | Test
-**PUT**   | writes a record to a data set.  Format: **PUT DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  As with the **GET** operation the work area can either be specified as a user defined symbolic storage area, or ommitted when using a **MVS Supervisor** provided buffer.  As with the **GET** this is specified with the **MACRF** parameter of the **DCB** statement. | Test | Test
-**CLOSE**  | format: **CLOSE(DBCName, option, DCBName, option,...)**.  Closes the data sets that were opened for input and/or output.  The option (Input, Output) can be ommitted but a placeholder comma must be included if it is not the last one specified, **CLOSE(MyDataset,,PrtOut)** for example. | Test | Test
-**DCB**    | Data Control Block (record formats, record lengths, block sizes, data set names). For example: `INVMAST  DCB DSORG=PS,RECFM=F,MACRF=GM,BLKSIZE=50,LRECL=50, DDNAME=INVMAST,EODAD=INVEOF'The **MACRF=GM** specifies this is for a **GET** operation in which the record buffer is **moved** into a defined program buffer. | Test | Test
+**OPEN**   | format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set. | Macro |N/A
+**GET**    | reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation. | Macro | N/A
+**PUT**   | writes a record to a data set.  Format: **PUT DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  As with the **GET** operation the work area can either be specified as a user defined symbolic storage area, or ommitted when using a **MVS Supervisor** provided buffer.  As with the **GET** this is specified with the **MACRF** parameter of the **DCB** statement. | Macro | N/A
+**CLOSE**  | format: **CLOSE(DBCName, option, DCBName, option,...)**.  Closes the data sets that were opened for input and/or output.  The option (Input, Output) can be ommitted but a placeholder comma must be included if it is not the last one specified, **CLOSE(MyDataset,,PrtOut)** for example. | Macro | N/A
+**DCB**    | Data Control Block (record formats, record lengths, block sizes, data set names). For example: `INVMAST  DCB DSORG=PS,RECFM=F,MACRF=GM,BLKSIZE=50,LRECL=50, DDNAME=INVMAST,EODAD=INVEOF'The **MACRF=GM** specifies this is for a **GET** operation in which the record buffer is **moved** into a defined program buffer. | Macro | N/A
 
 ## Miscellaneous Instructions
 
