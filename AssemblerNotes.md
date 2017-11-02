@@ -84,8 +84,8 @@ Along with a few miscellaneous instructions that don't clearly fall in the above
 
 ## Data Movement and Storage Instructions
 
-Operator   | Description                                                          | Format  | Operands
------------|----------------------------------------------------------------------|---------|--------------------
+Operator   | Description                                                          | Format   | Operands
+-----------|----------------------------------------------------------------------|----------|--------------------
 **DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | Asm Dir | N/A
 **DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself. | Test |Test
 **MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | Test | Test
@@ -98,8 +98,8 @@ Operator   | Description                                                        
 
 In a business environment most arithmetic is done using **packed decimal** fields rather than **binary** numbers since the conversion is simpler.  The five basic decimal instructions are **add, subtract, multiply, divide, and zero-and-add**.
 
-Operator   | Description                                                          | Format  | Operands
------------|----------------------------------------------------------------------|---------|--------------------
+Operator   | Description                                                          | Format   | Operands
+-----------|----------------------------------------------------------------------|----------|--------------------
 **AP**     | Add decimal.  The operand 2 is added to operand 1 with the result stored in operand 1.  Ex., `AP     op1,op2` | SS | D1(L1,B1),D2(L2,B2)
 **SP**     | Subtract decimal.  Operand 2  is subtracted from operand 1 with the result stored in operand 1.  Ex., `SP    op1,op2` | Test | Test
 **MP**     | Multiply decimal - Operand 1 and 2 are multiplied with the result placed in operand 1. Ex., `MP    op1,op2` | Test | Test
@@ -108,8 +108,8 @@ Operator   | Description                                                        
 
 ## Logical Instructions
 
-Operator   | Description                                                          | Format  | Operands
------------|----------------------------------------------------------------------|---------|--------------------
+Operator   | Description                                                          | Format   | Operands
+-----------|----------------------------------------------------------------------|----------|--------------------
 **CP**     | Compare decimal.  Two decimal fields are compared.  It uses 4 bits in the CPU to store the results so the branch instruction that follows it can know what to do.  If bit 0 is on they are equal, if bit 1 is on operand 1 is less than operand 2, if bit 2 is on operand 1 is greater than operand 2.  Bit 3 isn't used for this instruction. | Test | Test
 **B**      | Unconditional Branch | Test | Test
 **BH**     | Branch on operand 1 being higher than operand 2.  Used after a compare instruction. | Test | Test
@@ -134,8 +134,8 @@ I/O instructions are not handled directly by the user program, but instead deleg
 
 **Macro Instruction**
 
-Operator   | Description                                                          | Format | Operands
------------|----------------------------------------------------------------------|--------|--------------------
+Operator   | Description                                                          | Format  | Operands
+-----------|----------------------------------------------------------------------|---------|--------------------
 **OPEN**   | format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set. | Test |Test
 **GET**    | reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation. | Test | Test
 **PUT**   | writes a record to a data set.  Format: **PUT DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  As with the **GET** operation the work area can either be specified as a user defined symbolic storage area, or ommitted when using a **MVS Supervisor** provided buffer.  As with the **GET** this is specified with the **MACRF** parameter of the **DCB** statement. | Test | Test
