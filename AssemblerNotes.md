@@ -86,7 +86,9 @@ The instruction set listed here consists of the following types of instructins:
 
 At the byte and bit level **machine instructions** are either two, four, or six bytes long.  The first 8 bits consists of the opcode itself (the binary identifier that is represented by mnemonic instructions such as MVC, B, AP, etc.).  The remaining bits are for the operands (8 remain for two byte instructions, 24 bits remain for operands in four byte instructions, and 40 bits remain for operands in six byte instructions.  So for **RR** (register to register) instructions, the general register number itself is represent by 4 bits (16 for 16 GP registers), and since two registers are specified that is a total of 8 bits, which when added to the 8 bits of the opcode shows why this is a two byte instruction.
 
-The instructions (whether machine, macro, or assembler directives) are placed in the **Operation** column in the source file, they can be broken down into four primary groups:
+Using an **RX** type of instruction, which has a format of **OpCode RX R1,D2(X2,B2)**, as an example of a four byte instruction, the opcode uses 8 bits, R1 uses 4 bits, D2 uses 12bits, X2 uses 4 bits, and B2 use 4 bits, for a total of the 32 bits in a four byte instruction.
+
+The instructions (whether the machine mnemonic, macro, or assembler directives) are placed in the **Operation** column in the source file.  These instructions can be broken down into four primary groups:
 
 * Data movement and storage instructions
 * Arithmetic instructions
