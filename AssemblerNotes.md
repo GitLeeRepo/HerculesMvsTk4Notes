@@ -45,16 +45,18 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 
 ## Explicit Base Registers and Displacement
 
-In addition to explicitly specifying the length of an operand by placing it in parenthesis,  **MVC MYFIELD(80),OTHER**, you can specify explicit addresses using explicit base registers and displacements by using parenthesis.  One example format is **D(L,B)** where D=Displacement, L=length, and B=Base Register.
+You can specify a relocatable address by using the address of the base register in addition to the displacement from that address to specify another address location (typically identified with a symbolic name.  The are a number of different formats that are used that a dependent on the format type of the instructions (RR, RX, RS, SS, SI, etc).  One example format is **D(L,B)** where D=Displacement, L=length, and B=Base Register.
 
 * **PACK 0(3,6),0(3,6)** specifies a displacement of zero to pack a 3 byte field at the address in base register 6 (since there was zero displacement) in both operands 1 and 2.
 * **AP WKLYHRS,5(3,6)** has a displacement of 5 from the address at base register 6 with a length of 3.
 
-There are other formats which can be used, with the format used being dependent on the instructions format type (RR, RX, RS, SS, SI, etc).  Some use Index Registers in addition to or in place of Base Registers. The format is **D(X,B)** where D=Displacement, X=Index Register, and B=Base Register.  It is typical to specify zero for the index register.
+There are other formats which can be used, with the format used being dependent on the instructions format type (RR, RX, RS, SS, SI, etc).  The **RX** format use Index Registers in addition to or in place of Base Registers, using the format is **D(X,B)** where D=Displacement, X=Index Register, and B=Base Register.  It is typical to specify zero for the index register.
 
 * **A 4,8(0,5)** - has a displacement of 8 from the address in base register 5.  The index is zero
 * **A 4,8(,5)** - same as the above.  By not specifying the Index Register it is the same as setting it to zero.
-* **A 4,8(5)** - here 5 is the index register, not the base register.  You don't need the comma when the base register is excluded.
+* **A 4,8(5)** - here 5 is the index register, not the base register.  You don't need the comma when the last item is excluded.
+
+In many of these Operand Formats these subfield qualifiers can be ommitted and a default will be assumed.  For example **SS** (storage-storage) instructions have a format of **OpCode D1(L1,B1),D2(L2,B2)** the subfields can be ommitted **OpCode D1,D2** with the last base register to be defined is assume *(?confirm? or is it the first or only)*.  For Example, **MVC PRTPRICE,INPRICE**  Or you can specify some, but not all of the subfields as in **MVC PRTDESCR(50),INDESCR** which includes the length in the first operand, but doesn't include the base register, and the second operand doesn't specify either.
 
 ### Explicit Operand Formats based on Instruction Type
 
