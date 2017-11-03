@@ -17,6 +17,7 @@ Notes on System/370 assembly language
 * **Displacement** - Refer to the **Base/Displacement Addressing** entry.
 * **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
 * **Immediate** - a byte constant that is part of the instruction itself.  For example, **MVI MYCHAR,C'A'** the immediate value 'A' is move to the memory location identified by MYCHAR.
+* **Literal** - a literal is a constant that is defined as part of the instruction, rather than in a separate **DC** statement.  Literals are used in a statement in place of where a symbolic name would be used.  They are proceeded by an equal sign.  For example, **AP COUNT,=P'1'** adds the literal **1** to the value in the **COUNT** symbolic reference.
 * **Opcode** - the machine level instruction code or the mnemonic that represents it.
 * **Relative Addresses** - addresses relative to another address such as, **ST 13,SAVE+4** where the **SAVE+4** is specifying a relative address.
 * **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  Subfields in operands can be used to specify explicit lengths, for example **MVC MYFIELD(80),OTHER** will move in 80 characters, even if MYFIELD is declared as 120 characters.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc).  In this case the parenthesis are not used.
@@ -105,8 +106,8 @@ Key for **Operands** below (R=Register; D=Displacement from Base Register addres
 
 Operator   | Description                                                          | Format   | Operands
 -----------|----------------------------------------------------------------------|----------|--------------------
-**DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code for a constant value that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of the constant, along with the constant itself. | AsmDir |N/A
-**DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | AsmDir | N/A
+**DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code to be allocated and initialized to the value specified, which can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define its storage type, along with the value itself.  Not truly a constant since it can be updated. | AsmDir |N/A
+**DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Memory is allocated, but not initialized as in the case of a **DC**.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | AsmDir | N/A
 **ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros.  Some of the Hex patterns include: 20=digit selector; 21=start significant; 22=field separater; 40=blank; 4B=period; 5B=dolar sign; 5C=astrisk; 6B=comma | SS | D1(L1,B1),D2(B2)
 **L**      | Load | RX | R1,D2(X2,B2)
 **LA**     | Load Address. | RX | R1,D2(X2,B2)
