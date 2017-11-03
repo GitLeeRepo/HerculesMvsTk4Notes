@@ -94,9 +94,11 @@ Along with a few miscellaneous instructions that don't clearly fall in the above
 
 In most operations the **second operand** is moved/added/subtracted/etc into the **first operand** where the result is stored.
 
-Key for **Operands** below (R=Register; D=Displacement from Base Register address; L=Length; B=Base Register; X=Index Register; I=Immediate Instruction; and M=Mask.
+At the byte and bit level machine instruction are either two, four, or six bytes long.  The first 8 bits consists of the opcode itself (the binary identifier that is represented by instructions such as MVC, B, AP, etc.).  The remaining bits are for the operands (8 remain for two byte instructions, 24 bits remain for operands in four byte instructions, and 40 bits remain for operands in six byte instructions.  So for **RR** (register to register) instructions, the general register number itself is represent by 4 bits (16 for 16 GP registers), and since two registers are specified that is a total of 8 bits, which when added to the 8 bits of the opcode shows why this is a two byte instruction.
 
 ## Data Movement and Storage Instructions
+
+Key for **Operands** below (R=Register; D=Displacement from Base Register address; L=Length; B=Base Register; X=Index Register; I=Immediate Instruction; and M=Mask.
 
 Operator   | Description                                                          | Format   | Operands
 -----------|----------------------------------------------------------------------|----------|--------------------
