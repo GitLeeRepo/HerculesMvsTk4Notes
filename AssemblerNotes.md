@@ -16,7 +16,8 @@ Notes on System/370 assembly language
 * **DSECT** - Dummy Section.  Describes memory but doesn't allocated it. These are the **DS** and **DC** type of operations. Refer to **CSECT**.
 * **Displacement** - Refer to the **Base/Displacement Addressing** entry.
 * **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
-**Immediate** - a byte constant that is part of the instruction itself.  For example, **MVI MYCHAR,C'A'** the immediate value 'A' is move to the memory location identified by MYCHAR.
+* **Immediate** - a byte constant that is part of the instruction itself.  For example, **MVI MYCHAR,C'A'** the immediate value 'A' is move to the memory location identified by MYCHAR.
+* **Opcode** - the machine level instruction code or the mnemonic that represents it.
 * **Relative Addresses** - addresses relative to another address such as, **ST 13,SAVE+4** where the **SAVE+4** is specifying a relative address.
 * **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  Subfields in operands can be used to specify explicit lengths, for example **MVC MYFIELD(80),OTHER** will move in 80 characters, even if MYFIELD is declared as 120 characters.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc).  In this case the parenthesis are not used.
 
@@ -27,7 +28,7 @@ Format   | Name  | Operation | Operands and commends | Continuation Field
 Position | 1-8   | 10-14     | 16-71                 | 72
 
 * **Name** - the symbolic names used for references
-* **Operation** - a specific instruction set instruction (machine and macro instructions, and assembler commands)
+* **Operation** - a specific instruction (machine instruction mnemonic, macro instruction, or assembler command)
 * **Operands** - the operands used by the **Operation** instructions
 * **Comments** - any comments must follow the Operand with at least one space in between
 * **Continuation** - indicates the instruction is continued on the next line
@@ -83,7 +84,9 @@ The instruction set listed here consists of the following types of instructins:
 * Macro Instruction - an instruction which represents multiple individual Machine Instructions to accomplish a task
 * Assembler Command (Directive) - provides the assembler with processing instructions, but doesn't get allocated in the object code
 
-The instructions are placed in the **Operation** column, they can be broken down into four primary groups:
+At the byte and bit level **machine instructions** are either two, four, or six bytes long.  The first 8 bits consists of the opcode itself (the binary identifier that is represented by mnemonic instructions such as MVC, B, AP, etc.).  The remaining bits are for the operands (8 remain for two byte instructions, 24 bits remain for operands in four byte instructions, and 40 bits remain for operands in six byte instructions.  So for **RR** (register to register) instructions, the general register number itself is represent by 4 bits (16 for 16 GP registers), and since two registers are specified that is a total of 8 bits, which when added to the 8 bits of the opcode shows why this is a two byte instruction.
+
+The instructions (whether machine, macro, or assembler directives) are placed in the **Operation** column in the source file, they can be broken down into four primary groups:
 
 * Data movement and storage instructions
 * Arithmetic instructions
@@ -93,8 +96,6 @@ The instructions are placed in the **Operation** column, they can be broken down
 Along with a few miscellaneous instructions that don't clearly fall in the above groups
 
 In most operations the **second operand** is moved/added/subtracted/etc into the **first operand** where the result is stored.
-
-At the byte and bit level machine instruction are either two, four, or six bytes long.  The first 8 bits consists of the opcode itself (the binary identifier that is represented by instructions such as MVC, B, AP, etc.).  The remaining bits are for the operands (8 remain for two byte instructions, 24 bits remain for operands in four byte instructions, and 40 bits remain for operands in six byte instructions.  So for **RR** (register to register) instructions, the general register number itself is represent by 4 bits (16 for 16 GP registers), and since two registers are specified that is a total of 8 bits, which when added to the 8 bits of the opcode shows why this is a two byte instruction.
 
 ## Data Movement and Storage Instructions
 
