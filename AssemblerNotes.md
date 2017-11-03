@@ -37,13 +37,13 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 * The **General Purpose Registers** are numbered 0 through 15.
 * Registers 0, 2, 4, and 6 are used for floating point operations
 * Even number registers must be used for double-shift instructions, fullword multiply and divide, move long and compare logical instructions. The odd number register that follows is used as part of the operation.
-* **Base Registers** hold the base address used by a program (generally near the start of the program).  They are used, along with a **displacement** value to identify a memory location.  They are specified with the **USING** assembler directive.  Registers 0-3 are not suitable for base registers.  Register 3-13, and 15 are generally suitable for base registers.
+* **Base Registers** hold the base address used by a program (generally near the start of the program).  They are used, along with a **displacement** value to identify a memory location.  They are specified with the **USING** assembler directive.  Registers 0-3 are not suitable for base registers.  Register 3-13, and 15 are generally suitable for base registers.  Multiple base registers can be specified.
 * For **LM** (load multiple registers) and **STM** (store multiple registers) two registers are specified, in which those two registers and any registers between them are used for the operation.
 * The **control program** of the system/370 uses registers 0, 1, 13, 14, and 15
 * **Register 0** is a special case in that when **0** (zero) is specified for an Index or Base register, it means no Index or Base register is used.  In the case of **branch** statements it means don't branch.
 * The **Index Register** is rarely used, even though the **RX** format type instructions refer to them.  They are normally ommitted or set to zero.  When they are used they are used in the same way an index in an array is used in other languages.
 
-## Explicit Base Registers and Displacement
+## Explicit Base Registers and Displacement Addressing
 
 You can specify a relocatable address by using the address of the base register in addition to the displacement from that address to specify another address location (typically identified with a symbolic name.  The are a number of different formats that are used that a dependent on the format type of the instructions (RR, RX, RS, SS, SI, etc).  One example format is **D(L,B)** where D=Displacement, L=length, and B=Base Register.
 
@@ -56,7 +56,7 @@ There are other formats which can be used, with the format used being dependent 
 * **A 4,8(,5)** - same as the above.  By not specifying the Index Register it is the same as setting it to zero.
 * **A 4,8(5)** - here 5 is the index register, not the base register.  You don't need the comma when the last item is excluded.
 
-In many of these Operand Formats these subfield qualifiers can be ommitted and a default will be assumed.  For example **SS** (storage-storage) instructions have a format of **OpCode D1(L1,B1),D2(L2,B2)** the subfields can be ommitted **OpCode D1,D2** with the last base register to be defined is assume *(?confirm? or is it the first or only)*.  For Example, **MVC PRTPRICE,INPRICE**  Or you can specify some, but not all of the subfields as in **MVC PRTDESCR(50),INDESCR** which includes the length in the first operand, but doesn't include the base register, and the second operand doesn't specify either.
+In **Implicit Addressing** the subfield qualifiers can be ommitted and a default will be assumed.  For example **SS** (storage-storage) instructions have a format of **OpCode D1(L1,B1),D2(L2,B2)** the subfields can be ommitted **OpCode D1,D2** with the base address being provided by the assembler (if multiple base register addresses are used, the one with the smallest offset is assume) .  For Example, **MVC PRTPRICE,INPRICE**  Or you can specify some, but not all of the subfields as in **MVC PRTDESCR(50),INDESCR** which includes the length in the first operand, but doesn't include the base register, and the second operand doesn't specify either.  For every symoblic label defined in a program the assembler tracks its length, which is why it knows what to use when it is not specified.
 
 ### Explicit Operand Formats based on Instruction Type
 
