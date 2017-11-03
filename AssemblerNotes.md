@@ -13,6 +13,7 @@ Notes on System/370 assembly language
 * **CSECT** - Control Section.  Instructions in this section are allocated memory.  It is a relocatable module that can be link edited and executed. This is where your typical execution type instructions go (**MVC**, **AP**, **B**, etc). Refer to **DSECT**.
 * **DSECT** - Dummy Section.  Describes memory but doesn't allocated it. These are the **DS** and **DC** type of operations. Refer to **CSECT**.
 * **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
+**Immediate** - a constant that is part of the instruction itself
 * **Relative Addresses** - addresses relative to another address such as, **ST 13,SAVE+4** where the **SAVE+4** is specifying a relative address.
 * **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  Subfields in operands can be used to specify explicit lengths, for example **MVC MYFIELD(80),OTHER** will move in 80 characters, even if MYFIELD is declared as 120 characters.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc).  In this case the parenthesis are not used.
 
@@ -83,6 +84,8 @@ The instructions are placed in the **Operation** column, they can be broken down
 * Input/output instructions
 
 Along with a few miscellaneous instructions that don't clearly fall in the above groups
+
+In most operations the **second operand** is moved/added/subtracted/etc into the **first operand** where the result is stored.
 
 Key for **Operands** below (R=Register; D=Displacement from Base Register address; L=Length; B=Base Register; X=Index Register; I=Immediate Instruction; and M=Mask.
 
@@ -162,12 +165,12 @@ Operator   | Description                                                        
 
 # Machine Code Format Types
 
-* **RR** - Register to Register operations - **R1,R2**, with another variation using a mask **M1,R2** for **BCR** branch on condition operations
-* **RX** - Virtual storage to register operations that include a refernce to an Index Register when referencing the storage location **R1,D2(X2,B2)**, with another variation using a mask **M1,D2(X2,B2)** for **BC** branch on condition operations.
-* **RS** - Storage to Register operatons. Uses multiple register and a single storage location **R1,R3,D2(B2)**.  There is also a variation that uses a mask **R1,M3,D2(B2)**.
-* **SI** - Immediate to Storage operations.  Immediate byte data into virtual storage **D1(L1,B2),I2**
+* **RR** - Register-Register (2 byte) instructions - **R1,R2**, with another variation using a mask **M1,R2** for **BCR** branch on condition operations
+* **RX** - Register-Index (4 byte) instructions. a virtual storage to register operations that include a refernce to an Index Register when referencing the storage location **R1,D2(X2,B2)**, with another variation using a mask **M1,D2(X2,B2)** for **BC** branch on condition operations.
+* **RS** - Register-Storage (4 byte) instructions.  Uses multiple register and a single storage location **R1,R3,D2(B2)**.  There is also a variation that uses a mask **R1,M3,D2(B2)**.
+* **SI** - Storage-Immediate (4 byte) instructions.  Moves immediate byte data (constant that is part of the instruction itself) into virtual storage **D1(L1,B2),I2**
 * **S** - used to perform I/O and other system instructions **D2(B2)**
-* **SS** - Storage to Storage operations.  Comes in two varieties: a single 8-bit **length** field **D1(L1,B1),D2(B2)** and two 4-bit **length** fields **D1(L1,B1),**D2(L2,B2)**.  
+* **SS** - Storage-Storage (6 byte) instructions.  Comes with two varieties of operands: one with a single 8-bit **length** field **D1(L1,B1),D2(B2)** and another with two 4-bit **length** fields **D1(L1,B1),**D2(L2,B2)**.  
 
 Where R=Register, S=Storage, D=Displacement, L=length, B=Base Register, X=Index Register, I=Immediate, and M=Mask
 
