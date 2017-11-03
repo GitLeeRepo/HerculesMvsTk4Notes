@@ -6,17 +6,17 @@ Notes on System/370 assembly language
 
 * [s/370 Assembler Tutorial](http://cbttape.org/~jmorrison/s370asm/html/tut-mvs-001.html)
 
-# Terminology
+# Terminology and Concepts
 
 * **\*** - References the address of the current instruction.  Example, **USING \*,3** load the current line as the location for the base register (since USING is an assembler directive it isn't in memory so it is the following statement that is used).
 * **=** - Used to specify a literal, for example **AP LINECNT,=P'1'** adds 1 to LINECNT
-* **Base/Displacement Addressing** - relocateable addressing is achieved the the use of a base address (usually the address where the program begins) being stored in a **Base Register** and added to a **Displacement** value to address a particular memory location.  The displacement is the number of bytes distance from the base address in the base register.  It is often the symbolic address label that is used to reference the memory location, but it can also be a literal value such as **8** meaning an 8 byte displacement.  It can also be a combination of both as in **ST 13,SAVE+4** which uses both a symbolic name **SAVE** and a literal **4**.
+* **Base/Displacement Addressing** - relocateable addressing is achieved the the use of a base address (usually the address where the program begins) being stored in a **Base Register** and added to a **Displacement** value to address a particular memory location.  The displacement is the number of bytes distance from the base address in the base register.  It is often the symbolic address label that is used to reference the memory location, but it can also be a literal value such as **8** meaning an 8 byte displacement.  It can also be a combination of both as in **ST 13,SAVE+4** which uses both a symbolic name **SAVE** and a literal **4**.  On Sys/370 **displacement** values are 12 bit for specifying up to a 4,096 displacement.  Multiple base addresses/registers can be specified to extend the amount of memory that can be addressed.  Later versions of the OS extended this to 20-bit displacement offsets.
 * **Base Address/Register** - refer to **Base/Displacement Addressing**
 * **CSECT** - Control Section.  Instructions in this section are allocated memory.  It is a relocatable module that can be link edited and executed. This is where your typical execution type instructions go (**MVC**, **AP**, **B**, etc). Refer to **DSECT**.
 * **DSECT** - Dummy Section.  Describes memory but doesn't allocated it. These are the **DS** and **DC** type of operations. Refer to **CSECT**.
-**Displacement** - Refer to the **Base/Displacement Addressing** entry.
+* **Displacement** - Refer to the **Base/Displacement Addressing** entry.
 * **Field** - An area of memory that contains one item.  It is referenced by the left most postion of its memory location, along with a length.
-**Immediate** - a constant that is part of the instruction itself
+**Immediate** - a byte constant that is part of the instruction itself.  For example, **MVI MYCHAR,C'A'** the immediate value 'A' is move to the memory location identified by MYCHAR.
 * **Relative Addresses** - addresses relative to another address such as, **ST 13,SAVE+4** where the **SAVE+4** is specifying a relative address.
 * **Subfield** - when refering to an operand subfield they must be enclosed in parenthesis.  When there are multiple subfields they must be separated by commas within the parenthesis.  Subfields in operands can be used to specify explicit lengths, for example **MVC MYFIELD(80),OTHER** will move in 80 characters, even if MYFIELD is declared as 120 characters.  The term subfield is also used to refer to the components of a **DS** or **DC** type definition (the repeat factor, the type code, the qualifier, etc).  In this case the parenthesis are not used.
 
@@ -37,9 +37,11 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 * The **General Purpose Registers** are numbered 0 through 15.
 * Registers 0, 2, 4, and 6 are used for floating point operations
 * Even number registers must be used for double-shift instructions, fullword multiply and divide, move long and compare logical instructions. The odd number register that follows is used as part of the operation.
-* **Base Registers** are specified with the **USING** assembler directive
+* **Base Registers** hold the base address used by a program (generally near the start of the program).  They are used, along with a **displacement** value to identify a memory location.  They are specified with the **USING** assembler directive.  Registers 0-3 are not suitable for base registers.  Register 3-13, and 15 are generally suitable for base registers.
 * For **LM** (load multiple registers) and **STM** (store multiple registers) two registers are specified, in which those two registers and any registers between them are used for the operation.
 * The **control program** of the system/370 uses registers 0, 1, 13, 14, and 15
+* **Register 0** is a special case in that when **0** (zero) is specified for an Index or Base register, it means no Index or Base register is used.  In the case of **branch** statements it means don't branch.
+* The **Index Register** is rarely used, even though the **RX** format type instructions refer to them.  They are normally ommitted or set to zero.  When they are used they are used in the same way an index in an array is used in other languages.
 
 ## Explicit Base Registers and Displacement
 
