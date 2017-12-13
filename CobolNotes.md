@@ -7,7 +7,7 @@ Notes on the COBOL programming languages as it applies to the MVS mainframe envi
 * [IBM COBOL for VSE/VME Programming Guide](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/download/IGYVA002.pdf?DT=20041222113748) - for the IBM OS/370 environment, supporting COBOL 85 Standard
 * [Compiler Languages available on Hercules](http://www.jaymoseley.com/hercules/compilers/list_of.htm)
 * [COBOL Introduction](https://www.youtube.com/watch?v=DTyKHm92oI4) - YouTube video from which some of these notes came from.
-* [Compiling, Linnking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1) - From jaymoseley.com site
+* [Compiling, Linking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1) - From jaymoseley.com site
 * [Another Compile/Link/Load](https://www.wisdomjobs.com/e-university/ibm-mainframe-tutorial-464/compile-link-edit-and-run-jcls-13602.html) - Good overview of the process, with key DD statement labels.
 
 ## Info on writing to a Data set
@@ -39,13 +39,13 @@ Column 7 is for a special purposes character
 
 ## Program Divisions
 
-### INDENTIFICATION DIVISION
+### IDENTIFICATION DIVISION
 
 Contains the **PROGRAM-ID** which is mandatory.  It identifies the program name.
 
 Also contains optional AUTHOR, DATE-WRITTEN, DATE-COMPILED, etc.
 
-### ENVIROMENT DIVISION
+### ENVIRONMENT DIVISION
 
 * **CONFIGURATION SECTION**
   * **SOURCE-COMPUTER**

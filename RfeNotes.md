@@ -30,7 +30,7 @@ The individual screens in **RFE** are refer to as **Panels**.  You can navigate 
 
 Using **3 Utilities** / **2 DATASET**
 
-Note if you want to base your data set on an exiting one, then before allocating a data set with the **A** command, you can model your data set on an exiting data set by entering the existing name on the **DATA SET NAME** line, pressing **Enter**, which will display its definition screen, press **Enter** again to return to the Dataset Utility screen.  Now when you type **A** on the **COMMAND** line and enter the dataset name (make sure to replace the exiting one you just used) the new one will use all the paramaters (Record size, block size, etc) of the prior one.  You can still make changes to it if you want some variations.
+Note if you want to base your data set on an exiting one, then before allocating a data set with the **A** command, you can model your data set on an exiting data set by entering the existing name on the **DATA SET NAME** line, pressing **Enter**, which will display its definition screen, press **Enter** again to return to the Dataset Utility screen.  Now when you type **A** on the **COMMAND** line and enter the dataset name (make sure to replace the exiting one you just used) the new one will use all the parameters (Record size, block size, etc) of the prior one.  You can still make changes to it if you want some variations.
 
 # Editing Data Set
 
@@ -69,7 +69,7 @@ You make line editing commands by typing the command at the beginning of the lin
 * **C** - Mark line(s) to be copied, you can specify the number of lines to be copied with **C#** (# the number).  Do NOT press **enter** until you have also select the destination with either **A** (for after) or **B** (before) on the beginning of the target line.  Once both the copy and destination markers have been placed press **enter**.  To mark a group of lines to copy type **CC** on the fist line in the group and **CC** again for the last line in the group.
 * **A** - Mark the line to paste the contents of a **C** **after**.  You can specify the number of times to paste the copied buffer by providing the number on the end of the command **A4** for example.  Refer to **C** copy for the complete copy paste procedure
 * **B** - Mark the line to paste the contents of a **C** **before**.  You can specify the number of times to paste the copied buffer by providing the number on the end of the command **A4** for example.  Refer to **C** copy for the complete copy paste 
-* **M** - Mark line(s) to be moved.  Refer the the **C** info since everything else is the same procedure as copying lines.
+* **M** - Mark line(s) to be moved.  Refer the **C** info since everything else is the same procedure as copying lines.
 * **D** - Delete the target line.  To delete multiple lines provide a number after the command **D4** for example.  To delete a group of lines mark the start of the group with **DD** and the end of the group with **DD** and press **enter**
 * **I** - Insert a line after the target line.  To insert multiple lines provide a number after the command **I4** for example
 * **R** - Repeat the current line on the next line.  To repeat the line multiple times provide a number after the command **R4** for example.  To mark multiple lines to repeat (**Group Repeat**) type **RR** for the start and end lines and then **enter** to repeat the group starting at the next line.
@@ -86,7 +86,7 @@ You make line editing commands by typing the command at the beginning of the lin
 * **F1** - Help
 * **F2** - Split
 * **F3** - End Edit - changes saved returning to prior screen
-* **F5** - RFind - Find the next search occurance
+* **F5** - RFind - Find the next search occurrence
 * **F6** - RChange - Change the next replace
 * **F7** - Pg Up
 * **F8** - Pg Down

@@ -27,7 +27,7 @@ Notes on the Job Control Language (JCL)
 
 # JCL Overview
 
-* JCL can be used to submit **batch** jobs to be run by the **JES2** or **JES3** scheduler.  It must have at least a **JOB** statement and an **EXEC** statement to run a program.  It can have multiple **EXEC** statements in order to run a series of programs.  Most **JCL** also includes serveral **DD** (Data Definition) statements.  **JCL** instructs its own output to be written to the **JES SPOOL** where it can be printed or if held viewed.
+* JCL can be used to submit **batch** jobs to be run by the **JES2** or **JES3** scheduler.  It must have at least a **JOB** statement and an **EXEC** statement to run a program.  It can have multiple **EXEC** statements in order to run a series of programs.  Most **JCL** also includes several **DD** (Data Definition) statements.  **JCL** instructs its own output to be written to the **JES SPOOL** where it can be printed or if held viewed.
 
 One of the fundamental reasons for **JCL** to is to **virutalize** the data sets used by programs.  The programs don't refer to the data sets directly, but through the **Symbolic Referencess** of the **DDName** label on the **DD** statement.  That was the underlying data set can change, for example **USER1.JCL** in one case and **USER2.JCL** in another, and the program's code doesn't have to account for these differences.  Of course the internal structures of the data sets should be consistent with what the program expects.
 
@@ -55,15 +55,15 @@ You must allocate a data set to contains the JC, itL must have a fixed-block for
 * All JCL Code begins with **//** in columns 1 and 2
 * The name identifier must begin in column 3
 * Their must be at least one space between name, operation, and operand
-* The operand may not extend beyone column 71, it must be continued on a new line seperated by commas
-* When a statement is extended to the next line, the coninuation should not start before column for, i.e. there should be at least one space between **//** and the continuation so that it is not confused with a name identifier.
+* The operand may not extend beyond column 71, it must be continued on a new line separated by commas
+* When a statement is extended to the next line, the continuation should not start before column for, i.e. there should be at least one space between **//** and the continuation so that it is not confused with a name identifier.
 * Although not required, it is a common coding standard to start the **JOB**, **EXEC**, and **DD** keywords in column 12.  This allows room for the **//** and 8 character name (which is the max limit) and the required space between the name and the keyword.
 
 ### Types of Operand parameters
 
 * **Postional Parameters** - must be in a specific order.  In the case of the JOB statement for example the account information parameter must come before the programmer's name parameter.  `//JOBNAME JOB (AcctInfo), 'Programmer Name'`. Both of these parameters are optional:
-  * If the first parameter is ommitted provide a comma //JOBNAME JOB , 'Programmer Name'`
-  * The last parameter can be ommitted
+  * If the first parameter is omitted provide a comma //JOBNAME JOB , 'Programmer Name'`
+  * The last parameter can be omitted
   * If all optional parameters are ommitted no comma is needed, just continue with the next statement, which would be the EXEC in this case.
 * **Keyword Parameters** - Keyword parmeters consist of a key value pairs and can be in any order.  In the case of the JOB statement it doesn't matter whether **CLASS=A** comes before **CLASSMSG=H**, they can be in any order.  They also don't require commas for missing parameters, but you do need commas to seperate the ones that are provided
   
@@ -134,7 +134,7 @@ Note: In order to show the **DD** statements in relation to the **EXEC** stateme
 * **SYSUT1** - in the case of IEBGENER it is used with the input data set
 * **SYSUT2** - in the case of IEBGENER it is used with the output data set
 
-### Multipart DD Names and Back Referenes
+### Multipart DD Names and Back References
 
 **Multipart Example:**
 
@@ -288,7 +288,7 @@ The **allocation** page does include one particularly import piece of informatio
 
 The remaining pages of the JCL output will contain any output of the program specifies
 
-# Using System Utiliies
+# Using System Utilities
 
 ## IEBUPDTE
 

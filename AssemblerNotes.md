@@ -212,8 +212,8 @@ Type codes are part of the **operand** for **DS** and **DC** statements which co
 * **C** - **Character set** data (EBCDIC, ASCII) of a specified link, **CL20** for example, which specifies a 20 byte character string
 * **P** - **Packed Decimal** data of a specified length, **PL3** for example, which specifies a 3 byte packed decimal
 * **Z** - **Zone Decimal** data of a specified length, **PL5** for example, which specified a 5 byte zoned decimal
-* **H** - **Halfword** a signed fix point binary value with a length of 2 bytes.  Typically not followed by a length, but may be proceeded by a repeat factor, **6H** for examble.
-* **F** - **Fullword** a signed fix point binary value with a length of 4 bytes.  Typically not followed by a length, but may be proceeded by a repeat factor, **18F** for examble.
+* **H** - **Halfword** a signed fix point binary value with a length of 2 bytes.  Typically not followed by a length, but may be proceeded by a repeat factor, **6H** for example.
+* **F** - **Fullword** a signed fix point binary value with a length of 4 bytes.  Typically not followed by a length, but may be proceeded by a repeat factor, **18F** for example.
 * **X** - **Hexadecimal** - a **Hexadecimal** value in which two hex numbers are stored as one byte
 * **E** - Short Floating Point.  Normally a fullword
 * **D** - Long Floating Point.  Normally a doubleword (two fullwords)
@@ -223,7 +223,7 @@ Type codes are part of the **operand** for **DS** and **DC** statements which co
 * **V** - Address.  Space reserved for external symbol.  Normally a fullword
 * **Q** - Address. Space reserved for external dummy section offset
 
-* Each of the above can be preceeded by a repeat factor indicating how many times that allocation unit should be repeated, **5P3** would indicate a 3 byte packed decimal shoud be repeated 5 times in memory storage.  When it is ommitted it is implied to be a repeat factor of one.
+* Each of the above can be proceeded by a repeat factor indicating how many times that allocation unit should be repeated, **5P3** would indicate a 3 byte packed decimal should be repeated 5 times in memory storage.  When it is omitted it is implied to be a repeat factor of one.
 
 A **repeat factor of zero** is used to indicate an overall buffer that is followed by the declaration of individual symbolic names that make up that buffer.  For example,
 

@@ -2,7 +2,7 @@
 
 Notes on the Hercules IBM MVS mainframe \(System/370, System/390, and zSeries/System z\) emulator, using the ready to use **MVS 3.8j Tur(n)key 4- \("TK4-"\)** preconfigured system, which can be found [here](http://wotho.ethz.ch/tk4-/).  It is available for both Linux and Windows, these notes are based on an Ubuntu 17.04 setup.  TK4- is an extension by Jürgen Winkelmann of TK3 by Volker Bandke.  Since TK4- does not claim to be an official new release of TK3, it uses the TK4- (with the dash) moniker.
 
-I come at this from the perspective of having extremely limited mainframe experience (JCL and COBOL classes back in the mid 1980s), with most of my experience being in the Windows/Mac/Linux/Unix world, with a few years of VMS work experience in the late 80s early 90s.  But I have always had an interest in knowing what it was like to work in a mainframe envirorment, this emulation software allows me to get a flavor of that (from the software/OS side anyway, not so much the hardware side, other than virtual hardware)
+I come at this from the perspective of having extremely limited mainframe experience (JCL and COBOL classes back in the mid 1980s), with most of my experience being in the Windows/Mac/Linux/Unix world, with a few years of VMS work experience in the late 80s early 90s.  But I have always had an interest in knowing what it was like to work in a mainframe environment, this emulation software allows me to get a flavor of that (from the software/OS side anyway, not so much the hardware side, other than virtual hardware)
 
 # References
 
@@ -38,7 +38,7 @@ z/OS videos, but much is still applicable to earlier systems
 
 ## Hercules References
 
-* [Hecules System 370/ES 390 Emulator](http://www.hercules-390.org/)
+* [Hercules System 370/ES 390 Emulator](http://www.hercules-390.org/)
 * [Hercules on Wikipedia](https://en.wikipedia.org/wiki/Hercules_\(emulator\))
 
 ## IBM Documents
@@ -48,7 +48,7 @@ z/OS videos, but much is still applicable to earlier systems
 * [OS/VS2 MVS Overview](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.7_1977/GC28-0984-0_OS_VS2_MVS_Overview_Rel_3.7_Jun78.pdf)
 * [OS/VS2 MVS System Commands](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.7_1977/GC38-0229-1_OS_VS2_MVS_System_Commands_Rel_3.7_Jul78.pdf)
 * [OS/VS2 MVS Utilities](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC26-3902-1_OS_VS2_MVS_Utilities_Rel_3.8_Sep83.pdf)
-* [OS/VS2 TSO Termial Users Guide](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC28-0645-4_OS_VS2_Rel_3.8_TSO_Termial_Users_Guide_Jun78.pdf)
+* [OS/VS2 TSO Terminal Users Guide](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC28-0645-4_OS_VS2_Rel_3.8_TSO_Termial_Users_Guide_Jun78.pdf)
 * [OS/VS2 MVS JCL](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/Release_3.8_1978/GC28-0692-5_OS_VS2_MVS_JCL_Rel_3.8_Apr84.pdf)
 * [OS/VS2 MVS JES2 Commands](http://bitsavers.trailing-edge.com/pdf/ibm/370/OS_VS2/GC23-0007-1_Operators_Library_OS_VS2_MVS_JES2_Commands_Jan79.pdf)
 
@@ -71,7 +71,7 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 
 * [Hercules](http://www.jaymoseley.com/hercules/)
 * [Good Info on MVS and JES Commands](http://www.jaymoseley.com/hercules/faq/mvsfaq01.htm)
-* [Compiling, Linnking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1)
+* [Compiling, Linking,Loading](http://www.jaymoseley.com/hercules/compiling/how_to.htm#topic1)
 
 ## Additional Notes References
 
@@ -113,19 +113,19 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
   * **OS/VS2 Release 2** - the initial release of **MVS** on **System/370** (and thus synonymous with **MVS**).  Has **24-bit addressing**, supporting **16MB** of main memory.
   * **MVS/SE** (MVS/System Extensions) on **System/370**.  Has **24-bit addressing**, supporting **16MB** of main memory.
   * **MVS/SP** (MVS/System Product) Version 1, on **System/370**.  Has **24-bit addressing**, supporting **16MB** of main memory.  The first to add POSIX Unix Support.
-  * **MVS/XA** - (MVS/eXtended Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
+  * **MVS/XA** - (MVS/extended Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
   * **MVS/ESA** - (MVS/Enterprise Systems Architecture) on **System/370**.  Has **31-bit addressing**, supporting **2GB** of main memory.
   * **OS/390** - MVS branded as **OS/390** running on **System/390**
   * **z/OS** - MVS branded as **z/OS** 
   
-* **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** comamand **LISTCAT**.
-* **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a scondary size in the same units which will increase the size by that amount if needed, which will create addional **extents**.  If secondary size increases aren't specified it won't grow beyond the inial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
+* **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** command **LISTCAT**.
+* **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a secondary size in the same units which will increase the size by that amount if needed, which will create additional **extents**.  If secondary size increases aren't specified it won't grow beyond the initial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
 
 # Terminology
 
 Note: several of the definitions come from [IBM knowledge base](https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zglossary.doc/zglossary.pdf) and Wikipedia articles that were primarily modified to make them more concise.
 
-* **3270 Terminal** - The **IBM 3270** family of terminals that were released in 1971.  They are block oriented devices, meaning that they sends entire blocks of text at a time, rather than character by character.  This block orientation, along with controllers that sit between the 3270s and the mainframe itself, minimize the interuptions to the mainframe CPU.  The 3270 is no longer manufactured today, but is widely used through terminal emulators.
+* **3270 Terminal** - The **IBM 3270** family of terminals that were released in 1971.  They are block oriented devices, meaning that they sends entire blocks of text at a time, rather than character by character.  This block orientation, along with controllers that sit between the 3270s and the mainframe itself, minimize the interruptions to the mainframe CPU.  The 3270 is no longer manufactured today, but is widely used through terminal emulators.
 * **ALLOCATE** . TSO command to make a connection between a file's logical name (the ddname) and the file's physical name (the data set
 name).
 * **BLOCK** - for non-VSAM data sets the storage unit that holds the **RECORDS** and is itself stored in **TRACKS**.  When a record is request, the entire block that it is in is read into memory.  This is done for efficiency because it is assumed you will be requesting other records in that block.
@@ -137,14 +137,14 @@ name).
 * **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units. Because I/O devices are relatively slow, a CPU could waste time (in computer perspective) waiting for the data from the device. This situation is called 'I/O bound'.  Channel architecture avoids this problem by using a separate, independent, low-cost processor. Channel processors are simple, but self-contained, with minimal logic and sufficient on-board scratchpad memory (working storage) to handle I/O tasks.
 * **CICS** - application servers that provide online transaction management and connectivity for applications on IBM Mainframe systems. CICS is middleware designed to support rapid, high-volume online transaction processing. **This processing is usually interactive (screen-oriented)**, but background transactions are possible.  Recent CICS Transaction Server enhancements include support for Web services and Java, Event processing, Atom feeds, and RESTful interfaces.
 * **DATASET** - the **sequential PS** data sets are similar to a file in Linux/Windows, although they are composed of a series of records as opposed to a stream of bytes.  There is also the **PDS** (Partition Data Set) in MVS, which is a data set that contains **Members** that contain the set of records (in the way the entire PS data set does)
-* **Directory Block** - Each **PDS** has one or more directory blocks where it stores the 8 byte **Member Name**, the starting location for the first record in that **Member**, along with some additional optional information. You define the number of diretory bocks when allocating a new **PDS**. I had a **PDS** with 2 directory blocks allocate I was able to store 11 **Members** before filling the directory blocks, so 5.5 **Members** per dirctory block.
+* **Directory Block** - Each **PDS** has one or more directory blocks where it stores the 8 byte **Member Name**, the starting location for the first record in that **Member**, along with some additional optional information. You define the number of directory bocks when allocating a new **PDS**. I had a **PDS** with 2 directory blocks allocate I was able to store 11 **Members** before filling the directory blocks, so 5.5 **Members** per directory block.
 * **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**. The space on disk is contiguous, which means it may be hard to find enough contiguous space on disk for a large extent if the disk is highly fragmented. There are two types of extents in which you specify how many tracks/cylinders you want for each type:
   * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
   * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.  The number of secondary extents you can receive for a non-VSAM data set is limited, on z/OS it is 250, so it may be less on the earlier versions.
 * **IDCAMS** - used to define, copy, delete, and rename VSAM Data Sets.
 * **IMS** - IBM Information Management System (IMS) is a hierarchical database and information management system with extensive transaction processing capabilities.
-* **ISAM** - Indexexed Sequential Access Methed
-* **IPL** - Intial Program Load - the booting process.  Different types (cold start, quickstart, warm start)
+* **ISAM** - Indexed Sequential Access Method
+* **IPL** - Initial Program Load - the booting process.  Different types (cold start, quick start, warm start)
 * **ISPF** - Interactive System Productivity Facility - includes a screen editor, user interface with panels that contain menus for running TSO commands.  Often used as an application programming interface.  The TS4- version of MVS uses **RFE** and **RPF** as "SPF like productivity tools".
 * **ISPF LIBRARY** - The ISPF library has a three-level name consisting of a project, group, and type. An optional library member name can also be included. A member consists of programming code, data, or text.
   * **Project** - The common identifier for all ISPF libraries belonging to the same programming project. This name must be your user ID unless you are using a specific project name that has been predefined in the MVS™ master catalog.
@@ -154,18 +154,18 @@ name).
 * **JES** - Job Entry System - responsible for spooling, job queuing, and I/O for jobs
 * **JES SPOOL** - Used for **JES** queuing and output (custom indexed data sets).  Job output can be sent to the printer from this spool or held to be viewed.
 * **JOB** - a unit of work for the operating system defined in JCL
-* **JOB CLASS** - a category of job used to distinguish its characterist (for example I/O intensive vs processor intensive)
-* **LIBRARY** - smiliar to a directory in Linux/Windows
+* **JOB CLASS** - a category of job used to distinguish its characteristics (for example I/O intensive vs processor intensive)
+* **LIBRARY** - similar to a directory in Linux/Windows
 * **LP** - logical partition
-* **LPAR** - Part of IBMs virtualization architecture.  LPAR, is a subset of a computer's hardware resources, virtualized as a separate computer. In effect, a physical machine can be partitioned into multiple logical partitions, each hosting a separate operating syste
+* **LPAR** - Part of IBM's virtualisation architecture.  LPAR, is a subset of a computer's hardware resources, virtualised as a separate computer. In effect, a physical machine can be partitioned into multiple logical partitions, each hosting a separate operating system.
 * **LRECL** - logical record length
 * **LU** - logical unit
 * **MEMBER** -  A file in a **PDS** (Partitioned Data Set).  Most editing of source files takes place in **MEMBERS**
 * **MVS** - Multiple Virtual Storage.  Refer to the **Concepts** section above for more information.
 * **MVS/ESA** - Multiple Virtual Storage/Enterprise System Architecture.  Ran on **System/370** as a 31 bit OS (2GB Main Memory)
 * **PDS** - Partitioned Data Set - It is a data set that can contain partitions called **MEMBERS**, which are programs, parts of programs, and data.  members, each of which can contain a program, part of a program, or
-data. Synonymous with program library. Contrast with sequential data set. Identifed by **PO** under the ORG heading when listing datasets and in JCL commands
-* **PDS/E** - just like PDS but more advanced in that unclaimed space is autmatically reclaimed and they are more efficient
+data. Synonymous with program library. Contrast with sequential data set. Identified by **PO** under the ORG heading when listing datasets and in JCL commands
+* **PDS/E** - just like PDS but more advanced in that unclaimed space is automatically reclaimed and they are more efficient
 * **PE** - Program Error
 * **PU** - Physical Unit**
 * **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
@@ -464,7 +464,7 @@ This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$
 * From Ubuntu command line enter **ftp localhost 2100** and logon to your **TSO** account
 * If you type **ls** at this point you can see all the datasets on the system, since you are essentially at the root.
 * Change to the **PDS** you want to upload to or download from, ex **cd HERC02.TEST.JCL**.  Now if you type **ls** you will only see the members of that **PDS**
-* Type **ascii** to make sure the **FTP** program is set to ascii mode.
+* Type **ASCII** to make sure the **FTP** program is set to ascii mode.
 * Important: Make sure you are not in the **PDS** you are uploading to because it will place a lock, and from within ftp you will get a **550** not authorized message.  Doesn't seem to be an issue downloading from the mainframe.
 * If you are **uploading** to the mainframe use the **put** or **mput** ftp commands to upload the file (remember the **Member Name** is limitted to 8 characters and does not have a file extension.  You can use the **lcd** (local cd) to change to the appropriate directory on Ubuntu if you were not already in that directory when you started ftp.
 * If you are **downloading** from the mainframe use **get** to download the member as an Ubuntu file.  Again, if necessary change to the local Ubuntu directory with the **lcd** ftp command.
@@ -488,7 +488,7 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 
 # Hercules Console
 
-The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the locaction where **MVS System Commands**, **JES/2 Commands**, and commands for **Hecules** itself can be entered.
+The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the locaction where **MVS System Commands**, **JES/2 Commands**, and commands for **Hercules** itself can be entered.
 
 **Credits:** some of the commands here were copied in part from the [MVS and JES2 Commands](http://www.bsp-gmbh.com/hercules/oscmds.html) site.
 
@@ -542,7 +542,7 @@ Note the commands and their subcommands can optionally have a space between them
 * **D U,TAPE,ONLINE** - display the online Tape devices (3400 devices)
 * **D U,TP,ONLINE** - display the online **Communication devices** (2700 & 3700 families of devices)
 * **D U,UR,ONLINE** - display the online **Unit Record** devices (3215 console, 1403 and 3211 printers, 2540 reader/punch)
-* **FBSPPILOT,SHUTDOWN** - Shut down the **BSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
+* **FBSPPILOT,SHUTDOWN** - Shut down the **FBSPPILOT** job which is what is used for automatic **ISL** (boot/shutdown)
 * **K A,10** - set display area 1 to 10 lines (this is the status area)
 * **K A,NONE** - no display areas, everything in the message area.  Note: You must clear the status area before you can remove it
 * **K A,5,4** - set display area A to 5 lines, and B to 4 lines, the remainder (10) is the general message area
@@ -654,7 +654,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 
 # TSO Commands
 
-To run TSO commands, either **F3** out of the menus, or type **TSO <the command>** at an RFE command prompt, or go to the **1 RFE/6 COMMNAND** option.
+To run TSO commands, either **F3** out of the menus, or type **TSO <the command>** at an RFE command prompt, or go to the **1 RFE/6 COMMAND** option.
  
 Note that when entering TSO commands that include data sets the primary index (the first part of the DSN before the period) will be the UserID and appended on the front of the DSN you entered.  To indicate a non-user dataset place a fully qualified data set names in single quotes.  For example if you are user HERC02 and enter **SYS2.JCLLIB** it will try to access **HERC02.SYS2.JCLLIB**, so to get the right reference enter **'SYS2.JCLLIB'** in single quotes.
 
@@ -676,7 +676,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **SYS1.NUCLEUS** - contains the system Nucleus itself along with supporting members
 * **SYS1.L1NKLIB** - contains executable programs that are part of the OS or are User provided.  Similar to **SYS1LPALIB** but its programs don't remain in the common **Link Pack Area (LPA)** of memory that are always resident in memor.  They are loaded as needed.
 * **SYS1.LPALIB** - similar to **SYS1.LINKLIB** in that it provides OS and User programs, but it is always resident in main memory in the common **Link Pack Area (LPA)** 
-* **SYSI.MACLIB** - Contains the macro library that is used by the OS and user written programs.
+* **SYS1.MACLIB** - Contains the macro library that is used by the OS and user written programs.
 * **SYS1.PROCLIB** - Contains useful JCL procedures that can be used within your own JCL scripts.
 * **SYS1.CMDLIB** - contain program library modules
 
@@ -731,7 +731,7 @@ Note this new **3270** console differs from the main **Hercules console** and th
 
 According to the manual, having these extra consoles can cause issues with WTO Buffers during ISL.  To detach the console added above enter this command **detach 010** from the Hercules or Web Console.  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.  
 
-## Specifying a Console and Dispaly Area
+## Specifying a Console and Display Area
 
 * **Message Area** - at the top of the console
 * **Status Area** - below Message area area	 
@@ -827,7 +827,7 @@ In the future I need to keep an eye on the number of jobs in the output queue (I
 
 ## WTO Buffer Shortage
 
-Received a console warning about **WTO Buffer Shortage - 80% Full** message.  This was due to defining a new 3215 Console 01F that was enabled, but not used.  The problem was resolved by issuing a **K Q,L=04** command from the **Master Console** (the Web interface).  **L=04** is the Console name for the Unit 01F 3215 console.  I tried initially running this command from my **01** 3270 console that I access from  3270 emulator, but it would not accept it (apparently needed to be done from the Master Console).  Here is the output, showing the **Display Consosoles (D C)** command before and after freeing the buffers, along with the **/K Q,L=04** command in between.
+Received a console warning about **WTO Buffer Shortage - 80% Full** message.  This was due to defining a new 3215 Console 01F that was enabled, but not used.  The problem was resolved by issuing a **K Q,L=04** command from the **Master Console** (the Web interface).  **L=04** is the Console name for the Unit 01F 3215 console.  I tried initially running this command from my **01** 3270 console that I access from  3270 emulator, but it would not accept it (apparently needed to be done from the Master Console).  Here is the output, showing the **Display Consoles (D C)** command before and after freeing the buffers, along with the **/K Q,L=04** command in between.
 
 ```
 HHC00008I /D C
