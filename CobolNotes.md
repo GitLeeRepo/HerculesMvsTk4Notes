@@ -65,7 +65,7 @@ Also contains optional AUTHOR, DATE-WRITTEN, DATE-COMPILED, etc.
 There a five basic data types in COBOL.  They are defined using the **PICTURE** clause in the FILE and WORKING-STORAGE sections
 * **S** - Signed integers
 * **9** - Unsigned integers
-* **V** - Assumed Deceimal, or **.** for an explicit decimal
+* **V** - Assumed Decimal, or **.** for an explicit decimal
 * **A** - Alphabetic character A-Z
 * **X** - Alphanumeric character A-Z, 0-9 and other characters
 
@@ -78,9 +78,9 @@ There a five basic data types in COBOL.  They are defined using the **PICTURE** 
 
 For output (such as reports) you can specify other symbols as part of the **PICTURE**, such as **$**, **+/-**, **,**
 
-* **PIC -9(5)** - preceed negative numbers with a minus sign.
-* **PIC 9(6).99** - an explicit decimal is dispayed/stored
-* **PIC ZZZ,ZZ9** - dispay the commas in the number.  The **Z** specifieds that leading zeros should be suppressed.
+* **PIC -9(5)** - proceed negative numbers with a minus sign.
+* **PIC 9(6).99** - an explicit decimal is displayed/stored
+* **PIC ZZZ,ZZ9** - display the commas in the number.  The **Z** specifies that leading zeros should be suppressed.
 
 Variables can be initialized using a **VALUE** clause
 

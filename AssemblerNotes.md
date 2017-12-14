@@ -43,7 +43,7 @@ Position | 1-8   | 10-14     | 16-71                 | 72
 * For **LM** (load multiple registers) and **STM** (store multiple registers) two registers are specified, in which those two registers and any registers between them are used for the operation.
 * The **control program** of the system/370 uses registers 0, 1, 13, 14, and 15
 * **Register 0** is a special case in that when **0** (zero) is specified for an Index or Base register, it means no Index or Base register is used.  In the case of **branch** statements it means don't branch.
-* The **Index Register** is rarely used, even though the **RX** format type instructions refer to them.  They are normally ommitted or set to zero.  When they are used they are used in the same way an index in an array is used in other languages.
+* The **Index Register** is rarely used, even though the **RX** format type instructions refer to them.  They are normally omitted or set to zero.  When they are used they are used in the same way an index in an array is used in other languages.
 
 ## Explicit Base Registers and Displacement Addressing
 
@@ -58,7 +58,7 @@ There are other formats which can be used, with the format used being dependent 
 * **A 4,8(,5)** - same as the above.  By not specifying the Index Register it is the same as setting it to zero.
 * **A 4,8(5)** - here 5 is the index register, not the base register.  You don't need the comma when the last item is excluded.
 
-In **Implicit Addressing** the subfield qualifiers can be ommitted and a default will be assumed.  For example **SS** (storage-storage) instructions have a format of **OpCode D1(L1,B1),D2(L2,B2)** the subfields can be ommitted **OpCode D1,D2** with the base address being provided by the assembler (if multiple base register addresses are used, the one with the smallest offset is assume) .  For Example, **MVC PRTPRICE,INPRICE**  Or you can specify some, but not all of the subfields as in **MVC PRTDESCR(50),INDESCR** which includes the length in the first operand, but doesn't include the base register, and the second operand doesn't specify either.  For every symoblic label defined in a program the assembler tracks its length, which is why it knows what to use when it is not specified.
+In **Implicit Addressing** the subfield qualifiers can be omitted and a default will be assumed.  For example **SS** (storage-storage) instructions have a format of **OpCode D1(L1,B1),D2(L2,B2)** the subfields can be omitted **OpCode D1,D2** with the base address being provided by the assembler (if multiple base register addresses are used, the one with the smallest offset is assume) .  For Example, **MVC PRTPRICE,INPRICE**  Or you can specify some, but not all of the subfields as in **MVC PRTDESCR(50),INDESCR** which includes the length in the first operand, but doesn't include the base register, and the second operand doesn't specify either.  For every symbolic label defined in a program the assembler tracks its length, which is why it knows what to use when it is not specified.
 
 ### Explicit Operand Formats based on Instruction Type
 
@@ -80,8 +80,8 @@ Where R-Register, S=Storage, D=Displacement, L=length, B=Base Register, X=Index 
 
 ## Instruction Set Overview
 
-The instruction set listed here consists of the following types of instructins:
-* Machine Instructions (nemonic) - translates directly to machines code using a mnemonic name (easy to remember name)
+The instruction set listed here consists of the following types of instructions:
+* Machine Instructions (mnemonic) - translates directly to machines code using a mnemonic name (easy to remember name)
 * Macro Instruction - an instruction which represents multiple individual Machine Instructions to accomplish a task
 * Assembler Command (Directive) - provides the assembler with processing instructions, but doesn't get allocated in the object code
 
@@ -108,7 +108,7 @@ Operator   | Description                                                        
 -----------|----------------------------------------------------------------------|----------|--------------------
 **DC**     | Define Constant.  Used in a **Data Definition** section to define an area in the object code to be allocated and initialized to the value specified, which can be referenced by a symbolic label.  Used in conjunction with **Type Code** operands that define its storage type, along with the value itself.  Not truly a constant since it can be updated. | AsmDir |N/A
 **DS**     | Define Storage.  Used in a **Data Definition** section to define a data storage area that can be referenced by a symbolic label.  Memory is allocated, but not initialized as in the case of a **DC**.  Used in conjunction with **Type Code** operands that define the type of data stored at the location. | AsmDir | N/A
-**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros.  Some of the Hex patterns include: 20=digit selector; 21=start significant; 22=field separater; 40=blank; 4B=period; 5B=dolar sign; 5C=astrisk; 6B=comma | SS | D1(L1,B1),D2(B2)
+**ED**     | Edit. Used to change numeric data in a **packed decimal** prior to printing it.  Uses patterns to do such things as suppress leading zeros.  Some of the Hex patterns include: 20=digit selector; 21=start significant; 22=field separator; 40=blank; 4B=period; 5B=dollar sign; 5C=asterisk; 6B=comma | SS | D1(L1,B1),D2(B2)
 **L**      | Load | RX | R1,D2(X2,B2)
 **LA**     | Load Address. | RX | R1,D2(X2,B2)
 **MVC**    | Move Character.  Moves data from the second operand to the first.  Ex., `MVC   op1,op2` | SS | D1(L1,B1),D2(B2)
@@ -125,7 +125,7 @@ In a business environment most arithmetic is done using **packed decimal** field
 Operator   | Description                                                          | Format   | Operands
 -----------|----------------------------------------------------------------------|----------|--------------------
 **AP**     | Add decimal.  The operand 2 is added to operand 1 with the result stored in operand 1.  Ex., `AP     op1,op2` | SS | D1(L1,B1),D2(L2,B2)
-**DP**     | Divide decimal - Operand 2 (the divisor) is divided into Operand 1 (the dividend) with the result being placed into Operand 1.  This result contains both the quotient and the remainder.  The remainder is in the right most bytes of operand 1 (which can be up to 16 bytes).  The remainder is alway the same size as the divisor in operand 2 which can be up to 8 bytes long. | SS | D1(L1,B1),D2(L2,B2)
+**DP**     | Divide decimal - Operand 2 (the divisor) is divided into Operand 1 (the dividend) with the result being placed into Operand 1.  This result contains both the quotient and the remainder.  The remainder is in the right most bytes of operand 1 (which can be up to 16 bytes).  The remainder is always the same size as the divisor in operand 2 which can be up to 8 bytes long. | SS | D1(L1,B1),D2(L2,B2)
 **MP**     | Multiply decimal - Operand 1 and 2 are multiplied with the result placed in operand 1. Ex., `MP    op1,op2` | SS | D1(L1,B1),D2(L2,B2)
 **SP**     | Subtract decimal.  Operand 2  is subtracted from operand 1 with the result stored in operand 1.  Ex., `SP    op1,op2` | SS | D1(L1,B1),D2(L2,B2)
 **ZAP**    | Zero-and-add.  Operand 1 is zeroed out, and then operand 2 is added to it. | SS | D1(L1,B1),D2(L2,B2)
@@ -137,7 +137,7 @@ Operator   | Description                                                        
 -----------|----------------------------------------------------------------------|----------|--------------------
 **B**      | Unconditional Branch | RX/RR | R1,D2(X2,B2)
 **BALR**    | Branch-and-link-register.  A two byte instruction that places the address of the next instruction in the first register specified and then branches to the address of the second register specified. This allows control to return to the next statement after the branch has completed its instructions. There are also cases when the second register is set to zero and no branch takes place. | RR | R1,R2
-**BC**     | Branch-on-condition.  Uses a **mask** in bits 8-11 to compare to the condition code.  If it matches the condition code it branches to the address in bits 12-31, otherwise it continues with the next instruction.  If the prior **CP** compares two equal operands it will have **condition code** bits **1000** so if the mask is also **1000** (testing for equality) it will branch.  If operand 1 is less than operand 2 it will have a **condition code** **0100** so it will need an equivellent mask if branching is desired in this case.  If less than or equal is what is desired for the comparison the the mask would be **1100** or **1010** for operand 1 being greater than or equal to operand 2. | SS | M1,D2(X2,B2)
+**BC**     | Branch-on-condition.  Uses a **mask** in bits 8-11 to compare to the condition code.  If it matches the condition code it branches to the address in bits 12-31, otherwise it continues with the next instruction.  If the prior **CP** compares two equal operands it will have **condition code** bits **1000** so if the mask is also **1000** (testing for equality) it will branch.  If operand 1 is less than operand 2 it will have a **condition code** **0100** so it will need an equivalent mask if branching is desired in this case.  If less than or equal is what is desired for the comparison the mask would be **1100** or **1010** for operand 1 being greater than or equal to operand 2. | SS | M1,D2(X2,B2)
 **BE**     | Branch on operand 1 and operand 2 being equal.  Used after a compare instruction. | RX/RR | R1,D2(X2,B2)
 **BH**     | Branch on operand 1 being higher than operand 2.  Used after a compare instruction. | RX/RR | R1,D2(X2,B2)
 **BL**     | Branch on operand 1 being lower than operand 2.  Used after a compare instruction. | RX/RR | R1,D2(X2,B2)
@@ -164,7 +164,7 @@ I/O instructions are not handled directly by the user program, but instead deleg
 
 Operator   | Description                                                          | Format  | Operands
 -----------|----------------------------------------------------------------------|---------|--------------------
-**CLOSE**  | format: **CLOSE(DBCName, option, DCBName, option,...)**.  Closes the data sets that were opened for input and/or output.  The option (Input, Output) can be ommitted but a placeholder comma must be included if it is not the last one specified, **CLOSE(MyDataset,,PrtOut)** for example. | Macro | N/A
+**CLOSE**  | format: **CLOSE(DBCName, option, DCBName, option,...)**.  Closes the data sets that were opened for input and/or output.  The option (Input, Output) can be omitted but a placeholder comma must be included if it is not the last one specified, **CLOSE(MyDataset,,PrtOut)** for example. | Macro | N/A
 **DCB**    | Data Control Block (record formats, record lengths, block sizes, data set names). For example: `INVMAST  DCB DSORG=PS,RECFM=F,MACRF=GM,BLKSIZE=50,LRECL=50, DDNAME=INVMAST,EODAD=INVEOF'.  The **MACRF=GM** specifies this is for a **GET** operation in which the record buffer is **moved** into a defined program buffer. | Macro | N/A
 **GET**    | reads a record from a data set.  Format: **GET DCBName, WorkArea)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set, and the optional WorkArea for the data to be stored in.  It is optional in that you can use either the programs own work area (in which you want to specify it here) or the MVS buffer area provided by the Supervisor program (in which case you don't need to specify a work area here).  This is determined by **MACRF** parameter on the **DCB** definition.  **MACRF=GM** indicates the buffer should be **moved** to the designated work area in the user program for the **GET** operation, while **MACRF=GL** indicates it should use the **local** MVS Supervisor provided buffer for the **GET** operation. | Macro | N/A
 **OPEN**   | format: **OPEN (DCBName, option, DCBName, option,...)** with the DCBName being the Symbolic Reference name for a DCB Statement that defines the data set. | Macro |N/A

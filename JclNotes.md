@@ -6,7 +6,7 @@ Notes on the Job Control Language (JCL)
 
 ## IBM Manuals
 
-* [JCL Reference zos](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
+* [JCL Reference z/OS](https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.ieab600/toc.htm)
 * [JCL Users Guide PDF](http://publibz.boulder.ibm.com/epubs/pdf/iea2b560.pdf)
 * [JCL User Guide MVS](http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA5B506/CCONTENTS?)
 * [JCL Reference PDF](http://publibz.boulder.ibm.com/epubs/pdf/iea2b6a0.pdf)
@@ -45,7 +45,7 @@ It can be helpful to look at JCL as a series of steps the computer goes through 
 
 # Creating a JCL Program
 
-You must allocate a data set to contains the JC, itL must have a fixed-block format (RECFM=FB) with a logical record length of 80 (LRECL=80). 
+You must allocate a data set to contain the JCL, it must have a fixed-block format (RECFM=FB) with a logical record length of 80 (LRECL=80). 
 
 # Format of the JOB, EXEC, and DD statements
 
@@ -259,7 +259,7 @@ Will result in a **ddname** of **FT06F001**, requiring this **DD** statement
 
 Placing **/\*** in columns 1 and 2 marks the end of an **input stream**
 
-## NUL (//) Statement
+## NULL (//) Statement
 
 Used to mark the end of the entire **Job**.  While not required, it is considered good programming practice to end your jobs with **//**.
 

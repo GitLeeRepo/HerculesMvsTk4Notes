@@ -298,10 +298,10 @@ For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL 
 
 ** DSLIST (data set list) command (1 RFE/3 UTIL/4 DSLIST)
 
-The listing specifieds:
+The listing specifies:
   * **Volume** - the volume it is on
   * **ORG** - the dataset organization, whether it is a **PO** partitioned dataset
-  * **FMT** - Dataset format: **F** fixed record length with only one record per block; **FB** fixed block (records are fixed lengths with the bock size being some multiple of the record size); **VB** variable block (records are variable in size with a byte on the front that has the record length); **U** undfined with no fixed structure (typical for compiled binary files)
+  * **FMT** - Dataset format: **F** fixed record length with only one record per block; **FB** fixed block (records are fixed lengths with the bock size being some multiple of the record size); **VB** variable block (records are variable in size with a byte on the front that has the record length); **U** undefined with no fixed structure (typical for compiled binary files)
   * **LRCL** - Logical Record Length
   * **BLKSZ** - Block size - by default files are read one block at a time, not one record at a time
   
@@ -316,7 +316,7 @@ The listing specifieds:
 
 * The entire data set name cannot be more that 44 characters.
 * The segment portion between the periods cannot be more that 8 characters
-* Allowable characters - you can use several special characters, wuch as $,#,@,%, etc. as long as they are not the first character
+* Allowable characters - you can use several special characters, such as $,#,@,%, etc. as long as they are not the first character
 
 ### Disk Geometry
 
@@ -341,7 +341,7 @@ Refer to [ibmmainframes.com](http://ibmmainframes.com/references/disk.html) for 
 ### Data Set Allocation
 
 * Specify the PRIMARY SPACE QUANTITY - size in tracks or cylinders - this is the required space to be created
-* Specify the SECONDARY SPACE QUANTITY - size in tracks or cylinders - these are the exents that allow the data set to be increased by that size.  You can have up to 16 extents per volume.  There is no guaratee you will get the extended space.
+* Specify the SECONDARY SPACE QUANTITY - size in tracks or cylinders - these are the extents that allow the data set to be increased by that size.  You can have up to 16 extents per volume.  There is no guarantee you will get the extended space.
 
 ### Data Set Creation Using the RFE Productivity Utilities
 
@@ -351,7 +351,7 @@ From within **RFE** go to **3 UTILITIES** **2 DATASET**
 
 * On the **ALLOCATE NEW DATA SET** screen specify:
   * RECORD FORMAT (U, FB, VB, F)
-  * LOCGICAL RECORD LENGTH
+  * LOGICAL RECORD LENGTH
   * PHYSICAL BLOCK SIZE
   * ALLOCATION UNIT (**T = TRACK; C = CYLINDER;** B = BLOCK; K = KILOBYTES; M = MEGABYTES; R = RECORDS)
   * PRIMARY SPACE QUANTITY
@@ -359,7 +359,7 @@ From within **RFE** go to **3 UTILITIES** **2 DATASET**
   * NUMBER OF DIRECTORY BLOCKS
   * OPTIONAL: VOLUME AND UNIT - DEFAULTS WILL BE PROVIDED
   
-  **Important:** In order to create a **PDS** (Partitioned Data Set) you need to specify a non-zero number for the **NUMBER OF DIRECTORY BLOCKS**.  On the other hand, if you want to create a **sequential** data set then be sure to set it to zero.  Each **PDS** has one or more directory blocks where it stores the 8 byte **Member Name**, the starting location for the first record in that **Member**, along with some additional optional information.  I found with a **PDS** with 2 directory blocks allocate I was able to store 11 **Members** before filling the directory blocks, so 5.5 **Members** per dirctory block.
+  **Important:** In order to create a **PDS** (Partitioned Data Set) you need to specify a non-zero number for the **NUMBER OF DIRECTORY BLOCKS**.  On the other hand, if you want to create a **sequential** data set then be sure to set it to zero.  Each **PDS** has one or more directory blocks where it stores the 8 byte **Member Name**, the starting location for the first record in that **Member**, along with some additional optional information.  I found with a **PDS** with 2 directory blocks allocate I was able to store 11 **Members** before filling the directory blocks, so 5.5 **Members** per directory block.
   
 * Press enter when complete to generate the data set
 
@@ -386,7 +386,7 @@ Also note that the identifier on the first line before the **JOB**, in this case
 
 ## Execution Statement and DD Statement
 
-The **Execution Statement** is that section of the JCL that telss JES2 what program to execute.  It is followed by a series of **DD Statements** which define the data (both input and output) for the particular **EXECUTION**. An example from the same COBOL program as above would be:
+The **Execution Statement** is that section of the JCL that tells JES2 what program to execute.  It is followed by a series of **DD Statements** which define the data (both input and output) for the particular **EXECUTION**. An example from the same COBOL program as above would be:
 
 ```
 //PRIMES  EXEC COBUCG,
@@ -427,11 +427,11 @@ An assembly language program for generating prime numbers.
 
 # JES2
 
-Note: Refer to the [ES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/HerculesMvsTk4Notes.md#jes2-commands) section below for the list of **JES2 Commands** entered on the Hercules Console.
+Note: Refer to the [JES2 Commands](https://github.com/GitLeeRepo/HerculesMvsTk4Notes/blob/master/HerculesMvsTk4Notes.md#jes2-commands) section below for the list of **JES2 Commands** entered on the Hercules Console.
 
 ## Default TK4- Printer/Reader/Punch setup
 
-The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selcted by the **MSGCLASS** in **JCL** and are mapped as follows:
+The printers in Hercules TK4- are routed to files in the **prt** subfolder of the Hercules TK4- installation in Ubuntu.  There are 3 printers setup, which map to the files **prt00e.txt, prt00f.txt, prt002.txt**.  They can be selected by the **MSGCLASS** in **JCL** and are mapped as follows:
 
 JCL MSGCLASS | SYSOUT=?     | JES2 Printer | UNIT | Ubuntu File Name
 -------------|--------------|--------------|------|-----------------
@@ -450,12 +450,12 @@ Note: You can specify MSGCLASS=A in your JCL and your JCL output will go to Prin
 
 ## Using the 3270 Emulator's File Transfer Feature IND$FILE
 
-This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$FILE** program from within **TSO**, which is the IBM method for transfering files using the 3270.
+This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$FILE** program from within **TSO**, which is the IBM method for transferring files using the 3270.
 
 * While logged onto the mainframe in the **c3270** emulator, exit the **RFE** menus all the way back to the **TSO** prompt.
 * Select **File Transfer** from the **c3270** File menu
 * Follow the prompts (send or receive, filenames, etc).  
-* Note that when transferring a member in a data set use the standard **'USERID.XXX.YYY(MEMBER)'** notation.  Note the inclusion of the single quotes, the fully qualified name is required, so the quotes are neccessary.
+* Note that when transferring a member in a data set use the standard **'USERID.XXX.YYY(MEMBER)'** notation.  Note the inclusion of the single quotes, the fully qualified name is required, so the quotes are necessary.
 * If uploading to the mainframe to a **PDS** it is not necessary to provide the record formats and disk geometry.  But for a **PS** that is new you should provide this info when prompted
 
 # Using FTP
@@ -464,9 +464,9 @@ This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$
 * From Ubuntu command line enter **ftp localhost 2100** and logon to your **TSO** account
 * If you type **ls** at this point you can see all the datasets on the system, since you are essentially at the root.
 * Change to the **PDS** you want to upload to or download from, ex **cd HERC02.TEST.JCL**.  Now if you type **ls** you will only see the members of that **PDS**
-* Type **ASCII** to make sure the **FTP** program is set to ascii mode.
+* Type **ASCII** to make sure the **FTP** program is set to ASCII mode.
 * Important: Make sure you are not in the **PDS** you are uploading to because it will place a lock, and from within ftp you will get a **550** not authorized message.  Doesn't seem to be an issue downloading from the mainframe.
-* If you are **uploading** to the mainframe use the **put** or **mput** ftp commands to upload the file (remember the **Member Name** is limitted to 8 characters and does not have a file extension.  You can use the **lcd** (local cd) to change to the appropriate directory on Ubuntu if you were not already in that directory when you started ftp.
+* If you are **uploading** to the mainframe use the **put** or **mput** ftp commands to upload the file (remember the **Member Name** is limited to 8 characters and does not have a file extension.  You can use the **lcd** (local cd) to change to the appropriate directory on Ubuntu if you were not already in that directory when you started ftp.
 * If you are **downloading** from the mainframe use **get** to download the member as an Ubuntu file.  Again, if necessary change to the local Ubuntu directory with the **lcd** ftp command.
 
 # Logging off and Shutdown the system
@@ -488,17 +488,17 @@ These steps assume auto start and shutdown are enabled (they are by default).  I
 
 # Hercules Console
 
-The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the locaction where **MVS System Commands**, **JES/2 Commands**, and commands for **Hercules** itself can be entered.
+The **Hercules console** is where you started the OS, and it now functions as the **systems console** where status and error messages will be displayed.  It is also the location where **MVS System Commands**, **JES/2 Commands**, and commands for **Hercules** itself can be entered.
 
 **Credits:** some of the commands here were copied in part from the [MVS and JES2 Commands](http://www.bsp-gmbh.com/hercules/oscmds.html) site.
 
 ## MVS Console Commands 
 
-These are entered from **Hercules prompt**, which requireds that a **/** be entered before the MVS commands with no space following.
+These are entered from **Hercules prompt**, which requires that a **/** be entered before the MVS commands with no space following.
 
 Note: Several of the MVS commands are under the **JES2 Related MVS Commands** section below.  Ones not directly related to **JES2** are shown here.
 
-Note the commands and their subcommands can optionally have a space between them or no space between them, for example **$DA** or **$D A**.  In the list below I chose the no space option, just keep in mind the first letter is the command and the subseqent letters before a comma, or other delimiter are secondary commands.
+Note the commands and their subcommands can optionally have a space between them or no space between them, for example **$DA** or **$D A**.  In the list below I chose the no space option, just keep in mind the first letter is the command and the subsequent letters before a comma, or other delimiter are secondary commands.
 
 **Shortcuts used below**:
 
@@ -513,21 +513,21 @@ Note the commands and their subcommands can optionally have a space between them
 * **MR** - **MSGRT** - message route
 * **PT** - **STOPTR** - stop or reduce the information displayed by the **TRACK** command
 * **R** - **REPLY** - reply to **Action Commands**
-* **S** - **START** - start a job (in Catagloged Procedure), a reader or writer, GTF (Generalized Trace Facility), MF/1 Recording Facility, TSO/VTAM.
+* **S** - **START** - start a job (in Cataloged Procedure), a reader or writer, GTF (Generalized Trace Facility), MF/1 Recording Facility, TSO/VTAM.
 * **SE** - **SEND** - Send a message to another console, user, or broadcast
 * **SP** - **STOPMN** - stops the continual display of information that was started with the **MONITOR** command
-* **TR** - **TRACK** - periodcially display info on jobs and users (requires a display area to be set)
+* **TR** - **TRACK** - periodically display info on jobs and users (requires a display area to be set)
 * **U** - **UNLOAD** - Unload (Dismount) a tape or DASD drive
 * **V** - **VARY** - used to configure **device**, **channel**, and **processors**
 * **W** - **WRITELOG** - Queue the **System Log** for printing and control what printer device Class is used for the System log
-* **Z** - **HALT** - record staticsics prior to shutting down the operating system
+* **Z** - **HALT** - record statistics prior to shutting down the operating system
 
 **Example Commands**:
 
 * **C jobname** - terminates the job/process
 * **C U=userId** - cancels (terminates) the specified users, e.g. **/C U=HERC02**
 * **D A,L** - list active jobs, tasks, and users
-* **D C** - diplay **console** information
+* **D C** - display **console** information
 * **D C,K** - display detailed **Control** settings for a **console**
 * **D J,L** - list job information
 * **D M** - display CPU, device, and Main Storage information
@@ -555,7 +555,7 @@ Note the commands and their subcommands can optionally have a space between them
 * **M 282,VOL=(sl,222222),use=private** - specify that volume labeled 222222 is mounted to device 282.  Private ensures the OS won't used it for temporary files
 * **MN JOBNAMES,T** - continually display job information.  The **T** ensures the job number and time are displayed.
 * **MN SESS,T** - display info on the **TSO User** whenever they log on or off
-* **MN DSNAME** - dispay the first non-temporary DSN on a volume whenever it is mounted
+* **MN DSNAME** - display the first non-temporary DSN on a volume whenever it is mounted
 * **MN SPACE** - display the space available on the device whenever it is demounted
 * **MN STATUS** - display the Disposition (KEEP, CATLG, UNCATLG) of a data set whenever it is freed
 * **MR D=(U,A),L=Z** - change the output location of D U and D A commands to the **Z (Message Area**)
@@ -569,7 +569,7 @@ Note the commands and their subcommands can optionally have a space between them
 * **SE 'Hello',CN=03** - send the message 'Hello' to console 03
 * **SE 'Hello',BRDCST** - send a broadcast message to anyone receiving broadcast messages
 * **SE 'Hello' HERC02** - send the message 'Hello' to user HERC02 (note no comma in this case)
-* **SE 'Welcome',SAVE** - save the meessage to the **Broadcast LIST** (the first will be 001) use this message id to send broadcat messages.  These message in the **LIST** will display whenever someone logs on or to whom it is specifically set.
+* **SE 'Welcome',SAVE** - save the message to the **Broadcast LIST** (the first will be 001) use this message id to send broadcast messages.  These message in the **LIST** will display whenever someone logs on or to whom it is specifically set.
 * **SE LIST** - list **Broadcast** messages saved with the **SE msg,SAVE** command
 * **SE msgno** - send the message associated with the number in the message **LIST** as a broadcast message
 * **SE msgno,DELETE** - delete the specified message from the message **LIST**
@@ -580,11 +580,11 @@ Note the commands and their subcommands can optionally have a space between them
 * **V 010,OFFLINE** - place the console offline
 * **V (282,283,287),ONLINE** - place the specified devices (by their **Unit Number** online
 * **W class** - write the **System Log** to the queue to be printed for the specified output class.
-* **Z EOD** - record statisics prior to shutting down the operating system
+* **Z EOD** - record statistics prior to shutting down the operating system
 
 ## JES/2 Commands
 
-JES/2 command begin with a **$**, but as with the **MVS System Commands** above they are preceeded by a **/** slash to let Hercules know the command is for the OS Console.
+JES/2 command begin with a **$**, but as with the **MVS System Commands** above they are proceeded by a **/** slash to let Hercules know the command is for the OS Console.
 
 * **$AA** - Release all held jobs
 * **$A ' jobname'** - Release specific job. Quotes required.
@@ -595,7 +595,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$DA,ALL** - Status of all JES2 functions
 * **$D ' jobname'** - Display JES status of job or user
 * **$DF** - display the backlog of work for the output devices
-* **$DI** - display the initators, including their class
+* **$DI** - display the initiators, including their class
 * **$DN** - Display input queues
 * **$DQ** - Display queues
 * **$DU** - display JES2 devices such as readers, punches and printers
@@ -603,8 +603,8 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$E ' jobname'** - Restart job after it completes
 * **$HA** or **/$H ' jobname'** - Hold all jobs or hold the specified job
 * **$IPRTn** - Interrupt printing and return job to queue
-* **$LSYS** - display the systems connected to the **JES2** queing system.   Multiple mainframe systems can connect to the same queue.
-* **$P** - Stop all **JES2** processing, all printers, punches, and System Iniators will stop receiving new work and will becom inactive, although new jobs will be accepted through input devices.   Do this before shutting down JES with **$PJEST2**.
+* **$LSYS** - display the systems connected to the **JES2** queuing system.   Multiple mainframe systems can connect to the same queue.
+* **$P** - Stop all **JES2** processing, all printers, punches, and System Initiators will stop receiving new work and will become inactive, although new jobs will be accepted through input devices.   Do this before shutting down JES with **$PJEST2**.
 * **$P ' jobname'** Purge a job (including spooled output)
 * **$PI3** - Stop an initiator
 * **$PJES2** - shutdown **JES2**.  If you receive a message saying it can't be shut down (typical message says "JES2 is not dormant"), and you can't resolve the reason why, then use the **ABEND** parameter listed next. 
@@ -620,7 +620,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **$SRDRx** - start a reader or restart a paused reader, ex **$SRDR1**
 * **$SI3** or **/$SPRT2**  - Start an initiator or printer
 * **$TI3,C=AB** - Assign job classes for an initiator
-* **$TA** - disaply automated jobs (jobs that run at a specific time or schedule)
+* **$TA** - display automated jobs (jobs that run at a specific time or schedule)
 * **$TA,I=30,'$DU'** - Automate the command in quotes, in this case **DU**, running it every 30 seconds.
 * **$TA4,CANCEL** - Cancel automated job number 4.  Use **$TA** to see the list of automated jobs.
 * **$TJOBx,C=A** - Change the class on a queued job.  The **CLASS** in JCL
@@ -649,7 +649,7 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 * **detach** - detach a device from a specific MVS Unit
 * **devlist** - display a list of devices that you can page up and down
 * **devinit 00C jcl/vsizehs3.jcl** - instruct **Card Reader 00C** to run the JCL Job
-* **maxrates** - display the maximimu MIPS and I/O rates for a given period
+* **maxrates** - display the maximum MIPS and I/O rates for a given period
 * **hst** - display a history of the commands entered
 
 # TSO Commands
@@ -661,7 +661,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **DSN** - Without parameters it will list data set names in use by the current users.  Specify **DSN** <the data set name> to get the users or jobs that are currently using that data set
 * **LISTALC STATUS** - list the data sets currently allocated by the user.  This will include data sets allocated at TSO logon, such as SYS1.HELP, SYS2.HELP, and the **CMDPROC** datasets (USERID.CMDPROC, SYS1.CMDPROC, SYS2CMDPROC) that contains **CLIST** command procedures.
 * **LISTCAT** - To list the catalog files FOR the current user
-* **LISTSPC** - list space (size) related statistics for a data set of or data sets.  Without any parameters it will prompt for the data ets, otherwise specify them as a parameter.
+* **LISTSPC** - list space (size) related statistics for a data set of or data sets.  Without any parameters it will prompt for the data set, otherwise specify them as a parameter.
 * **PROFILE** - shows the current profile settings, for example either **MSGID** or **NOMSGID**, **PREFIX(thePrefixName)** or **NOPREFIX** 
 * **PROFILE MSGID** - this will set the profile so that Msg IDs are displayed before the TSO message
 * **PROFILE NOMSGID** - turns off the display of the Msg ID before the message 
@@ -674,7 +674,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 
 * **SYS1.PARAMLIB** - system parameters that are read during startup
 * **SYS1.NUCLEUS** - contains the system Nucleus itself along with supporting members
-* **SYS1.L1NKLIB** - contains executable programs that are part of the OS or are User provided.  Similar to **SYS1LPALIB** but its programs don't remain in the common **Link Pack Area (LPA)** of memory that are always resident in memor.  They are loaded as needed.
+* **SYS1.L1NKLIB** - contains executable programs that are part of the OS or are User provided.  Similar to **SYS1LPALIB** but its programs don't remain in the common **Link Pack Area (LPA)** of memory that are always resident in memory.  They are loaded as needed.
 * **SYS1.LPALIB** - similar to **SYS1.LINKLIB** in that it provides OS and User programs, but it is always resident in main memory in the common **Link Pack Area (LPA)** 
 * **SYS1.MACLIB** - Contains the macro library that is used by the OS and user written programs.
 * **SYS1.PROCLIB** - Contains useful JCL procedures that can be used within your own JCL scripts.
@@ -690,7 +690,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 * **SYS1.PARAMLIB(smfprm00)** - has **SID** where you can change the System ID (hostname equiv).  Changing it could potential cause  issues with some programs.
 * **SYS1.PARAMLIB(VATLST00)** - has the list of **DASD volumes**.  If you add any, make sure to end them to the end, so you won't effect a critical volume during ISL
 * **SYS1.JES2PARM(JES2PARM)** - has all the **JES2 parameters**, including **Printer Definitions**
-* **SYS1.SYSGEN.CNTL(IOGEN)** - has the mappings between diffrent device types and device Ids.  When creating a new **DASD** device check this Member to make sure the **Cua** device number you are planning to use is valid for that **DASD** Type.
+* **SYS1.SYSGEN.CNTL(IOGEN)** - has the mappings between different device types and device Ids.  When creating a new **DASD** device check this Member to make sure the **Cua** device number you are planning to use is valid for that **DASD** Type.
 
 # Connecting to a Console with the c3270 Emulator
 
@@ -702,7 +702,7 @@ To bring the **0010 3270 CONS** online do the following:
 
 * Type **ATTACH 010 3270 CONS** at the Hercules prompt (either from the existing console or the Web Console).  Notice this is a **Hercules Command** and not an **MVS** or **JES2** command.
 * With the **c3270 emulator** logon to the mainframe with **CONS@localhost:3270**.  
-* Back at the other main console or Web Inerface type **/VARY 010,CONSOLE,AUTH=ALL**.  This will activate the Console on the **c3270** and should display output similiar to the following:
+* Back at the other main console or Web Interface type **/VARY 010,CONSOLE,AUTH=ALL**.  This will activate the Console on the **c3270** and should display output similar to the following:
 
   ```
   05.39.23           IEE349I CONSOLES
@@ -767,7 +767,7 @@ To set the **Message Display** so it displays the **Job Number** enter the follo
 ## Deleting Messages
 
 * To **non-action messages** from the **Message Area** using the cursor on the message line you want to delete and hit return, this message and all messages above will be deleted
-* To delete **action message** with cursor postion cursor on the astricks or @ and press enter.
+* To delete **action message** with cursor position cursor on the asterisks or @ and press enter.
 
 ## Console Keyboard
 
@@ -813,11 +813,11 @@ From: [Hercules FAQ](http://www.jaymoseley.com/hercules/faq/mvsfaq04.htm#USER027
 
 Why do I receive the message: IER040A INSUFFICIENT WORK UNITS when I attempt to use the MVT Sort/Merge program under MVS 3.8?
 
-The MVT Sort/Merge utility requires at least three (and may use up to a maximum of 32) intermediate storage datasets.  Unlike current Sort/Merge utilities (such as DFSORT or Syncsort), the MVT Sort/Merge is unable to dynamically allocate datasets for use as intermediate storage.  You must supply DD statements for the DD Names SORTWK01, SORTWK02, SORTWK03 ... SORTWK32.  Also the SORTWK?? datasets must reside on 2311/2314 DASD.  Although some efforts have been reported of using tape datasets with the MVT Sort/Merge under Hercules, it is probably a better idea to utilize DASD for the SORTWK?? datasets.  If the MVT Sort/Merge is called indirectly (as by a COBOL program that includes the SORT verb), you must also supply SORTWK?? DD cards to the EXEC step.
+The MVT Sort/Merge utility requires at least three (and may use up to a maximum of 32) intermediate storage datasets.  Unlike current Sort/Merge utilities (such as DFSORT or Syncsort), the MVT Sort/Merge is unable to dynamically allocate datasets for use as intermediate storage.  You must supply DD statements for the DD Names SORTWK01, SORTWK02, SORTWK03 ... SORTWK32.  Also the SORTWK?? data sets must reside on 2311/2314 DASD.  Although some efforts have been reported of using tape datasets with the MVT Sort/Merge under Hercules, it is probably a better idea to utilize DASD for the SORTWK?? data sets.  If the MVT Sort/Merge is called indirectly (as by a COBOL program that includes the SORT verb), you must also supply SORTWK?? DD cards to the EXEC step.
 
 ## JES2 Resource Shortage
 
-I received a **JES2 Resource Shortage** message which froze my 3270 termial.  I was unable to log back on because I could not terminate the users **TSO** session with the **/C U=UserName** system console command (it just didn't do anything, it normally works fine).  I tried to logon with another user and it would just get stuck indefinately at the logon screen.
+I received a **JES2 Resource Shortage** message which froze my 3270 terminal.  I was unable to log back on because I could not terminate the users **TSO** session with the **/C U=UserName** system console command (it just didn't do anything, it normally works fine).  I tried to logon with another user and it would just get stuck indefinitely at the logon screen.
 
 Turns out I could not run any commands that rely on **JES2**, which is a lot, including a lot of services need to reboot the system (ISL) to the **TSO** logon.  It couldn't get past trying to load the **BSPPILOT** job which is used for automating a lot off the **ISL** process.  On restart it would show the **JES2 Resource Shortage - JOES** message, which relates to the output queue.
 
