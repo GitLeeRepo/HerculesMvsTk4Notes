@@ -105,7 +105,7 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
 ## Role of Hercules vs TK4-
 
 * **Hercules** is the emulator of the IBM mainframe Environment, which includes the machine level instruction set and the devices for **System/370**, **System/390**, and **zSeries/System z**, which are all one the hardware side of things.  It is not the operating system, but provides the environment for the operating system to run on.  It provides an environment to run public domain operating systems such as  **OS/360**, **DOS/360**, **DOS/VS**, **MVS** (see all the variations below), **VM/370**, and **TSS/370**.  It can also run **OS/390**, **z/OS**, **VSE/ESA**, **z/VSE**, **VM/ESA**, **z/VM**, **TPF/ESA**, and **z/TPF** are licensed products and cannot be legally run.
-* **TK4- (OS/VS2 MVS 3.8j)** - Is the **MVS** operating system itself, in this case **OS/VS2 MVS 3.8j** which ran on the **System/370**.  Apart from the operating system itself it also provides additional functionality such as scripting automatic **IPL**, integrations with the host OS (Ubuntu in my case), etc.
+* **TK4- (OS/VS2 MVS 3.8j)** - Is the **MVS** operating system itself, in this case **OS/VS2 MVS 3.8j** which ran on the **System/370**.  Apart from the operating system itself it also provides additional functionality such as scripting automatic **IPL**, integration with the host OS (Ubuntu in my case), etc.
 
 ## MVS Concepts
 
@@ -119,7 +119,7 @@ Most of these docs will be for Z/OS, but many things still apply for earlier OSe
   * **z/OS** - MVS branded as **z/OS** 
   
 * **Catalogs** are used to organize data sets.  By default the data sets you create are stored in the **SYS1.UCAT.TSO** master catalog.  To see a list of Catalogs owned by the user type the **TSO** command **LISTCAT**.
-* **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Datasets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a secondary size in the same units which will increase the size by that amount if needed, which will create additional **extents**.  If secondary size increases aren't specified it won't grow beyond the initial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
+* **MVS** has a **record oriented/block oriented file system**, not byte oriented like Linux/Windows.  When creating Data sets you must specify a lot more detail, such as record and block size, the size in tracks or cylinders as the initial primary size, a secondary size in the same units which will increase the size by that amount if needed, which will create additional **extents**.  If secondary size increases aren't specified it won't grow beyond the initial primary size provided.  When creating data sets you often have to factor in individual disk geometries for the volume used in order to get optimal disk space usage.
 
 # Terminology
 
@@ -131,13 +131,13 @@ name).
 * **BLOCK** - for non-VSAM data sets the storage unit that holds the **RECORDS** and is itself stored in **TRACKS**.  When a record is request, the entire block that it is in is read into memory.  This is done for efficiency because it is assumed you will be requesting other records in that block.
 * **BLOCK SIZE** - the size of a block specified in different units, i.e. the number of records (most common), words, characters, etc.
 * **BSAM** - Basic Sequential Access Method
-* **CATALOG** - A directory of files and libraries, with reference to their locations, including what volume it is on.  This volume could be tape or disk.  If it is a tape it has the information to request the tape be mounted by its volume name. If it is on disk it has the information on what disk volume it is on, in which the **VTOC** will have the information on where it is physically located. The catalog itself is actually a **VSAM** data set filled with meta data about other data sets.  A system typically has a **MASTER CATALOG** and several **USER CATALOGS**.  The **MASTER CATALOG** doesn't contain info on all the datasets on the system, but it can redirect to the appropriate **USER CATALOG**, much like a DNS server.
-* **CATALOGED DATASET** - An indexed dataset associated with a **Catalog**
+* **CATALOG** - A directory of files and libraries, with reference to their locations, including what volume it is on.  This volume could be tape or disk.  If it is a tape it has the information to request the tape be mounted by its volume name. If it is on disk it has the information on what disk volume it is on, in which the **VTOC** will have the information on where it is physically located. The catalog itself is actually a **VSAM** data set filled with meta data about other data sets.  A system typically has a **MASTER CATALOG** and several **USER CATALOGS**.  The **MASTER CATALOG** doesn't contain info on all the data sets on the system, but it can redirect to the appropriate **USER CATALOG**, much like a DNS server.
+* **CATALOGED DATASET** - An indexed data set associated with a **Catalog**
 * **CATALOGED PROCEDURE** - JCL statements placed in a library and access by name
 * **CHANNEL** -  manages a single I/O interface between a channel subsystem and a set of control units. Because I/O devices are relatively slow, a CPU could waste time (in computer perspective) waiting for the data from the device. This situation is called 'I/O bound'.  Channel architecture avoids this problem by using a separate, independent, low-cost processor. Channel processors are simple, but self-contained, with minimal logic and sufficient on-board scratchpad memory (working storage) to handle I/O tasks.
 * **CICS** - application servers that provide online transaction management and connectivity for applications on IBM Mainframe systems. CICS is middleware designed to support rapid, high-volume online transaction processing. **This processing is usually interactive (screen-oriented)**, but background transactions are possible.  Recent CICS Transaction Server enhancements include support for Web services and Java, Event processing, Atom feeds, and RESTful interfaces.
 * **DATASET** - the **sequential PS** data sets are similar to a file in Linux/Windows, although they are composed of a series of records as opposed to a stream of bytes.  There is also the **PDS** (Partition Data Set) in MVS, which is a data set that contains **Members** that contain the set of records (in the way the entire PS data set does)
-* **Directory Block** - Each **PDS** has one or more directory blocks where it stores the 8 byte **Member Name**, the starting location for the first record in that **Member**, along with some additional optional information. You define the number of directory bocks when allocating a new **PDS**. I had a **PDS** with 2 directory blocks allocate I was able to store 11 **Members** before filling the directory blocks, so 5.5 **Members** per directory block.
+* **Directory Block** - Each **PDS** has one or more directory blocks where it stores the 8 byte **Member Name**, the starting location for the first record in that **Member**, along with some additional optional information. You define the number of directory blocks when allocating a new **PDS**. I had a **PDS** with 2 directory blocks allocate I was able to store 11 **Members** before filling the directory blocks, so 5.5 **Members** per directory block.
 * **EXTENTS** -- the units of space allocated when a data set is created or extended.  The size of the extent is measured in **Tracks** or **Cylinders**. The space on disk is contiguous, which means it may be hard to find enough contiguous space on disk for a large extent if the disk is highly fragmented. There are two types of extents in which you specify how many tracks/cylinders you want for each type:
   * Primary - The initial extent allocated when the data set is created.  So if it is specified to be 20 tracks, those 20 tracks will be allocated when the data set is created
   * Secondary - the additional extents that are allocated when the primary extent is full.  So if the secondary extent is given a size of 10 tracks, those tracks will be allocated each time the data set is extended.  The number of secondary extents you can receive for a non-VSAM data set is limited, on z/OS it is 250, so it may be less on the earlier versions.
@@ -157,20 +157,20 @@ name).
 * **JOB CLASS** - a category of job used to distinguish its characteristics (for example I/O intensive vs processor intensive)
 * **LIBRARY** - similar to a directory in Linux/Windows
 * **LP** - logical partition
-* **LPAR** - Part of IBM's virtualisation architecture.  LPAR, is a subset of a computer's hardware resources, virtualised as a separate computer. In effect, a physical machine can be partitioned into multiple logical partitions, each hosting a separate operating system.
+* **LPAR** - Part of IBM's virtualisation architecture.  LPAR, is a subset of a computer's hardware resources, vitalized as a separate computer. In effect, a physical machine can be partitioned into multiple logical partitions, each hosting a separate operating system.
 * **LRECL** - logical record length
 * **LU** - logical unit
 * **MEMBER** -  A file in a **PDS** (Partitioned Data Set).  Most editing of source files takes place in **MEMBERS**
 * **MVS** - Multiple Virtual Storage.  Refer to the **Concepts** section above for more information.
 * **MVS/ESA** - Multiple Virtual Storage/Enterprise System Architecture.  Ran on **System/370** as a 31 bit OS (2GB Main Memory)
 * **PDS** - Partitioned Data Set - It is a data set that can contain partitions called **MEMBERS**, which are programs, parts of programs, and data.  members, each of which can contain a program, part of a program, or
-data. Synonymous with program library. Contrast with sequential data set. Identified by **PO** under the ORG heading when listing datasets and in JCL commands
+data. Synonymous with program library. Contrast with sequential data set. Identified by **PO** under the ORG heading when listing data sets and in JCL commands
 * **PDS/E** - just like PDS but more advanced in that unclaimed space is automatically reclaimed and they are more efficient
 * **PE** - Program Error
 * **PU** - Physical Unit**
 * **READER** -  A program that reads jobs from an input device or data base file and places them on the job queue.
 * **RECORD SET** - Data sets with a record-oriented structure that are accessed record by record. This is the most typical data set structure on MVS
-* **RJE** - Remoote Job Entry
+* **RJE** - Remote Job Entry
 * **SMF** - System management facilities collects and records system and job-related information.  SMF formats the information that it gathers into system-related records (or job-related records). System-related SMF records include information about the configuration, paging activity, and workload. Job-related records include information on the CPU time, SYSOUT activity, and data set activity of each job step, job, APPC/MVS transaction program, and TSO/E session.
   * **Users Billing**
   * **Reliability Reporting**
@@ -189,8 +189,8 @@ data. Synonymous with program library. Contrast with sequential data set. Identi
  * Debuggers
  * Support for applications
 * **UNIT TYPE** - when creating/accessing data sets it identifies the type of **VOLUME**, either **Tape** or **Disk** 
-* **VOLUME* - **DASD** disks, along with tapes and optical units.  Indentified by a volumen label.
-* **VSAM** - Virtual Storage Access Method - a **VSAM** data set uses a virtual dataset name called a **CLUSTER NAME**, with the cluster name being associated with one or more physical data set names.  With a **KSDS CLUSTER** you have a physical data set **DATA** component and a physical data set **INDEX** component, the **ESDS CLUSTER** has just the physical **DATA** component.  With the exception of **LDS (Linear Data Sets) **VSAM** data sets are collections of records grouped into **Control Intervals (CI)**, which are in turn grouped into a continuous storage are called a **CONTROL AREA (CA)**.  **Linear Data Sets** don't have any META data in them.  A special system utility called **IDCAMS** is used to define, copy, delete, and rename VSAM Data Sets.
+* **VOLUME* - **DASD** disks, along with tapes and optical units.  Identified by a volume label.
+* **VSAM** - Virtual Storage Access Method - a **VSAM** data set uses a virtual data set name called a **CLUSTER NAME**, with the cluster name being associated with one or more physical data set names.  With a **KSDS CLUSTER** you have a physical data set **DATA** component and a physical data set **INDEX** component, the **ESDS CLUSTER** has just the physical **DATA** component.  With the exception of **LDS (Linear Data Sets) **VSAM** data sets are collections of records grouped into **Control Intervals (CI)**, which are in turn grouped into a continuous storage are called a **CONTROL AREA (CA)**.  **Linear Data Sets** don't have any META data in them.  A special system utility called **IDCAMS** is used to define, copy, delete, and rename VSAM Data Sets.
 * **VTAM** - Virtual Telecommunications Access Method subsystem that implements Systems Network Architecture (SNA) for mainframe environments.  It provides an API for communication applications, and it controls communication equipment such as adapters and controllers. 
 * **VTOC*** - Volume Table of Contents. It includes a list of data sets on the volume, and the amount of free space.
 
@@ -223,8 +223,8 @@ Note for several of these commands (particular the ones you type in that require
 * **EXIT**, **END**, **=x** - terminate the whole review session
 * **RECALL**, **RETRIEVE** - recall the prior command
 * **e** - edit/display an entry (make sure you are on the front of the line for that entry)
-* **PA** - Program attention key which allows you to break out of a running program.  Mapped to **CTRL-A** and then **1** (rease control before entering 1).  It is also avaiable in the keyboard overly menu in the c3270 emulator
-* **RESET** - If the keyboard becomes unresponsive while in ISPF like tools this will reset it so you can use it again.  Availble on the c3270 keyboard overlay menu, not sure the key binding (Esc?)
+* **PA** - Program attention key which allows you to break out of a running program.  Mapped to **CTRL-A** and then **1** (release control before entering 1).  It is also available in the keyboard overly menu in the c3270 emulator
+* **RESET** - If the keyboard becomes unresponsive while in ISPF like tools this will reset it so you can use it again.  Available on the c3270 keyboard overlay menu, not sure the key binding (Esc?)
 * **CLEAR** - Clear the display screen.  Mapped to **Ctrl-C** and available on the c3270 emulator key map menu.
 
 # Directory Structure (the unzip location)
@@ -300,14 +300,14 @@ For the  "Data set name prefix", enter "SYS2.JCLLIB" which will display the JCL 
 
 The listing specifies:
   * **Volume** - the volume it is on
-  * **ORG** - the dataset organization, whether it is a **PO** partitioned dataset
-  * **FMT** - Dataset format: **F** fixed record length with only one record per block; **FB** fixed block (records are fixed lengths with the bock size being some multiple of the record size); **VB** variable block (records are variable in size with a byte on the front that has the record length); **U** undefined with no fixed structure (typical for compiled binary files)
+  * **ORG** - the data set organization, whether it is a **PO** partitioned data set
+  * **FMT** - Data set format: **F** fixed record length with only one record per block; **FB** fixed block (records are fixed lengths with the bock size being some multiple of the record size); **VB** variable block (records are variable in size with a byte on the front that has the record length); **U** undefined with no fixed structure (typical for compiled binary files)
   * **LRCL** - Logical Record Length
   * **BLKSZ** - Block size - by default files are read one block at a time, not one record at a time
   
 ** Example data sets
 
-* SYS1.* - the system library datasets.  Do not change these unless you know what you are doing, you can prevent the system from booting if you make a mistake
+* SYS1.* - the system library data sets.  Do not change these unless you know what you are doing, you can prevent the system from booting if you make a mistake
 * SYS2.* - contains data sets provided by TK4-, including the **SYS2.JCLLIB** data set that can be used and modified
 
 ## Creating a Data Set
@@ -403,7 +403,7 @@ The **Execution Statement** is that section of the JCL that tells JES2 what prog
     2000
 /*
 ```
-Note the COBUCG is the COBOL compiler and the **PARAM.COB=** line is the parameters for the compile.  The **COB.SYSIN   DD \*** line is followed by the actual source code to be processed by the compiler.  The COBOL program's input itself commes for a similar **SYSIN DD \*** at the end of the source code (2000 in this case).  It also includes output information on how to format the output
+Note the COBUCG is the COBOL compiler and the **PARAM.COB=** line is the parameters for the compile.  The **COB.SYSIN   DD \*** line is followed by the actual source code to be processed by the compiler.  The COBOL program's input itself comes for a similar **SYSIN DD \*** at the end of the source code (2000 in this case).  It also includes output information on how to format the output
 
 ## Example Jobs in the SYS2.JCLLIB Data Set
 
@@ -462,7 +462,7 @@ This example uses the **c3270** emulator on Ubuntu.  This method uses the **IND$
 
 * To use this method you must start the **ftpd** daemon on the mainframe.  You do this from the **Hercules Console** by entering the **/START FTPD,SRVPORT=2100** (I assume other ports are allowed but this is what I used).  You can verify this is now running by entering **/D A,L** at the console.
 * From Ubuntu command line enter **ftp localhost 2100** and logon to your **TSO** account
-* If you type **ls** at this point you can see all the datasets on the system, since you are essentially at the root.
+* If you type **ls** at this point you can see all the data sets on the system, since you are essentially at the root.
 * Change to the **PDS** you want to upload to or download from, ex **cd HERC02.TEST.JCL**.  Now if you type **ls** you will only see the members of that **PDS**
 * Type **ASCII** to make sure the **FTP** program is set to ASCII mode.
 * Important: Make sure you are not in the **PDS** you are uploading to because it will place a lock, and from within ftp you will get a **550** not authorized message.  Doesn't seem to be an issue downloading from the mainframe.
@@ -656,10 +656,10 @@ JES/2 command begin with a **$**, but as with the **MVS System Commands** above 
 
 To run TSO commands, either **F3** out of the menus, or type **TSO <the command>** at an RFE command prompt, or go to the **1 RFE/6 COMMAND** option.
  
-Note that when entering TSO commands that include data sets the primary index (the first part of the DSN before the period) will be the UserID and appended on the front of the DSN you entered.  To indicate a non-user dataset place a fully qualified data set names in single quotes.  For example if you are user HERC02 and enter **SYS2.JCLLIB** it will try to access **HERC02.SYS2.JCLLIB**, so to get the right reference enter **'SYS2.JCLLIB'** in single quotes.
+Note that when entering TSO commands that include data sets the primary index (the first part of the DSN before the period) will be the UserID and appended on the front of the DSN you entered.  To indicate a non-user data set place a fully qualified data set names in single quotes.  For example if you are user HERC02 and enter **SYS2.JCLLIB** it will try to access **HERC02.SYS2.JCLLIB**, so to get the right reference enter **'SYS2.JCLLIB'** in single quotes.
 
 * **DSN** - Without parameters it will list data set names in use by the current users.  Specify **DSN** <the data set name> to get the users or jobs that are currently using that data set
-* **LISTALC STATUS** - list the data sets currently allocated by the user.  This will include data sets allocated at TSO logon, such as SYS1.HELP, SYS2.HELP, and the **CMDPROC** datasets (USERID.CMDPROC, SYS1.CMDPROC, SYS2CMDPROC) that contains **CLIST** command procedures.
+* **LISTALC STATUS** - list the data sets currently allocated by the user.  This will include data sets allocated at TSO logon, such as SYS1.HELP, SYS2.HELP, and the **CMDPROC** data sets (USERID.CMDPROC, SYS1.CMDPROC, SYS2CMDPROC) that contains **CLIST** command procedures.
 * **LISTCAT** - To list the catalog files FOR the current user
 * **LISTSPC** - list space (size) related statistics for a data set of or data sets.  Without any parameters it will prompt for the data set, otherwise specify them as a parameter.
 * **PROFILE** - shows the current profile settings, for example either **MSGID** or **NOMSGID**, **PREFIX(thePrefixName)** or **NOPREFIX** 
@@ -674,7 +674,7 @@ Note that when entering TSO commands that include data sets the primary index (t
 
 * **SYS1.PARAMLIB** - system parameters that are read during startup
 * **SYS1.NUCLEUS** - contains the system Nucleus itself along with supporting members
-* **SYS1.L1NKLIB** - contains executable programs that are part of the OS or are User provided.  Similar to **SYS1LPALIB** but its programs don't remain in the common **Link Pack Area (LPA)** of memory that are always resident in memory.  They are loaded as needed.
+* **SYS1.LINKLIB** - contains executable programs that are part of the OS or are User provided.  Similar to **SYS1LPALIB** but its programs don't remain in the common **Link Pack Area (LPA)** of memory that are always resident in memory.  They are loaded as needed.
 * **SYS1.LPALIB** - similar to **SYS1.LINKLIB** in that it provides OS and User programs, but it is always resident in main memory in the common **Link Pack Area (LPA)** 
 * **SYS1.MACLIB** - Contains the macro library that is used by the OS and user written programs.
 * **SYS1.PROCLIB** - Contains useful JCL procedures that can be used within your own JCL scripts.
@@ -813,7 +813,7 @@ From: [Hercules FAQ](http://www.jaymoseley.com/hercules/faq/mvsfaq04.htm#USER027
 
 Why do I receive the message: IER040A INSUFFICIENT WORK UNITS when I attempt to use the MVT Sort/Merge program under MVS 3.8?
 
-The MVT Sort/Merge utility requires at least three (and may use up to a maximum of 32) intermediate storage datasets.  Unlike current Sort/Merge utilities (such as DFSORT or Syncsort), the MVT Sort/Merge is unable to dynamically allocate datasets for use as intermediate storage.  You must supply DD statements for the DD Names SORTWK01, SORTWK02, SORTWK03 ... SORTWK32.  Also the SORTWK?? data sets must reside on 2311/2314 DASD.  Although some efforts have been reported of using tape datasets with the MVT Sort/Merge under Hercules, it is probably a better idea to utilize DASD for the SORTWK?? data sets.  If the MVT Sort/Merge is called indirectly (as by a COBOL program that includes the SORT verb), you must also supply SORTWK?? DD cards to the EXEC step.
+The MVT Sort/Merge utility requires at least three (and may use up to a maximum of 32) intermediate storage data sets.  Unlike current Sort/Merge utilities (such as DFSORT or Syncsort), the MVT Sort/Merge is unable to dynamically allocate data sets for use as intermediate storage.  You must supply DD statements for the DD Names SORTWK01, SORTWK02, SORTWK03 ... SORTWK32.  Also the SORTWK?? data sets must reside on 2311/2314 DASD.  Although some efforts have been reported of using tape data sets with the MVT Sort/Merge under Hercules, it is probably a better idea to utilize DASD for the SORTWK?? data sets.  If the MVT Sort/Merge is called indirectly (as by a COBOL program that includes the SORT verb), you must also supply SORTWK?? DD cards to the EXEC step.
 
 ## JES2 Resource Shortage
 

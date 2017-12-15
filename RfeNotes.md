@@ -10,7 +10,7 @@ Notes on the RFE (Review Front End) productivity tool for TK4- on Hercules MVS e
 
 # Panels
 
-The individual screens in **RFE** are refer to as **Panels**.  You can navigate to a panel by traversing the menu tree.  You can also more directly access particular panels using the panel numbers, separating each nested panel by a period.  For example, type **=3.4** in any other panels command prompt will take you to the **DSLIST** panel, because to get to it you navigate first to **3 Utiities** and second to **4. DSList**.  Other commands use this notation such as  **START 3.2**  will start a new Review Session on the **DATASET**
+The individual screens in **RFE** are refer to as **Panels**.  You can navigate to a panel by traversing the menu tree.  You can also more directly access particular panels using the panel numbers, separating each nested panel by a period.  For example, type **=3.4** in any other panels command prompt will take you to the **DSLIST** panel, because to get to it you navigate first to **3 Utilities** and second to **4. DSList**.  Other commands use this notation such as  **START 3.2**  will start a new Review Session on the **DATASET**
 
 # General Commands That Apply Most Areas
 
@@ -30,7 +30,7 @@ The individual screens in **RFE** are refer to as **Panels**.  You can navigate 
 
 Using **3 Utilities** / **2 DATASET**
 
-Note if you want to base your data set on an exiting one, then before allocating a data set with the **A** command, you can model your data set on an exiting data set by entering the existing name on the **DATA SET NAME** line, pressing **Enter**, which will display its definition screen, press **Enter** again to return to the Dataset Utility screen.  Now when you type **A** on the **COMMAND** line and enter the dataset name (make sure to replace the exiting one you just used) the new one will use all the parameters (Record size, block size, etc) of the prior one.  You can still make changes to it if you want some variations.
+Note if you want to base your data set on an exiting one, then before allocating a data set with the **A** command, you can model your data set on an exiting data set by entering the existing name on the **DATA SET NAME** line, pressing **Enter**, which will display its definition screen, press **Enter** again to return to the Data set Utility screen.  Now when you type **A** on the **COMMAND** line and enter the data set name (make sure to replace the exiting one you just used) the new one will use all the parameters (Record size, block size, etc) of the prior one.  You can still make changes to it if you want some variations.
 
 # Editing Data Set
 
@@ -53,16 +53,16 @@ Note if you want to base your data set on an exiting one, then before allocating
 Primary Commands are the commands entered on the Command line at the top of the screen while editing a Member or Sequential PS data set.
 
 * **PROFILE** - show your editor profile setting such as Cap State, Syntax Highlighting
-* **CHANGE** or **C** - Search and replace, for example **C THIS THAT ALL** will change all occurances of THIS to THAT
-* **COLS** - display a columns ruler at the top of the page so you can easily see the column positon, which otherwise isn't as obvious since the sequence numbers at the start of the edit area are also included on the column number shown on the lower right.  So for example in a COBOL program in which you must start in column 8, the lower right number will show 16 instead of 8, whereas the ruler shows the correct posistion.
+* **CHANGE** or **C** - Search and replace, for example **C THIS THAT ALL** will change all occurrences of THIS to THAT
+* **COLS** - display a columns ruler at the top of the page so you can easily see the column position, which otherwise isn't as obvious since the sequence numbers at the start of the edit area are also included on the column number shown on the lower right.  So for example in a COBOL program in which you must start in column 8, the lower right number will show 16 instead of 8, whereas the ruler shows the correct position.
 * **CUT** - Copies the text marked with with the "**C* or **CC** block line commands into the clipboard.  You can append to existing clipboard text by adding an **A** parameter, **CUT A** (it does not remove it from the original in the Windows notion of cut).  The **D** parameter will discard the prior clipboard text.
 * **PASTE** - Pastes the text copied with **CUT** to the location specified by the **A** after line command.  This does not have to be in the same data set but can be pasted into another data set.
-* **COPY** Primary Command is used to import the entire contents of another sequential PS data set or from a Member in a PDS data set, into the current data set/member records.  This is done by marking the location to insert the text using the **A** after line command and typing **COPY** on the Command Line.  It will then prompt you for a sequential data set name to copy **from**.  You can enter the dataset name for a **PS** data set, ex. **HERC02.TEST.SEQDS**, of for a **Member** in a **PO** data set the full data set name(member) notation, for example **HERC02.TEST.MYPDS(MEMBERNAME)**.  In both cases, assuming they exist, they will be inserted after pressing **Enter**.  You can also import (copy) a **Member** from within the same data set you are in.  In this case you can simply type **COPY MemberName** on the commands line of the file you are inserting into (currently marked with an **A** line command to insert the copied text after that line. 
+* **COPY** Primary Command is used to import the entire contents of another sequential PS data set or from a Member in a PDS data set, into the current data set/member records.  This is done by marking the location to insert the text using the **A** after line command and typing **COPY** on the Command Line.  It will then prompt you for a sequential data set name to copy **from**.  You can enter the data set name for a **PS** data set, ex. **HERC02.TEST.SEQDS**, of for a **Member** in a **PO** data set the full data set name(member) notation, for example **HERC02.TEST.MYPDS(MEMBERNAME)**.  In both cases, assuming they exist, they will be inserted after pressing **Enter**.  You can also import (copy) a **Member** from within the same data set you are in.  In this case you can simply type **COPY MemberName** on the commands line of the file you are inserting into (currently marked with an **A** line command to insert the copied text after that line. 
 * **NULLS** - toggle nulls on and off.  **IMPORTANT: to be able to use insert mode to move text to the right you must set NULLS ON**.  You can check the current **NULLS** setting by typing **PROFILE** on the command line.  With **NULLS** set off the remainder of the record after the last alpha numeric character is filled with spaces, which is why you can't push the text to the right, the entire record is full.  This would make sense for a data record.
 
 ## Line Editing Commands
 
-Applies to when editing a **sequential PS dataset** or the **member** of a **PDS**
+Applies to when editing a **sequential PS data set** or the **member** of a **PDS**
 
 You make line editing commands by typing the command at the beginning of the line (in the control area, not the text file area)
 

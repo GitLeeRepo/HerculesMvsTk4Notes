@@ -29,7 +29,7 @@ Notes on the Job Control Language (JCL)
 
 * JCL can be used to submit **batch** jobs to be run by the **JES2** or **JES3** scheduler.  It must have at least a **JOB** statement and an **EXEC** statement to run a program.  It can have multiple **EXEC** statements in order to run a series of programs.  Most **JCL** also includes several **DD** (Data Definition) statements.  **JCL** instructs its own output to be written to the **JES SPOOL** where it can be printed or if held viewed.
 
-One of the fundamental reasons for **JCL** to is to **virutalize** the data sets used by programs.  The programs don't refer to the data sets directly, but through the **Symbolic Referencess** of the **DDName** label on the **DD** statement.  That was the underlying data set can change, for example **USER1.JCL** in one case and **USER2.JCL** in another, and the program's code doesn't have to account for these differences.  Of course the internal structures of the data sets should be consistent with what the program expects.
+One of the fundamental reasons for **JCL** to is to **virtualize** the data sets used by programs.  The programs don't refer to the data sets directly, but through the **Symbolic References** of the **DDName** label on the **DD** statement.  That was the underlying data set can change, for example **USER1.JCL** in one case and **USER2.JCL** in another, and the program's code doesn't have to account for these differences.  Of course the internal structures of the data sets should be consistent with what the program expects.
 
 # JCL Sequence
 
@@ -61,20 +61,20 @@ You must allocate a data set to contain the JCL, it must have a fixed-block form
 
 ### Types of Operand parameters
 
-* **Postional Parameters** - must be in a specific order.  In the case of the JOB statement for example the account information parameter must come before the programmer's name parameter.  `//JOBNAME JOB (AcctInfo), 'Programmer Name'`. Both of these parameters are optional:
+* **Positional Parameters** - must be in a specific order.  In the case of the JOB statement for example the account information parameter must come before the programmer's name parameter.  `//JOBNAME JOB (AcctInfo), 'Programmer Name'`. Both of these parameters are optional:
   * If the first parameter is omitted provide a comma //JOBNAME JOB , 'Programmer Name'`
   * The last parameter can be omitted
-  * If all optional parameters are ommitted no comma is needed, just continue with the next statement, which would be the EXEC in this case.
-* **Keyword Parameters** - Keyword parmeters consist of a key value pairs and can be in any order.  In the case of the JOB statement it doesn't matter whether **CLASS=A** comes before **CLASSMSG=H**, they can be in any order.  They also don't require commas for missing parameters, but you do need commas to seperate the ones that are provided
+  * If all optional parameters are omitted no comma is needed, just continue with the next statement, which would be the EXEC in this case.
+* **Keyword Parameters** - Keyword parameters consist of a key value pairs and can be in any order.  In the case of the JOB statement it doesn't matter whether **CLASS=A** comes before **CLASSMSG=H**, they can be in any order.  They also don't require commas for missing parameters, but you do need commas to separate the ones that are provided
   
 
 ## JOB Statement
 
 * Contains information to tell **JES2** how to run the job.
-* The name parameter is refered to as the JOB Name following standard naming rules (alphanumeric and national chars).  The individual computer centers determines if there are any additional naming conventions.
+* The name parameter is referred to as the JOB Name following standard naming rules (alphanumeric and national chars).  The individual computer centers determines if there are any additional naming conventions.
 * Must be at least one space between the JOB Name and the JOB keyword
 * Refer to the section above on **Types of Operand Parameters** which uses the JOB statement as an example to distinguish Positional Parameters and Keyword parameters
-* The Accounting parameter ( the **(COBOL)** identifier in the example below) is a positonal parameter and must come before the programmer's name if it is provided.  It is optional and may be defined by a particular computer center.  It can also have sub-paramaters seperated by commas, which if provided need to be enclosed in parenthesis.  The example **(COBOL)** account parameter below therefore does not need the parenthesis since it doesn't have sub-parameters, but it is common to see the parenthesis provided anyway.
+* The Accounting parameter ( the **(COBOL)** identifier in the example below) is a positional parameter and must come before the programmer's name if it is provided.  It is optional and may be defined by a particular computer center.  It can also have sub-parameters separated by commas, which if provided need to be enclosed in parenthesis.  The example **(COBOL)** account parameter below therefore does not need the parenthesis since it doesn't have sub-parameters, but it is common to see the parenthesis provided anyway.
 
 ### Example JOB Statement
 
@@ -92,7 +92,7 @@ Also note that the **Job Name** identifier, in this case **PRIMCOB1** (the name 
 
 ## The EXEC Statement
 
-* The **Execution Statement** is that section of the JCL that telss JES2 what program to execute.
+* The **Execution Statement** is that section of the JCL that tells JES2 what program to execute.
 * The Name identifier for the **EXEC** statement is referred to as the **Step Name**.  You can have multiple **EXEC** statements in a JCL job, each having a unique **Step Name**.
 * The **PGM Parameter** is actually a **Positional Parameter** even though it has the **=** associated with a **Keyword** parameter (the **PROC** parameter is the only other example of this exception).  It is positional in the sense that it must be the first parameter provided for the **EXEC** statement
 
@@ -117,13 +117,13 @@ This example is a continuation of the example from the same COBOL program used t
     2000
 /*
 ```
-Note the COBUCG is the COBOL compiler and the **PARAM.COB=** line is the parameters for the compile.  The **COB.SYSIN   DD \*** line is followed by the actual source code to be processed by the compiler.  The COBOL program's input itself commes for a similar **SYSIN DD \*** at the end of the source code (2000 in this case).  It also includes output information on how to format the output
+Note the COBUCG is the COBOL compiler and the **PARAM.COB=** line is the parameters for the compile.  The **COB.SYSIN   DD \*** line is followed by the actual source code to be processed by the compiler.  The COBOL program's input itself comes for a similar **SYSIN DD \*** at the end of the source code (2000 in this case).  It also includes output information on how to format the output
 
 ## DD Statement
 
 Note: In order to show the **DD** statements in relation to the **EXEC** statement refer to the **EXEC Statement Example (with DD Statements)** section above for the example code.
 
-* The **DD statements** descript the data used by the program
+* The **DD statements** describes the data used by the program
 * The Name identifier is called the **ddname**
 * The particular **ddnames** needed depend on the program being executed by the **EXEC** statement
 
@@ -164,9 +164,9 @@ The **DDNAME** labels in the **label** column of the **DD Statements** are refer
 
 ### Data Set Allocation and References Specifics
 
-* **DISP** - the data set disposition, which ndicates whether it is new **NEW** or alread exists **OLD** when processing starts, and what to do with it when processing completes **KEEP** or **DELETE**.  You can also specify what to do if the job abnormally ends.
+* **DISP** - the data set disposition, which indicates whether it is new **NEW** or already exists **OLD** when processing starts, and what to do with it when processing completes **KEEP** or **DELETE**.  You can also specify what to do if the job abnormally ends.
 
-The various **Dispotions** (sets for the start, end, and abnormal endings of the job):
+The various **Dispositions** (sets for the start, end, and abnormal endings of the job):
 
 At Start | On Completion | Abnormal End
 ---------|---------------|--------------
@@ -182,7 +182,7 @@ MOD | CATLG | CATLG
 
 Units can be specified from the specific to the general (device number, to group name).
 
-* **UNIT Device Address** - specify a specfic device with the 3 digit device address
+* **UNIT Device Address** - specify a specific device with the 3 digit device address
 * **Generic Device Type** - specify by the device type, such as the **3350 DASD** family
 * **Groups of Devices** - use **SYSALLDA** for any available **DASD**, **SYSDS** available for general use, **TAPE** for any tape drive.
 
@@ -192,13 +192,13 @@ When running the Job you will likely have both permanent and temporary data sets
 
 ### DCB Information
 
-The **DCB** information comes from either the the data set's label or catalog entry, the JCL, or the program itself. When opening in **input mode**, the file must exist and records can be read but not written. With **output mode**, records can be written but not read. For existing files records are added to the end of the data set, and if it doesn't exist a new one is created.  With **I/O mode**, you can boh read and write to the data set.
+The **DCB** information comes from either the the data set's label or catalog entry, the JCL, or the program itself. When opening in **input mode**, the file must exist and records can be read but not written. With **output mode**, records can be written but not read. For existing files records are added to the end of the data set, and if it doesn't exist a new one is created.  With **I/O mode**, you can both read and write to the data set.
 
 ### Concatenation vs Continuation on DD Statement
 
 You can have **DD Statements** that span multiple lines.  
 
-For **Continuation** you can separate individual paramaters on to multiple lines by ending the prior line with a comma and starting the next line with **//** and at least one space.
+For **Continuation** you can separate individual parameters on to multiple lines by ending the prior line with a comma and starting the next line with **//** and at least one space.
 
 ```
 //SYSUT1   DD DSN=HERC02.AOK.JCLLIB,
@@ -274,7 +274,7 @@ For **statements** part of the **MSGLEVEL** the meaning is:
 
 For the **messages** part of the **MSGLEVEL** the meaning is:
 0 Don't print allocation messages unless the job abnormally terminates
-1 Print all allocation messagees
+1 Print all allocation messages
 
 **Allocation** messages show the physical device that was allocated for the data sets used
 
@@ -284,7 +284,7 @@ The output will depend on the **MSGLEVEL** settings.  If the **statement** part 
 
 The **allocation** page which contains the information on what physical devices were allocated for the data.  If this information is not relevant or important for a particular job then it can be suppressed by setting the **messages** part of the **MGLEVEL** parameter to zero, otherwise set it to 1.
 
-The **allocation** page does include one particularly import piece of information, the return code (may show as "CONDIION CODE" or "RC" with zero indicate no issues.  For the standard utilities "4' incdicates minor errors, while "8" and "12" indicate progressively more serious errors.  Custom programs may follow this sandard or may choose another.
+The **allocation** page does include one particularly import piece of information, the return code (may show as "CONDITION CODE" or "RC" with zero indicate no issues.  For the standard utilities "4' indicates minor errors, while "8" and "12" indicate progressively more serious errors.  Custom programs may follow this standard or may choose another.
 
 The remaining pages of the JCL output will contain any output of the program specifies
 
@@ -308,12 +308,12 @@ The IEBUPDTE utility creates multiple members in a partitioned data set, or upda
 
 ### SYSIN Data Statement / Control Statements
 
-**Data Statements** are used used with **Function Statements**, or with **Function Statemens and Detail Statements**
+**Data Statements** are used used with **Function Statements**, or with **Function Statements and Detail Statements**
 
 * The **SYSIN**data begins with **./** indicating that the Data Statements are to be treated as User Labels
 * The control statement must contain one of the following **Control Functions**:
   * **ADD** - If the target is a **new data set** it is added.  For an **existing data set** , it specifies that a member or a data set is added if it doesn't exist. If a member already exists processing is ended, unless **PARM=NEW** is specified on the EXEC statement, the member is replaced. For a sequential output data set, PARM=NEW must always be specified on the EXEC statement.
-  * **REPL** - the entire dataset or member should be replaced.  It must already exist or else it is an error
+  * **REPL** - the entire data set or member should be replaced.  It must already exist or else it is an error
   * **CHANGE** - used to specify specific changes to a data set or member.  It must exist or else it is an error.  It uses **NUMBER** and/or **DELETE** to specify changes.
   * **REPRO** - specifies that a data set or member is copied in its entirety to a **new data set**
 
@@ -339,7 +339,7 @@ A few of the possible possible parameters, refer to the IBM docs [IBM IEUPDTE Fu
 ### Data statement 
 
 *	The data statement is used to supply the logical records that are used as replacement statements or new data to be merged into the output data set 
-*	When used with an ADD or REPL function, a data statement contains the new data to be placed in the output dataset 
+*	When used with an ADD or REPL function, a data statement contains the new data to be placed in the output data set 
 *	When used with a CHANGE function, a data statement contains the new data or the data which replaces existing logical records in the input data set 
 * The data statement does not have a fixed syntax. 
 * Each logical record begins in column 1 and must contain sequence numbers 
@@ -370,7 +370,7 @@ Simply enter **SUBMIT** on the command line while in the JCL file itself
 
 ## From TSO
 
-In addition to submitting the job from within the **RFE** editor you can submit it from **TSO** by specifying the dataset that contains the JCL with the following syntax:
+In addition to submitting the job from within the **RFE** editor you can submit it from **TSO** by specifying the data set that contains the JCL with the following syntax:
 
 **SUBMIT 'USERID.XXX.YYY(Membername)'**
 

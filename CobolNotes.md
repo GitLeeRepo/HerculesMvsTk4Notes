@@ -1,6 +1,6 @@
 # Overview
 
-Notes on the COBOL programming languages as it applies to the MVS mainframe environment, with an emphasis on the older compiler versions as found on the **Hecules with TK4-** emulator environment.
+Notes on the COBOL programming languages as it applies to the MVS mainframe environment, with an emphasis on the older compiler versions as found on the **Hercules with TK4-** emulator environment.
 
 # References
 
