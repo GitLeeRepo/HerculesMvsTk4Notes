@@ -1,0 +1,2 @@
+# ensure a lf only ending when checkout, even on Windows
+* text eol=lf
